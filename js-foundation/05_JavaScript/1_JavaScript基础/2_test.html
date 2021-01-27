@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. // 计算2的n次幂，n可以输入，n为自然数
+        // var res = 2;
+        // var n = window.prompt(n); //用户输入
+        // for (var i = 1; i < n; i++) {
+        //     res *= 2;
+        // }
+        // document.write(res);
+
+        // 2. // 计算n的阶乘，n可输入
+        // var n = window.prompt(n);
+        // var res = n;
+        // for (var i = n-1; i > 0; i --) {
+        //     res *= i;
+        // }
+        // document.write(res);
+
+        // 3. // 斐波那契额数列输出第n个值
+        // var n = window.prompt(n);
+        // var arr = [];
+        // arr[0] = arr[1] = 1;
+        // if (n > 1) {
+        //     for (var i = 2; i < n + 1; i++) {
+        //         arr[i] = arr[i - 1] + arr[i - 2];
+        //     }
+        //     document.write(arr[n]);
+        // } else{
+        //     document.write(arr[n]);
+        // }
+
+        // 方法二
+
+        // f s
+        // 1 2 3 4 5 6
+        //   f s
+        // if (n > 2) {
+            // var first = second = 1;
+            // var third;
+            // var n = parseInt(window.prompt('input'));
+            // for (var i = 0; i < n - 2; i++) {
+            //     third = first + second;
+            //     first = second;
+            //     second = third;
+            // }
+            // document.write(third);
+        // } else {
+        //     document.write(1);
+        // }
+
+
+        // 4. //编写程序，输入一个三位数的正整数，输出时反向输出
+        // var n = window.prompt(n);
+        // var g,
+        //     s,
+        //     b;
+        // g = n % 10;
+        // s = ((n - n % 10) / 10) % 10;
+        // b = (n - n % 100) / 100;
+        // document.write(g + " ",s + " ",b + " ");
+
+        // 5. // 输入abc三个数字，打印出最大的
+        // var a = window.prompt(a);
+        // var b = window.prompt(b);
+        // var c = window.prompt(c);
+        // var max;
+        // max = a > b ? a > c ? a : c : b > c ? b : c;
+        // document.write(max);
+
+        // 6. // 打印出100以内的质数
+        // document.write(1 + " ", 2 + " ", 3 + " ", 5 + " ", 7 + " ");
+        // for (var i = 4; i < 101; i++) {
+        //     if (i % 2 != 0 && i % 3 != 0 && i % 5 != 0 && i % 7 != 0) {
+        //         document.write(i + " ");
+        //     }
+        // }
+
+        // 方法二(better)
+        // var count = 0;
+        // for (var i = 2; i < 100; i ++) {
+        //     for (var j = 1; j <= Math.sqrt(i); j ++) {
+        //         if (i % j == 0) {
+        //             count ++;
+        //         }
+        //     }
+        //     if (count == 1) {
+        //         document.write(i + " ");
+        //     }
+        //     count = 0;
+        // }
+    </script>
+</body>
+
+</html>

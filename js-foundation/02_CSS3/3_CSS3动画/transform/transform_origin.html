@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            margin: 200px;
+            position: relative;
+        }
+
+        .item {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+
+        .item1 {
+            transform-origin: top left;
+            transform: rotate(45deg);
+        }
+
+        .item2 {
+            transform-origin: top;
+            transform: rotate(45deg);
+        }
+
+        .item3 {
+            transform-origin: 100% 100%;
+            transform: rotate(45deg);
+        }
+
+        .item4 {
+            transform-origin: 50px 50px;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="item item1">item1</div>
+    </div>
+    <div class="box">
+        <div class="item item2">item2</div>
+    </div>
+    <div class="box">
+        <div class="item item3">item3</div>
+    </div>
+    <div class="box">
+        <div class="item item4">item4</div>
+    </div>
+</body>
+
+</html>

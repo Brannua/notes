@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // console.dir(Promise); // 列出Promise对象中所有的属性方法
+        // -----------------------------------------------------------------
+        /* Promise的三种状态 */
+        /*
+            pending     ==> 就绪状态
+            resolved    ==> 成功状态
+            rejected    ==> 失败状态
+        */
+        // -----------------------------------------------------------------
+        /* 
+            - 若在.then()中的resolved和rejected的处理函数返回的都是常量
+              则Promise对象p默认会变成resolved状态
+        */
+        // let p = new Promise(function (resolved, rejected) {
+        //     let num = Math.random() * 100;
+        //     if (num < 50) {
+        //         resolved(num); // pending ==> resolved
+        //     } else {
+        //         rejected('太大了,要不起'); // pending ==> rejected
+        //     }
+        // })
+        // .then(data => data, err => err)
+        // /* 由于promise是异步的,所以这里用一下计时器 */
+        // setTimeout(() => {
+        //     console.log(p); ==> resolved
+        // }, 1000);
+        // -----------------------------------------------------------------
+        /* 
+            - 若在.then()中的resolved和rejected的处理函数返回的是Promise对象
+              则会继续根据这个Promise对象的状态执行下一个.then()中的resolved或者rejected处理函数( 回调函数 )
+        */
+        // let p = new Promise(function (resolved, rejected) {
+        //         let num = Math.random() * 100;
+        //         if (num < 50) {
+        //             resolved(num);
+        //         } else {
+        //             rejected('太大了,要不起');
+        //         }
+        //     })
+        //     .then(data => new Promise((resolved, rejected) => {
+        //         // resolved('ok');
+        //         rejected('no');
+        //     }), err => console.log('rejected_1: ', err))
+        //     .then(data => console.log('resolved_2: ', data), err => console.log('rejected_2: ', err));
+        // -----------------------------------------------------------------
+        // let p = new Promise(function (resolved, rejected) {
+        //     let num = Math.random() * 100;
+        //     if (num < 50) {
+        //         resolved(num);
+        //     } else {
+        //         rejected('太大了,要不起');
+        //     }
+        // })
+        // .then(data => {
+        //     console.log(data);
+        //     return new Promise((resolved, rejected) => {
+        //     // resolved('ok');
+        //     rejected('no');
+        // })
+        // }, err => console.log('rejected_1: ', err))
+        // .then(data => console.log('resolved_2: ', data), err => console.log('rejected_2: ', err));
+        // -----------------------------------------------------------------
+    </script>
+</body>
+
+</html>

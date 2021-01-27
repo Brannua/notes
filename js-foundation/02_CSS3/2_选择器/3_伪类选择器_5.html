@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>表单元素的状态伪类选择器</title>
+    <style>
+        input:enabled {
+            background-color: #0f0;
+        }
+
+        input:disabled {
+            background-color: #f00;
+        }
+/* ----------------------------------------- */
+        input:checked {
+            width: 20px;
+            height: 20px;
+        }
+/* ----------------------------------------- */
+        span {
+            display: none;
+        }
+
+        input:checked + span{
+            display: inline;
+            color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- disabled 被禁用 -->
+    <input type="text" disabled>
+    <input type="text">
+
+    <!-- radio无法改变背景颜色 -->
+    <input type="radio" name="aaa"><span>dg</span>
+    <input type="radio" name="aaa"><span>ds</span>
+
+    <input type="checkbox" name="aaa"><span>dg</span>
+    <input type="checkbox" name="aaa"><span>ds</span>
+</body>
+
+</html>

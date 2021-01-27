@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 实现一个用方向键操作一个div运动的demo -->
+    <script>
+        var oDiv = document.createElement('div');
+        document.body.appendChild(oDiv);
+        oDiv.style.width = '200px';
+        oDiv.style.height = '200px';
+        oDiv.style.backgroundColor = 'red';
+        oDiv.style.position = 'absolute';
+        oDiv.style.left = 0;
+        oDiv.style.top = 0;
+        // setInterval(function () {
+        //     oDiv.style.left = parseInt(oDiv.style.left) + 1 + 'px';
+        //     oDiv.style.top = parseInt(oDiv.style.left) + 1 + 'px';
+        // }, 1);
+        document.onkeydown = function (e) {
+            var speed = 100;
+            switch (e.which) {
+                case 38:
+                    {
+                        oDiv.style.top = parseInt(oDiv.style.top) - speed + 'px';
+                        break;
+                    }
+                case 40:
+                    {
+                        oDiv.style.top = parseInt(oDiv.style.top) + speed + 'px';
+                        break;
+                    }
+                case 37:
+                    {
+                        oDiv.style.left = parseInt(oDiv.style.left) - speed + 'px';
+                        break;
+                    }
+                case 39:
+                    {
+                        oDiv.style.left = parseInt(oDiv.style.left) + speed + 'px';
+                        break;
+                    }
+            }
+        }
+    </script>
+</body>
+
+</html>

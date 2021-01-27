@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /**
+         * align-items属性( 可以被项目上的属性align-self覆盖掉 )
+         * 定义项目在侧轴上如何对齐,与侧轴的方向有关
+         * align-items: flex-start|center|flex-end|baseline|stretch;
+         * flex-start 交叉轴的起点对齐
+         * center 交叉轴的中点对齐
+         * flex-end 交叉轴的终点对齐
+         * baseline 项目的第一行文字的基线对齐
+         * stretch( 默认值 ) 如果项目未设置高度或设为auto,将占满整个容器的高度
+         */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+            display: flex;
+
+            /* 默认值 */
+            /* align-items: stretch; */
+            /* align-items: flex-start; */
+            align-items: center;
+            /* align-items: flex-end; */
+            /* align-items: baseline; */
+        }
+
+        .item {
+            width: 100px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+</body>
+
+</html>

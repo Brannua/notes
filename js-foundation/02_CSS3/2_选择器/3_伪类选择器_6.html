@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /* 只读 */
+        input:read-only+span {
+            color: #ccc;
+        }
+        /* 可读写 */
+        input:read-write+span {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" readonly><span>只读输入框</span>
+    <br>
+    <input type="text" read-write><span>普通输入框</span>
+</body>
+
+</html>

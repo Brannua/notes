@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var n = 3;
+        // switch(n) {
+        //     case 1: 
+        //         console.log("a");
+        //     case 2: 
+        //         console.log("b");
+        //     case 3:
+        //         console.log("c");
+        // } 
+
+        // var date = window.prompt('input');
+        // switch(date){
+        //     case "monday": 
+        //         console.log("working");
+        //         break;
+        //     case "tuesday": 
+        //         console.log("working");
+        //         break;
+        //     case "wednesday":
+        //         console.log("working");
+        //         break;
+        //     case "thursday":
+        //         console.log("working");
+        //         break;
+        //     case "friday": 
+        //         console.log("working");
+        //         break;
+        //     case "saturday": 
+        //         console.log("relaxing");
+        //         break;
+        //     case "sunday": 
+        //         console.log("relaxing");
+        //         break;
+        // }
+
+        // 耦合程度比价高的代码，如上所示，可以继续优化，利用switch case语句天生的往下漏的特性
+        // 优化如下
+        // var date = window.prompt('input');
+        // switch(date){
+        //     case "monday": 
+        //     case "tuesday": 
+        //     case "wednesday":
+        //     case "thursday":
+        //     case "friday": 
+        //         console.log("working");
+        //         break;
+        //     case "saturday": 
+        //     case "sunday": 
+        //         console.log("relaxing");
+        //         break;
+        // }
+
+        // break;是用来终止循环的，不可以用在循环外面，否则会报错
+
+        // continue的意思是终止本次循环，开始下一次循环
+        // for (var i = 0; i < 100; i ++) {
+        //     if (i % 7 == 0 || i % 10 == 7) {
+        //         continue;
+        //     }
+        //     console.log(i);
+        // }
+
+
+        // 初识引用值
+        // 数组
+        // var arr = [1,2,3,4,undefined,"asd"];
+        // for (var i = 0; i < arr.length; i++) {
+        //     console.log(arr[i]);
+        // }
+
+        // 对象object
+        // var obj = {
+        //   // key  value
+        //     name: "liu",
+        //     age: 40,
+        //     wife: undefined,
+        //     father: 'liudaye',
+        //     handsome: true,
+        // }
+        // console.log(obj.age);
+        // obj.age = 21;
+
+
+        // 最早的时候null是作为代替空对象的一种形式出现的，故typeof(null) == object
+        // typeof() || typeof ...  => number string boolean function undefined object
+
+
+        // 显示类型转换和隐式类型转换
+        // 显示类型转换
+        // var num = 1 * "1";
+        // console.log(typeof (num) + " : " + num);
+        // var num2 = "2" - "1";
+        // console.log(typeof (num2) + " : " + num2);
+        // var num3 = "2" * "1";
+        // console.log(typeof (num3) + " : " + num3);
+        // 显示类型转换
+        // var num = Number("123");//Number函数执行完之后将结果返回(123)
+        // var demo = false;
+        // var num2 = Number(demo);//0
+        // var demo2 = null;
+        // var num2 = Number(null);//0
+        // var demo3 = undefined;
+        // var num3 = Number(demo3);
+        // console.log(num3);//NaN,但凡转化不成数字类型的都会转化成NaN
+        // var demo4 = "123";
+        // var num4 = parseInt(demo4);//123
+        // var demo5 = true;
+        // var nan = parseInt(true);//NaN
+        
+        /**
+         * https://blog.csdn.net/whaxrl/article/details/46873561
+         */
+
+        // parseInt()如果对于字符串的数则转换成整型的数，如果是浮点数则转换成整型，其余的全是NaN
+        // parseInt(demo, radix);//radix是基底的意思,取值范围是2-36
+        // var demo6 = "10";
+        // parseInt(demo6, 16);//将16进制的demo6转化成十进制的整型 -> 16
+        // paarseInt()是从数字位开始看到非数字位截止并返回
+        // so -> var demo7 = '123.3asd';
+        // var num7 = parseInt(demo7);//123
+        // parseFloat()和parseInt()极其相似，parseFloat(string)没有基底
+        // String()和Number()极其相似，但是里面无论写什么东西都会转化成字符串
+        // Boolean()致力于将里面的内容转化成布尔类型的值
+        // toString()也致力于将东西转化成字符串，但是用法不太一样 demo.toString()，并且undefined和null不能使用toString()
+        // toString(radix)中的radix是目标进制，123.toString(8);是把十进制为基底的123转化成8进制的字符串
+        // 所以,二进制和十进制和其他进制是可以相互转换的
+        // eg  ->  2 ------- 10 --------- 16
+        // var num = 10011001;
+        // var test = String(num, 2);
+        // var res = test.toString(16);
+        // console.log(res);//十六进制的num
+
+        // 隐式类型转换
+        // 隐式类型转换内部调用的都是显示类型转换的东西
+        // isNaN()是先将里面的东西调用Number()然后返回值和NaN比对
+        // eg -> isNaN("asd");//true
+        // var a = "123";
+        // a ++;
+        // console.log(a);//number类型的124，a++之前先隐式调用了Number()
+
+        // var a = "abc";
+        // a ++;
+        // a没能转换成数字，但是a仍然转换成了Number类型的
+
+        // 一元正负
+        // var a = "abc";
+        // +a 和 -a 都会将a转化成数字类型的
+
+        // 加号+
+        // 当加号两侧有一侧是字符串类型的，她就会调用String()方法，将两个东西都变成字符串
+
+        // -*/%的隐式类型转换还是Number()
+        // var a = "1" * 1;
+        // a - > 1: Number
+
+        // && || ! 的隐式类型转换，比如&&先判断前面的表达式是不是true，但是返回的是表达式的值，而不是隐式类型转化的值
+
+        // > < >= <=  的隐式类型转换，字符串之间比较的是asc码的顺序，比较运算符中又数字就会将字符串转化为数字，然后进行比较
+
+        // != == 的隐式类型转换
+        // var a = 1 == "1";
+        // console.log(a);//true
+
+        // 为了避免==和!=的隐式转换带来的弊端
+        // 使用===和!==
+
+        // 未定义的变量放在typeof里面是不报错的
+        // console.log(typeof(a));  -> undefined
+        // typeof(typeof(a)) <==> typeof("undefined") <==> String
+
+
+        // practise如下
+        // alert(typeof(a));
+        // alert(typeof(undefined));
+        // alert(typeof(NaN));
+        // alert(typeof(null));
+        // var a = "123abc";
+        // console.log(+a);
+        // alert(typeof(+a));
+        // alert(1 == "1");
+
+        // var a = "123abc";
+        // alert(typeof(!!a));
+
+        // var a = "123abc";
+        // alert(typeof(a + ''));
+
+        // var num = 123.45678;
+        // document.write(num.toFixed(3));//保留三位有效数字，且四舍五入
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+- 文件夹实时转化
+    - babel src -w -d dist
+- 文件实时转化
+    - babel src/index.js -w -o dist/index.js

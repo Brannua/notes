@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #btn {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: 100px;
+            left: 0px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="btn"></div>
+    <script>
+        var timer = null;
+        (function move() {
+            if (btn.offsetLeft > 300) {
+                clearTimeout(timer);
+                btn.style.left = "300px";
+            } else {
+                btn.style.left = btn.offsetLeft + 10 + "px";
+                timer = setTimeout(function () {
+                    move();
+                }, 10);
+            }
+        })();
+        
+    </script>
+</body>
+
+</html>

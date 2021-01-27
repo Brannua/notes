@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.
+        function Person(name, age, sex) {
+            var a = 0;
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            function sss() {
+                a ++;
+                document.write(a);
+            }
+            this.say = sss;
+        }
+        var oPerson = new Person();
+        oPerson.say();//1
+        oPerson.say();//2
+        var oPerson1 = new Person();
+        oPerson1.say();//1
+
+        // 2.代码执行完后xyz的值分别是多少
+        var x = 1,
+            y = z = 0;
+        
+        function add(n) {
+            return n = n + 1;
+        }
+
+        y = add(x);
+
+        function add(n) {
+            return n = n + 3;
+        }
+
+        z = add(x);
+
+        // 3.不会执行不会报错，系统会将函数体和括号分离开
+        function foo() {
+            console.log(arguments);
+            return x;
+        }(1, 2, 3, 4)
+
+        // 4.请问以下表达式的结果是什么
+        // 正常的进制标准是2-36
+        parseInt(3, 8);//8进制的3转换成十进制   
+        parseInt(3, 2);//NaN
+        parseInt(3, 0);//3或NaN，因为在不同浏览器下的表现不同
+    </script>
+</body>
+
+</html>

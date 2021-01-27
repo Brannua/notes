@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* 内容定宽,留白自适应 */
+/* .wrapper {
+    height: 30px;
+    background-color: #eee;
+}
+
+.content {
+    width: 1200px;
+    height: 30px;
+    background-color: rgb(25, 27, 25);
+    margin: 0 auto;
+} */

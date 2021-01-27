@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div.item {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+
+        span {
+            color: antiquewhite;
+            background-color: #000;
+        }
+
+        /* transition复合属性: property duration function delay */
+        /* ----------------------------------------------------------------------- */
+        div.item1 {
+            transition: width 2s linear 1s;
+        }
+
+        div.item1:hover {
+            width: 300px;
+        }
+
+        /* ----------------------------------------------------------------------- */
+        span.span1:hover {
+            cursor: pointer;
+        }
+
+        div.item2 {
+            position: absolute;
+            left: 0px;
+
+            transition: left 2s linear 1s;
+        }
+
+        span.span1:hover+div.item2 {
+            left: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="item item1">item1</div>
+    <!-- ----------------------------------------------------------------------- -->
+    <span class="span1">hover</span>
+    <div class="item item2">item2</div>
+</body>
+
+</html>

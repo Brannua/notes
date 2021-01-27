@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>标签模板( 函数调用的特殊形式 )</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            alert`hello templateStr~`;
+            function showName(name) {
+                console.log(name);
+            }
+            showName`xiaoming`
+        */
+        // -------------------------------
+        /* 
+            var name = 'xiaoming';
+            var where = 'BJ';
+            function show() {
+                console.log(arguments);
+            }
+            show`hello ${name} welcome to ${where}`;
+        */
+        // -------------------------------
+        /* 重要应用 -- 过滤HTML字符串( 防止XSS注入恶意脚本 ) */
+        function safeHTML(data) {
+            // console.log(arguments);
+            // console.log('arguments.length = ' + arguments.length);
+            // console.log('arguments[0] = ' + arguments[0]);
+            // console.log('arguments[1] = ' + arguments[1]);
+            // console.log('data = ' + data);
+            
+            let str = data[0];
+            // console.log('str = ' + str);
+            
+            for (let i = 1; i < arguments.length; i ++) {
+                let arg = String(arguments[i]);
+                str += arg.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                str += data[i];
+            }
+            console.log(str);
+        }
+        let name = '<script>alert("aaa")<\/script>';
+        safeHTML`<p>${name} welcome to duyi!!!</p>`;
+    </script>
+</body>
+
+</html>

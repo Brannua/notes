@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+            margin: 20px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        /**
+         * 封装兼容性获取元素样式的方法
+         * @params {obj} 操作的元素
+         # @params {attr} 要获取的属性
+         */
+        function getStyle(obj, attr) {
+            if (obj.currentStyle) {
+                return obj.currentStyle;
+            } else {
+                return window.getComputedStyle(obj, false)[attr];
+            }
+        }
+
+        // console.log(parseInt(getStyle(oDiv, 'width')), typeof getStyle(oDiv, 'width'));
+        // console.log(parseFloat(getStyle(oDiv, 'opacity')), typeof getStyle(oDiv, 'opacity'));
+
+        /**
+         * @func {startMove} 广义缓冲运动函数
+         * @params {obj} 运动的物体
+         * @params {attr} 物体运动的属性
+         * @params {target} 运动的目标状态
+         * @params {interval} 运动的频率
+         */
+        function startMove(obj, attr, target, interval) {
+            /**
+             * 如果涉及多物体运动,每一个物体都应该有自己的定时器
+             * 而非公用定时器
+             * 所以将timer改为运动物体自己的属性
+             */
+            var speed;
+            clearInterval(obj.timer);
+            obj.timer = setInterval(() => {
+                /* 判断是否采取缩放思想 */
+                /**
+                 * 由于像opacity这种属性[0, 1)
+                 * 而且speed为矢量有方向( 正负 )
+                 * 会造成Math.ceil和Math.floor只能取到0,1,-1三个值
+                 * 所以采用缩放的思想
+                 */
+                if(attr == 'opacity') {
+                    speed = (target - parseFloat(getStyle(obj, attr))) / 8 * 100;
+                } else {
+                    speed = (target - parseFloat(getStyle(obj, attr))) / 8;
+                }
+                /* 解决小数BUG */
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                /* 判断是否采取缩放思想 */
+                if(attr == 'opacity') {
+                    speed = speed / 100;
+                }
+                /* 运动和停止的逻辑 */
+                if (parseFloat(getStyle(obj, attr)) === target) {
+                    clearInterval(obj.timer);
+                } else {
+                    if (attr == 'opacity') {
+                        obj.style.opacity = parseFloat(getStyle(obj, attr)) + speed;
+                    } else {
+                        obj.style[attr] = parseFloat(getStyle(obj, attr)) + speed + 'px';
+                    }
+                }
+            }, interval);
+        }
+
+        var oDivArr = document.getElementsByTagName('div');
+        oDivArr[0].onclick = function () {
+            startMove(this, 'width', 400, 30);
+        }
+        oDivArr[1].onclick = function () {
+            startMove(this, 'height', 400, 30);
+        }
+        oDivArr[2].onclick = function () {
+            startMove(this, 'opacity', 0.2, 30);
+        }
+        oDivArr[3].onclick = function () {
+            startMove(this, 'borderWidth', 20, 30);
+        }
+    </script>
+</body>
+
+</html>

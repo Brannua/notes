@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<htmvar l lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <script>
+            // 求一个字符串的字节数汉字字节数为2，英文字节数为1
+            function retBytesLen(target) {
+                var count,
+                    len;
+                len = count = targrt.length;
+                for (var i = 0; i < len; i++) {
+                    if (target.charCodeAt(i) > 255) {
+                        count++;
+                    }
+                }
+                console.log(count);
+            }
+
+            // 逗号运算符，会将后面的表达式计算结果返回
+            // var a = (1 + 2, 1 -2);
+
+            var f = (
+                function f() {
+                    return "1";
+                },
+                function g() {
+                    return 2;
+                }
+            )();
+            console.log(typeof (f));
+
+
+            // 写出下面程序的执行结果
+            var x = 1;
+            if (function f() {}) {
+                x += typeof f;
+            }
+            console.log(x);
+            // 未经声明的变量只有放在typeof下才不报错，值是字符串类型的"undefined"
+            // (function f() {})是表达式，函数声明消失
+        </script>
+    </body>
+
+</htmvar>

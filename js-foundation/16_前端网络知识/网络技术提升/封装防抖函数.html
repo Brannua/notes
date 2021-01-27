@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>防抖函数封装</title>
+</head>
+
+<body>
+    <input type="text" id="search">
+    <button id="btn">取消计时器</button>
+    <script>
+        /**
+         * @function {debounce} 防抖函数
+         * @params {time} 时间间隔
+         * @params {callback} 回调函数
+         * @params {flag} 标志位,用于区分防抖方式(如果没有传flag,则flag为undefined,!flag为true)
+         *      false ==> 先等待,再触发
+         *      true ==> 先触发,再等待
+         * @methods {debounce.cancel} 取消计时器
+         */
+        function debounce(time, callback, flag) {
+            // 两函数之间实现定时器声明的一次性
+            var timer = null;
+            // 将具体的防抖操作以外层函数嵌套内层函数的形式封装起来
+            var debounced = function () {
+                // 这里的this指向DOM元素
+                var that = this;
+                // 保存该函数的所有参数
+                var argu = arguments;
+                // 判断标志位,确定防抖方式
+                // 清除定时器
+                clearTimeout(timer);
+                if (!flag) { // 先等待,再触发
+                    timer = setTimeout(function () {
+                        // 改变this指向DOM,传入argu
+                        callback.call(that, argu);
+                    }, time)
+                } else { // 先触发,再等待
+                    console.log(timer, !timer);
+                    if (!timer) {
+                        // 改变this指向DOM,传入argu
+                        callback.call(that, argu);
+                    }
+                    // 真的和上电梯一模一样,如果连续输入,就会卡在42行不再往下执行
+                    // 而一旦停止输入,时间间隔 === time,timer就会变成null,从而可以触发44行
+                    timer = setTimeout(function () {
+                        timer = null;
+                    }, time)
+                }
+            }
+            /**
+             * 增添手动取消计时器的功能
+             */
+            debounced.cancel = function () {
+                clearTimeout(timer);
+                timer = null;
+            }
+            /**
+             * 最外层函数返回函数对象,函数也是对象,可以增添方法
+             */
+            return debounced;
+        }
+        // 元素绑定监听事件时,外层函数立即执行
+
+        function cb(e) {
+            // 输出INPUT元素的value
+            console.log(this.value);
+            console.log(e);
+        }
+
+        // 执行防抖函数 
+        var resFunc = debounce(1000, cb);
+
+        // 给输入框绑定事件监听函数
+        search.onkeyup = resFunc;
+
+        // 给button绑定手动取消计时器的监听事件
+        btn.onclick = resFunc.cancel;
+    </script>
+</body>
+
+</html>

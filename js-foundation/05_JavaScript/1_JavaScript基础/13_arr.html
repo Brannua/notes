@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 定义数组只有两种方法
+        // var arr = [];//字面量定义形式
+        // var arr = new Array();//系统自带的构造函数定义的数组
+        // 故数组所有的方法均来源于 Array.prototype
+
+        // var arr = [1,2,3,,,1]; // 稀疏数组
+        // var arr = new Array(1,2,3,4,5);
+
+        // 字面量形式和构造函数定义数组惟一的区别在于
+        // 构造函数只传入一个参数会被认为是数组的长度而不是数组的元素
+        // var arr = new Array(10);//创建一个长度为10的空数组只能这么创建,length长度只能为整数
+        // var arr1 = [10];
+
+
+        // 数组的读和写
+        // var arr = [num];//如果溢出读结果是undefined
+        // var arr[num] = ***;//可以溢出写
+
+        // 数组的常用方法
+        // 模拟系统的push方法
+        // var arr = [1,2,3,4,5];
+        // Array.prototype.push = function () {
+        //     for (var i = 0; i < arguments.length; i ++) {
+        //         this[this.length] = arguments[i];//原型链上的方法，调用者用this代替
+        //     }
+        //     return this.length;
+        // }
+
+        // push是从最后一位增加，pop是从最后一位剪切
+        // var arr = [1,3,4,5];
+        // arr.push(1,2,3);//ar = [1,3,4,5,1,2,3];
+        // var num = arr.pop();//传参数也没有用一次只能剪切一位
+
+        // unshift是向数组前面插入元素
+        // shift是从数组前面剪切元素
+        // 模拟系统的unshift方法(可以利用splice方法基于遍历插入数组之上来新增元素)
+
+        // 方法一
+        // var myArr = [1, 2, 3, 4, 5],
+        //     arr = [];
+        // Array.prototype.unshift = function () {
+        //     for (var i = 0; i < arguments.length; i++) {
+        //         arr[i] = arguments[i];
+        //     }
+        //     for (var j = 0; j < this.length; j++) {
+        //         arr[arr.length] = this[j];
+        //     }
+        //     for (var i = 0; i < arr.length; i ++) {
+        //         this[i] = arr[i];
+        //     }
+        //     return arr.length;
+        // }
+
+        //方法二利用splice方法模拟unshift方法,基于遍历插入数组之上来新增元素
+        // Array.prototype.unshift = function () {
+        //     for(var i = 0; i < arguments.length; i ++) {
+        //         this.splice(0, 0, arguments[i]);
+        //     }
+        //     return this.length;
+        // }
+
+        // 方法三利用reverse()方法模拟unshift方法
+        // 首先模拟reverse()方法
+        // var arr = [1, 2, 3, 4, 5];
+        // Array.prototype.reverse = function () {
+        //     for (var i = 0; i < parseInt(this.length / 2); i ++) {
+        //         var temp = this[i];
+        //         this[i] = this[this.length - i - 1];
+        //         this[this.length - i - 1] = temp;
+        //     }
+        // }
+        // Array.prototype.unshift = function () {
+        //     this.reverse();
+        //     for (var i = arguments.length - 1; i >= 0; i--) {
+        //         this.push(arguments[i]);
+        //     }
+        //     this.reverse();
+        //     return this.length;
+        // }
+        // console.log(arr.unshift(1, 2, 3), arr);
+
+        // reverse()用来逆转并返回原数组的方法
+
+        // splice(从第几位开始, 截取多少的长度, 在切口处添加新的元素)
+        // var arr = [1,1,2,2,3,3];
+        // arr.splice();
+
+        // var arr = [1,2,3,5];//添加4
+        // arr.splice(3, 0, 4);
+
+        // 数组一般的方法都带负数
+        // splice = function (pos) {//系统内部对切割位是负值的处理方法
+        //     pos += pos > 0 ? 0 : this.length;
+        // }
+    </script>
+</body>
+
+</html>

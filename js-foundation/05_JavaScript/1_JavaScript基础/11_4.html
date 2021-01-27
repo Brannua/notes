@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 对象枚举(enumeration)
+        // var obj = {
+        //     name : 'asd',
+        //     age : 23,
+        //     sex : 'male',
+        //     hobby : 'dfg',
+        //     // prop : 6
+        // }
+        // for (var prop in obj) {
+        //     // obj.prop;  --> obj["prop"]  计算机内部看成是属性了，而不是看成变量
+        //     console.log(obj.prop);
+        // }
+        // for(var prop in obj) {
+        //     console.log(prop + " " + typeof(prop) + " " + obj[prop]);
+        // }
+// 数组也算一种特殊类型的对象，也可以用forin循环
+        var arr = ['a', 'b', 'c'];
+        for (var prop in arr) {
+            console.log(arr[prop]);
+        }
+
+
+
+        // var obj1 = {
+        //     a : 123,
+        //     b : 234,
+        //     c : 345
+        // }
+        // var key;
+        // for (key in obj1) {
+        //     obj1[key] ++;
+        // }
+
+
+
+        // var obj = {
+        //     name : '12',
+        //     age : 12,
+        //     sex : 'male',
+        //     height : 189,
+        //     weight : 67,
+        //     __proto__ : {
+        //         lastName : "deng"
+        //     }
+        // }
+        // for (var key in obj) {
+            // hasOwnProperty(key)方法不会打印系统自带的Object.prototype
+            // 但是Object.prototype如果自定义属性，会打印该属性
+        //     if(obj.hasOwnProperty(key)) {//判断属性是否为对象自己的而非原型链上的，返回布尔值
+        //         console.log(obj[key]);
+        //     }
+        // }
+
+
+
+        // in操作符只能判断该属性是否可以访问到，并返回布尔值, in操作符不常用
+        // var obj = {
+        //     name : '12',
+        //     age : 12,
+        //     sex : 'male',
+        //     height : 189,
+        //     weight : 67,
+        //     __proto__ : {
+        //         lastName : "deng"
+        //     }
+        // }
+        // 'name' in obj  //true
+        // 'lastName' in obj  //true
+
+
+
+        // function Person() {
+
+        // }
+        // var person = new Person();
+        // var obj = {};
+        // A instanceof B  -->  看A对象的原型链上有没有B的原型(A对象是不是B对象构造出来的)
+
+
+
+        // var data = {} || [];
+        // 在看不到真实数据的前提下如何利用机器区分data是对象还是数组
+        // 1. {} instanceof Array  -->  false
+            //[] instanceof Array  -->  true
+        // 2. var obj = {}; obj.constractor  -- > Object
+                          //array.constractor  --> Array
+        // 3. Object.prototype.toString.call([])
+        //    Object.prototype.toString.call(123)
+        //    Object.prototype.toString.call({})
+    </script>
+</body>
+
+</html>

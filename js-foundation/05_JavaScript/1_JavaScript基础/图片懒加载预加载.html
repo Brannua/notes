@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>懒加载图片按钮</button>
+    <script>
+        /**
+         * 图片懒加载
+         */
+        var oBtn = document.getElementsByTagName('button')[0];
+        oBtn.onclick = () => {
+            // 动态创建image标签
+            var oImg = new Image();
+            // 异步加载资源
+            oImg.src = "http://p5.qhimg.com/bdm/384_237_0/t01ff2efdd6be7cc449.jpg";
+            /**
+             * 图片预加载
+             */
+            // 监听资源加载完成
+            oImg.onload = () => {
+                // 然后image标签插入DOM树
+                document.body.appendChild(oImg);
+            }
+        }
+    </script>
+</body>
+
+</html>

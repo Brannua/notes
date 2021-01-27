@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 对象实例的方法entries(), keys(), values()
+         * Object.prototype.entries();
+         * Object.prototype.keys();
+         * Object.prototype.values();
+         * 对数组或下标进行遍历, 返回一个数组
+         */
+        let obj = {
+            name: 'xm',
+            age: 18,
+            getMsg() {
+                return this.name + this.age
+            }
+        }
+        let keys = Object.keys(obj);
+        let values = Object.values(obj);
+        let entries = Object.entries(obj);
+        console.log(keys);
+        console.log(values);
+        console.log(entries);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 去重
+         */
+        // var str = 'aaaaaaaaaaabbbbbbbbbbbcccccccccc';
+        // var reg = /(\w)\1*/g;
+        // str = str.replace(reg, "$1");
+        // console.log(str);
+        /**
+         * 将100000000变成100.000.000
+         * 找空:
+         * 空是有限制的 ==> 想到正向预查
+         * 限制条件:
+         * 不能是边界 ==> \B
+         * 倒着查 ==> 想到$ ==> $是以什么结尾 ==> 以3位一组的数字结尾 ==> \d{3}+$
+         */
+        var str = '100000000';
+        var reg = /(?=(\B)(\d{3})+$)/g;
+        str = str.replace(reg, '.')
+        console.log(str);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 正是因为构造函数三段论的第一步产生的this对象中的__proto__属性，
+        // 使得利用new构造出的对象在访问属性时可以在this对象中没有时沿着__proto__属性指向的对象去找属性
+        // __proto__属性可以手动更改但是一般不做修改，一旦更改，则new出来的对象的原型就更改了
+        // Person.prototype.name = 'asd';
+        // function Person() {
+            // 一旦使用new来构造函数，即刻发生构造函数三段论
+            // var this = {
+            // __proto__ : Person.prototype
+            // 
+            // }
+        // }
+        // var obj = {
+        //     name: 'sunny'
+        // }
+        // var person = new Person();
+        // person.__proto__ = obj;
+        
+
+        // Person.prototype.name = 'asd';
+        // function Person() {}
+        // var person = new Person();
+        // console.log(person.name);
+        // Person.prototype.name = 'sdf';
+        // console.log(person.name);
+
+
+        // Person.prototype.name = 'sunny';
+        // function Person() {
+        //     // var this = {
+        //     //     __proto__ : Person.prototype//刚开始__proto__和Person.prototype指向同一块堆内存
+        //     // }
+        //     // ...
+        //     // ...
+        //     // return this;
+        // }
+        // var person = new Person();
+        // Person.prototype = {//Person.prototype改变了堆内存的指向但是person.__proto__的堆内存空间指向并没有改变
+        //     name : "cherry"
+        // }
+        // console.log(person.name);
+
+
+        // Person.prototype.name = 'sunny';
+        // function Person() {}
+        // Person.prototype = {
+        //     name : 'cheery'
+        // }
+        // var person = new Person();
+        // console.log(person.name);
+
+    </script>
+</body>
+
+</html>

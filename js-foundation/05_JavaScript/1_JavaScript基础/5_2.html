@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        a = 100;
+
+        function demo(e) {
+            function e() {}
+            arguments[0] = 2;
+            console.log(e); //2
+            if (a) {
+                var b = 123;
+
+                function c() {
+                    // 新语法是if里面不允许定义function
+                }
+            }
+            var c;
+            a = 10;
+            var a;
+            console.log(b); //undefined
+            f = 123;
+            console.log(c); //function() {}
+            console.log(a); //10
+        }
+        var a;
+        demo(1);
+        console.log(a); //100
+        console.log(f); //123
+
+        // GO {
+        //     a: 100,
+        //     f: 123
+        // }
+        // AO {
+        //     e: function e() {},
+        //     b: undefined,
+        //     c: undefined,
+        //     a: 10,
+        // }
+    </script>
+</body>
+
+</html>

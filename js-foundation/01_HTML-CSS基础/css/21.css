@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: #000;
+    float: left;
+    opacity: .5;
+}
+
+.demo {
+    float: left;
+    /* display: inline-block; */
+    /* overflow: hidden; */
+
+    width: 150px;
+    height: 150px;
+    background-color: green;
+}

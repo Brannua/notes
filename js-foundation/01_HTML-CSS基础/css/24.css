@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    border: 1px solid;
+    text-decoration: none;
+    color: #424242;
+    display: inline-block;
+    width: 190px;
+    height: 90px;
+    background-image: url(./taobao.png);
+    background-size: 190px 90px;
+    background-repeat: no-repeat;
+
+
+    /* 想让网速不好的时候,即不加载css的时候不影响网站功能 */
+    /* 方法一 */
+    /* 
+    text-indent: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    */
+    /* 方法二 */
+    /* 
+    height: 0;
+    padding-top: 90px;
+    overflow: hidden;
+    */
+}

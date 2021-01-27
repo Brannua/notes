@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        var str = false + 1;//隐式类型转换false转换成0
+        document.write(str);//1
+        var demo = false == 1;
+        document.write(demo);//false
+        if (typeof(a)&&-true + (+undefined) + "") {//a未定义，typeof(a)是字符串类型的undefined, -true是-1， +undefined想要转换成数字但是转不成，所以就成了NaN,但是确实是number类型的， -1+NaN还是NaN，加上""是字符串类型的NaN，字符串拼接然后转换成布尔类型的是true就可以通过判断条件
+            document.write("基础扎实");//可以打印
+        }
+        if (11 + "11" * 2 == 33) {
+            document.write("基础扎实");//可以打印
+        }
+        !!" " + !!"" - !!false||document.write("你觉得能打印，你就是猪");//空格字符串，两个非非就是转换成布尔类型， true + false - false === 1 + 0 - 0 === 1;前半部分对了，后半部分就不看了
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+/* #only {
+    background-color : red;
+}
+
+#only2 {
+    background-color : green;
+}
+
+.demo {
+    background-color : yellow;
+}
+
+.demo1 {
+    color : red;
+} */
+
+/* div{
+    background-color : black;
+    color : white;
+} */
+
+/* span {
+    color : red;
+    font-weight: bold;
+    background-color: yellowgreen;
+} */
+
+/* * {
+    background-color: green;
+} */
+/* div {
+    background-color: blueviolet;
+}
+.wife{
+    background-color: aqua;
+} */
+/* #mother{
+    background-color: antiquewhite;
+} */
+
+/* div {
+    background-color : #000!important;
+} */
+
+
+/* css权重值 */
+/* 
+!important      Infinity
+行间样式        1000
+id              100
+class|属性|伪类      10
+标签|伪元素            1
+通配符*         0
+
+权重值之间进制是256进制 */

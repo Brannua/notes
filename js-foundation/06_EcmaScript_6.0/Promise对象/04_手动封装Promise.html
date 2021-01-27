@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Promise的用法示例:
+         */
+        // var p = new Promise((resolved, rejected) => {
+        //         resolved('ok');
+        //         // rejected('no');
+        //     })
+        //     .then(data => new Promise((res, rej)=>{}));
+        //     setTimeout(() => {
+        //         console.log(p);
+        //     }, 2000);
+        // p.then(data => console.log(data))
+        // // -------------------------------------------------------------------------
+        /* 
+            1. 书写构造函数用于new出promise对象
+            2. 该构造函数的参数一定要为函数( 否则抛出错误 ),该函数会立即执行
+            3. 函数带有resolved,rejected两个函数类型的参数,执行用于改变promise对象的状态并保存数据
+            4. promise对象的状态和数据
+                4-0. 状态的改变为一次性的,需要做出判断
+                4-1. 未执行resolved,rejected任意一个的时候,promise对象状态为pending,数据为null( 起到占位作用 )
+                4-2. 执行resolved(data)的时候,promise对象状态为resolved,数据位为data
+                4-3. 执行rejected(error)的时候,promise对象状态为rejected,数据位为error
+            5. then方法写在构造函数的原型上
+            6. 一旦调用then方法就会返回一个promise对象
+            7. then方法有两个事件监听函数onResolved,onRejected分别监听promise对象的状态,走对应的事件处理函数
+            8. 执行onResolved,onRejected两事件处理函数
+                8-1. 返回值若为常值 ==> 默认返回的promise对象状态为resolved状态
+                8-2. 返回值若为promise对象 ==> 根据该promise对象的状态来决定接下来再次调用then方法执行的处理函数
+         */
+        /**
+         * 开始封装自己的promise函数
+         * @param {} fn 参数类型为函数
+         */
+        function myPromise(fn) {
+            // 判断传入的参数类型是否为function
+            if (typeof fn !== 'function') {
+                throw new Error(`Promise resolver ${fn} is not a function`);
+            }
+            // -------------------------------------------------------------------------
+            this.status = 'pending';
+            this.data = null;
+            // 用于处理异步事件
+            this.resolvedArr = [];
+            this.rejectedArr = [];
+            // -------------------------------------------------------------------------
+            var that = this;
+
+            function resolved(data) {
+                setTimeout(() => {
+                    if (that.status === 'pending') {
+                        that.data = data;
+                        that.status = 'resolved';
+                        that.resolvedArr.forEach(item => item());
+                    }
+                }, 0);
+            }
+
+            function rejected(error) {
+                setTimeout(() => {
+                    if (that.status === 'pending') {
+                        that.data = error;
+                        that.status = 'rejected';
+                        that.rejectedArr.forEach(item => item());
+                    }
+                }, 0);
+            }
+            fn(resolved, rejected);
+        }
+        // 原型链上定义then方法
+        myPromise.prototype.then = function (onResolved, onRejected) {
+            var that = this;
+            // 监听onResolved
+            if (this.status === 'resolved') {
+                // 为了便于链式调用,每次调用then方法都会返回一个promise对象
+                return new myPromise(function (resolved, rejected) {
+                    var res = onResolved(that.data);
+                    // 如果res是promise对象
+                    // 根据res的状态来调用then方法决定将返回的promise状态变为resolved还是rejected
+                    if (res instanceof myPromise) {
+                        // console.log(res);
+                        res.then(resolved, rejected);
+                    } else {
+                        // res为常值 ==> 将返回的promise对象状态变为resolved状态
+                        resolved(res);
+                    }
+                });
+                // 监听onRejected
+            } else if (this.status === 'rejected') {
+                // 为了便于链式调用,每次调用then方法都会返回一个promise对象
+                return new myPromise(function (resolved, rejected) {
+                    var res = onRejected(that.data);
+                    // 如果res是promise对象
+                    // 根据res的状态来调用then方法决定将返回的promise状态变为resolved还是rejected
+                    if (res instanceof myPromise) {
+                        console.log(res);
+                        res.then(resolved, rejected);
+                    } else {
+                        // res为常值 ==> 将返回的promise对象状态变为resolved状态
+                        resolved(res);
+                    }
+                });
+            } else {
+                // 为了便于链式调用,每次调用then方法都会返回一个promise对象
+                return new myPromise((resolved, rejected) => {
+                    // 使用闭包解决传参问题
+                    that.resolvedArr.push(((onResolved) => {
+                        return () => {
+                            var res = onResolved(that.data);
+                            if (res instanceof myPromise) {
+                                res.then(resolved, rejected);
+                            } else {
+                                resolved(res);
+                            }
+                        }
+                    })(onResolved));
+                    // 使用闭包解决传参问题
+                    that.rejectedArr.push(((onRejected) => {
+                        return () => {
+                            var res = onRejected(that.data);
+                            if (res instanceof myPromise) {
+                                res.then(resolved, rejected);
+                            } else {
+                                resolved(res);
+                            }
+                        }
+                    })(onRejected));
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

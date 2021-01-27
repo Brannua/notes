@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // call()用来改变this指向,借用别人的函数实现自己的功能
+        // function demo() {}; 
+        // demo(); --> demo.call();
+
+
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // var obj = {};
+        // var person = new Person('lisi', 100);
+        // Person.call(obj, 'zhangsan', 34);
+
+
+        function Person(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        function Student(name, age, sex, tel, grade) {
+            Person.call(this, name, age, sex);
+            this.tel = tel;
+            this.grade = grade;
+        }
+
+
+        // call()需要把实参按照形参的个数对应的一个个传进去
+        // apply()传入一个数组
+
+        // call和apply的作用和区别
+        // 1.改变this指向
+        // 2.传参列表不同
+    </script>
+</body>
+
+</html>

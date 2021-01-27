@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            运算操作符
+                +
+                    1. 数学运算
+                    2. 字符串连接
+                    3. 任何数据类型加字符串都等于字符串
+            
+            var a = 0 / 0;
+            document.write(a); // NaN (not a number),a不是一个数字，但确实是一个数字类型的
+            var b = 1 / 0;
+            document.write(b);// Infinity(无穷的，分正负,也是一个数字类型的)
+
+            优先级 = 最弱， ()最高
+            赋值自右向左，计算自左向右
+
+            // a ++ -> a = a + 1;
+            var a = 1;
+            document.write(a++);//1
+            document.write(++a);3
+
+
+            a = a + 10 <-> a += 10;
+            a += 10 + 1 <-> a = a + 10 + 1;
+
+            所有的运算符都有返回结果
+            eg -> var a = 1;
+                  var b = 2;
+                  document.write(a > b); // false
+
+            eg -> var a = "a";
+                  var b = "b";
+                  docuemnt.write(a > b); //false
+                  //字符串比较的是ascll码  A -> 65 a -> 97 中间差了32个
+                  //asc码分为两张表，第一张是十进制的0-127，用7位二进制数码表示
+                                    第二章是十进制的128-255，用8位二进制数码表示
+                  var a = "10" > "8";
+                  document.write(a);//false,因为字符串比较asc码是一位一位地比较，
+                  相当于比较的是"1" > "8" 
+
+            eg -> var a = 1 == 2;
+                  docuemnt.write(a);//false
+                  var b = NaN == NaN;
+                  docuemnt.write(b);//false
+
+            逻辑运算符   && || !
+                var a = 1 && 2;
+                document.write(a);//2
+                //当只有一个&&运算符时，&&运算符计算，计算机会先看&&运算符前面的表达式转换成布尔值是否为真，如果为真
+                //计算机就会直接将第二个表达式的值计算后返回，当第一个表达式为false的时候，计算机就不往后面看了，直接将第一个表达式的值返回
+                // 即使多个表达式，从左往右计算，遇见假就停止，并返回当前假的位置的值，是真就接着往后计算
+                tips -> 以下6个值转换成布尔值都是false
+                //undefined, null, "", NaN, 0, false
+
+            &&运算符可以当做一种“短路语句”来使用
+                eg -> 2 > 1 && document.write("读到这一句啦");
+                eg -> var data = ...;
+                      data && 执行一个语句，会用到data//这种情况下，“短路语句”就起到了保障data有意义的作用
+
+            if语句可以喝短路语句相互转化
+                if(2 > 1){...}  <=>  2 > 1 && ...
+
+
+            ||运算符遇见真就返回，遇见假就接着往后看，如果只有两个表达式，且第一个为假，则直接返回第二个(||运算符无论如何也要返回一个值，如果前面的都为假，则直接返回最后一个)
+
+                ||运算符的企业级用法
+                    div.onclick = function(e) {
+                        非IE浏览器取e的内容 -> var event = e;
+                        IE浏览器取e的内容 -> var event = window.event;
+                        兼容IE写法 -> var event = e || windw.event;
+                    }
+
+
+            !运算符的作用是将这个值转换成布尔值，再进行取反，偶数个！不会改变转化之后的布尔值
+                    var a = !123;
+                    document.write(a);
+                    自身取反
+                        a = !a;
+
+            如果只用多条if分支，则无论条件是否满足，每一条都会去判断，代码效率不高，采用下述做法else if
+            else if 的条件和条件之间不可以有交叉点，否则就不能用else if
+
+            练习题：将a， b的值互换
+
+            一：var a = 5;
+                var b = 6;
+                var t = a;
+                a = b;
+                b = t;
+                
+            二：var a = 5;
+                var b = 6;
+                a = a + b;
+                b = a - b;
+                a = a - b;
+
+
+                var a = 1;
+                var b = a ++ + 1;
+                document.write(b);//2
+
+                var b = 1;
+                var c = ++ b + 1;
+                document.write(c);//3
+
+                var a = 1;
+                var b = a -- + --a;
+                document.write(b);//0
+
+                先算--在前的，因为同一个变量相当于同一个人，那面的也跟着变，然后有几次--原变量就减几
+        */ 
+
+        // var score = parseInt(window.prompt('input'));
+        // document.write(score);
+    </script>
+</body>
+
+</html>

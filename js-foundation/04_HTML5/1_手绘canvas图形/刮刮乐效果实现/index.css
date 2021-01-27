@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    width: 600px;
+    height: 500px;
+    background: url("./img/nice.jpg") no-repeat;
+    background-size: 100% 100%;
+}

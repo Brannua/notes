@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- <form action="http://localhost:3000/login" method="POST">
+        用户名: <input type="text" id="username" name="username"><br>
+        密码: <input type="password" id="password" name="password"><br>
+        <input type="submit" value="提交">
+    </form>
+    <form action="http://localhost:3000/login" method="GET">
+        查询今日运气: <input type="text" name="lucky"><br>
+        <input type="submit" value="提交">
+    </form> -->
+
+    <form>
+        用户名: <input type="text" id="username" name="username"><br>
+        密码: <input type="password" id="password" name="password"><br>
+        <input class="btn" type="button" value="提交">
+    </form>
+    <script src="./jquery-1.10.2.js"></script>
+    <script>
+        $(() => {
+            $('.btn').click(() => {
+                let obj = {
+                    username : $('#username').val(),
+                    password: $('#password').val()
+                }
+                $.ajax({
+                    // type: 'GET',
+                    // type: 'POST',
+                    // type: 'PUT',
+                    type: 'DELETE',
+
+                    url: 'http://localhost:3000/login',
+
+                    dataType: 'text',
+                    contentType: 'application/json',
+
+                    // data: $('form:eq(1)').serialize(),// 表单数据
+                    data: JSON.stringify(obj), // JSON数据
+
+                    success(data) {
+                        console.log(data);
+                    }
+                })
+            })
+        });
+    </script>
+</body>
+
+</html>

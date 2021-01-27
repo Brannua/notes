@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /**
+        * flex-shrink
+        * 置元素的收缩比例
+        * 多出盒子的部分,按照比例的大小砍掉相应的大小,比例越大,被砍掉的越大,默认值是1
+        */
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 500px;
+            height: 500px;
+            display: flex;
+            border: 1px solid #000;
+        }
+
+        .item:nth-of-type(1) {
+            width: 200px;
+            flex-shrink: 1;
+            background-color: #f00;
+        }
+
+        .item:nth-of-type(2) {
+            width: 200px;
+            flex-shrink: 0;
+            background-color: #0f0;
+        }
+
+        .item:nth-of-type(3) {
+            width: 200px;
+            flex-shrink: 0;
+            background-color: #00f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+</body>
+
+</html>

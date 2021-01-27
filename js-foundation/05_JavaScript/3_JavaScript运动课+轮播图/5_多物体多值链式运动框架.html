@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: #f00;
+            position: absolute;
+            left: 0px;
+            opacity: 1;
+        }
+
+        .top {
+            top: 100px;
+        }
+
+        .bottom {
+            top: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top"></div>
+    <div class="bottom"></div>
+    <script>
+        /**
+         * 封装兼容性获取元素样式的方法
+         * @params {obj} 操作的元素
+         # @params {attr} 要获取的属性
+         */
+        function getStyle(obj, attr) {
+            if (obj.currentStyle) {
+                return obj.currentStyle;
+            } else {
+                return window.getComputedStyle(obj, false)[attr];
+            }
+        }
+
+        /**
+         * 多物体多值链式运动框架
+         * @params {obj} 运动的物体
+         * @params {targetMix} 多种目标状态的对象
+         * @params {hz} 运动频率
+         * @params {callback} 实现链式调用的回调函数
+         */
+        function startMove(obj, targetMix, hz, callback) {
+            var flag = false;
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                for (var attr in targetMix) {
+                    var target = targetMix[attr],
+                        speed;
+                    if (attr == 'opacity') {
+                        speed = (target - parseFloat(getStyle(obj, attr))) / 8 * 100;
+                        speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                        speed = speed / 100;
+                        obj.style.opacity = parseFloat(getStyle(obj, attr)) + speed;
+                    } else {
+                        speed = (target - parseFloat(getStyle(obj, attr))) / 8;
+                        speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                        obj.style[attr] = parseFloat(getStyle(obj, attr)) + speed + 'px';
+                    }
+                    /* 如果所有属性都达到目标点,就将flag变为true */
+                    if (parseFloat(getStyle(obj, attr)) == targetMix[attr]) {
+                        flag = true;
+                    }
+                }
+                /* 所有属性都达到目标点后,清除定时器并判断是否执行回调函数 */
+                if (flag) {
+                    clearInterval(obj.timer);
+                    if (typeof callback == 'function') {
+                        callback(); 
+                    }
+                }
+            }, hz)
+        }
+
+        var oDivArr = document.getElementsByTagName('div');
+        var targetObj = {
+            width: 400,
+            height: 400,
+            opacity: 0.5,
+            left: 300,
+            top: 200
+        }
+        oDivArr[0].onclick = function () {
+            startMove(this, targetObj, 30, function(){
+                startMove(oDivArr[1], targetObj, 30);
+            });
+        }
+    </script>
+</body>
+
+</html>

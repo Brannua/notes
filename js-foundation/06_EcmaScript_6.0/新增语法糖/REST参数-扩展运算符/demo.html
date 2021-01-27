@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REST参数( 扩展运算符 )</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            function fn(...arg) {// ...arg = 1, 2, 3, 4, 5
+                console.log(arg);// arg = [1, 2, 3, 4, 5]
+            }
+            fn(1, 2, 3, 4, 5);
+         */
+        // ---------------------------------------------------
+        let arr = [1, 2, 3, 4, 5];
+        fn.call(null, ...arr);
+        fn.apply(null, [1, 2, 3, 4, 5]);
+        function fn(...args) {
+            console.log(args);
+        }
+    </script>
+</body>
+
+</html>

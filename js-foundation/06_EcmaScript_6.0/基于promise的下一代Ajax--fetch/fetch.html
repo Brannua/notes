@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        fetch('http://localhost:3000/', {
+            method: 'POST',
+            headers: new Headers({
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }),
+            body: new URLSearchParams([['name','xm'], ['age', 20]]).toString(),
+            credentials: 'include',// 强制携带cookie
+            
+        })
+            .then(data => data.text())// 调用的原型上的方法
+            .then(data => console.log(data))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: orange;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+
+        span {
+            width: 5px;
+            height: 5px;
+            background: #000;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        /**
+         *  显示物体拖拽的轨迹
+         */
+        function showMove(left, top) {
+            var oSpan = document.createElement('span');
+            oSpan.style.left = left + 'px';
+            oSpan.style.top = top + 'px';
+            document.body.appendChild(oSpan);
+        }
+
+        var oDiv = document.getElementsByTagName('div')[0];
+        oDiv.onmousedown = function (e) {
+            var event = e || window.event,
+                offsetX = event.clientX - this.offsetLeft,
+                offsetY = event.clientY - this.offsetTop,
+                that = this;
+            document.onmousemove = function (e) {
+                var event = e || window.event,
+                    newLeft = event.clientX - offsetX,
+                    newTop = event.clientY - offsetY;
+                that.style.left = newLeft + 'px';
+                that.style.top = newTop + 'px';
+                showMove(newLeft, newTop);
+            }
+            document.onmouseup = function () {
+                document.onmousemove = null;
+                document.onmouseup = null;
+            }
+        }
+    </script>
+</body>
+
+</html>

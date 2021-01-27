@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>贪吃蛇</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div id="mask">
+        <span id="again">Again!</span>
+    </div>
+    <div id="container"></div>
+    <button id='up'>👆</button>
+    <button id="down">👇</button>
+    <button id="left">👈</button>
+    <button id="right">👉</button>
+    <script src="./js/jquery-3.3.1.js"></script>
+    <script src="./js/map.js"></script>
+    <script src="./js/food.js"></script>
+    <script src="./js/snack.js"></script>
+    <script src="./js/game.js"></script>
+    <script>
+        window.onload = function () {
+            var game = new Game();
+            game.start();
+        }
+    </script>
+</body>
+
+</html>

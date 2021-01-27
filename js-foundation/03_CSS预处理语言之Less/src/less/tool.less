@@ -1,0 +1,18 @@
+// 自定义工具样式---不同朝向不同颜色的三角形
+.triangleStyle(@direction, @color) {}
+
+.triangleStyle(top, @color) {
+    border-top-color: @color
+}
+
+.triangleStyle(bottom, @color) {
+    border-bottom-color: @color
+}
+
+.triangleStyle(left, @color) {
+    border-left-color: @color
+}
+
+.triangleStyle(right, @color) {
+    border-right-color: @color
+}

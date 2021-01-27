@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * search
+         * 检索与正则表达式相匹配的值,匹配到就返回位置
+         * 匹配不到就返回-1
+         */
+        // var str = 'qasaabbaabb';
+        // var reg = /(\w)\1(\w)\2/g;
+        // console.log(str.search(reg));
+        // console.log(str.search(reg));
+        /**
+         * match ==> 找到一个或多个正则表达式的匹配
+         */
+        // var str = 'aabb';
+        // var reg = /(\w)\1(\w)\2/;
+        // console.log(str.match(reg));
+        // var reg = /(\w)\1(\w)\2/g;
+        // console.log(str.match(reg));
+        /**
+         * split ==> 把字符串分割为字符串数组
+         */
+        // var str = 'qasaabbaabb';
+        // var reg = /(\w)\1(\w)\2/g;
+        // console.log(str.split(reg));
+        // var str = 'asdf0gh';
+        // var reg = /\d/g;
+        // console.log(str.split(reg));
+        /**
+         * replace ==> 替换与正则表达式匹配的字串
+         */
+        // var str = 'aa';
+        // var res = str.replace("a", "b");
+        // console.log(res);
+        // var str = 'aa';
+        // var reg = /a/g;
+        // var res = str.replace(reg, "b");
+        // console.log(res);
+        /**
+         * replace所要替换的字符串可以用function进行处理
+         * 系统调用该函数,并传入参数
+         * 第一个参数是正则表达式匹配的全局
+         * 第二个参数是第一个子表达式的内容
+         * 第三个参数是第二个子表达式的内容
+         */
+        // var str = 'aabb';
+        // var reg = /(\w)\1(\w)\2/g;
+        // var res = str.replace(reg, function ($, $1, $2) {
+        //     console.log($);
+        //     console.log($1);
+        //     console.log($2);
+        //     return $2 + $2 + $1 + $1;
+        // });
+        // console.log(res);
+        /**
+         * 利用$将函数中的$转义
+         */
+        var str = 'asd';
+        var reg = /a/g;
+        var res = str.replace(reg, '$$');
+        console.log(res);
+    </script>
+</body>
+
+</html>

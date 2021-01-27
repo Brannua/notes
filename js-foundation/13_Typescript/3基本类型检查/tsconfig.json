@@ -1,0 +1,10 @@
+{
+  "compilerOptions": { // 编译选项
+    "target" : "es2016",
+    "lib": ["es2016"],
+    "module": "commonjs",
+    "outDir": "./dist",
+    "strictNullChecks": true,
+  },
+  "include": ["./src"]
+}

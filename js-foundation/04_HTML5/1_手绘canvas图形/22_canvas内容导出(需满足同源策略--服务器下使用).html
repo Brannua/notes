@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="1500" height="600"></canvas>
+    <img src="../img/hug.jpg" alt="">
+    <script>
+        var oCanvas = document.getElementById("canvas"),
+            ctx = oCanvas.getContext("2d"),
+            img = document.getElementsByTagName('img')[0];
+
+        // ctx.fillRect(100, 100, 100, 100);
+        // var oImg = document.createElement('img');
+        // oImg.src = canvas.toDataURL();
+        // document.body.appendChild(oImg);
+
+        /**
+         * 在本地
+         * 1. drawImage()的使用必须保证图片资源加载完毕(onload)
+         * 2. 由于window.onload触发的时候就已经异步完成了对canvas图像的抽取(抽取结果为空)
+         * 3. 并且不满足同源也无法抽取canvas图像
+         */
+        window.onload = () => {
+            ctx.drawImage(img, 0, 0);
+        }
+        var oImg = document.createElement('img');
+        oImg.src = canvas.toDataURL();
+        document.body.appendChild(oImg);
+        /**
+         * 若想抽取canvas中的图像
+         * 1. 在服务器下使用( 满足同源策略 )
+         * 2. ctx.drawImage()的执行需在抽取canvas图像操作之前
+         * 3. 注意onload异步对语句执行顺序的影响
+         */
+        // ctx.drawImage(img, 0, 0);
+        // var oImg = document.createElement('img');
+        // oImg.src = canvas.toDataURL();
+        // document.body.appendChild(oImg);
+    </script>
+</body>
+
+</html>

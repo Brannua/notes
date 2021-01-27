@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 100px;
+        height: 100px;
+        background: orange;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
+    span {
+        position: absolute;
+        left: 300px;
+        top: 0px;
+        width: 1px;
+        height: 100px;
+        background: #000;
+    }
+
+    #oBtn {
+        margin-top: 150px;
+    }
+</style>
+
+<body>
+    <div></div>
+    <span></span>
+    <button id="oBtn">run</button>
+    <script>
+        var oDiv = document.getElementsByTagName('div')[0],
+            oSpan = document.getElementsByTagName('span')[0];
+        /* button注册click事件对物体的运动进行控制 */
+        oBtn.onclick = function () {
+            startMove(oDiv, 8, 30);
+        }
+
+
+        /**
+         * @params {obj} 运动的物体
+         * @params {speed} 运动的速度(矢量,有方向)
+         * @params {hz} 运动的频率 
+         */
+        var timer = null;
+        function startMove(obj, speed, hz) {
+            /* 根据运动物体相对黑线的位置来决定是否修改物体的运动方向 */
+            if (obj.offsetLeft > oSpan.offsetLeft) {
+                speed = -speed;
+            }
+            /* 先清除之前的定时器 */
+            clearInterval(timer);
+            /* 再设置定时器 */
+            timer = setInterval(() => {
+                /* 如果运动距离和speed不是整除关系,以下这种方式会出现缝隙 */
+                // if (oDiv.offsetLeft <= 300) {
+                //     clearInterval(timer);
+                // } else {
+                //     obj.style.left = obj.offsetLeft + speed + 'px';
+                // }
+
+                /* 方法改进 */
+                /* 物体的运动和停止本身就为悖论,所以用if-else分支语句进行判断 */
+                if (Math.abs(oSpan.offsetLeft - obj.offsetLeft) >= Math.abs(speed)) {
+                    obj.style.left = obj.offsetLeft + speed + 'px';
+                } else {
+                    obj.style.left = '300px';
+                    clearInterval(timer);
+                }
+            }, hz);
+        }
+    </script>
+</body>
+
+</html>

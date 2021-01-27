@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 数组实例的方法entries(), keys(), values()
+         * Array.prototype.entries();
+         * Array.prototype.keys();
+         * Array.prototype.values();
+         * 对数组或下标进行遍历, 返回一个迭代器对象
+         */
+        let arr = [1, 2, 3, 4, 5];
+        // -----------------------------------------------
+        let a = arr.keys();//返回一个迭代器对象
+        console.log(a);
+        for (item of a){//for of循环针对迭代器对象
+            console.log(item);
+        }
+        // -----------------------------------------------
+        let b = arr.values();//返回一个迭代器对象
+        console.log(b);
+        for (item of b){//for of循环针对迭代器对象
+            console.log(item);
+        }
+        // -----------------------------------------------
+        let c = arr.entries();//返回一个迭代器对象
+        console.log(c);
+        for ([item, index] of c){//for of循环针对迭代器对象
+            console.log(item, index);
+        }
+        // -----------------------------------------------
+        let d = arr.values();
+        console.log(d);
+        console.log(d.next().value);
+        for (item of d) {
+            console.log(item);
+        }
+
+    </script>
+</body>
+
+</html>

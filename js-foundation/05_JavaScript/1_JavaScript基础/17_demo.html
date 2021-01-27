@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选项卡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .content {
+            width: 200px;
+            height: 200px;
+            background-color: #eee;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <button style="background-color:red;">111</button>
+        <button>222</button>
+        <button>333</button>
+        <div class="content" style="display:block;">html</div>
+        <div class="content">css</div>
+        <div class="content">js</div>
+    </div>
+    <script>
+        var btns = document.getElementsByTagName('button'),
+            contents = document.getElementsByClassName('content'),
+            len = btns.length;
+        for (var i = 0; i < len; i++) {
+            // 由于下面这样写会形成三个函数对应一个变量i的闭包,外部button触发点击事件时访问的是同一个i
+            // btns[i].onclick = function () {
+            //     console.log(i);
+            // }
+            (function (n) { // 每一个立即执行函数的n都是新的
+                // 三个n对应外面三个button元素
+                btns[n].onclick = function () {
+                    // console.log(n);
+                    for (var j = 0; j < len; j++) {
+                        contents[j].style.display = 'none';
+                        btns[j].style.backgroundColor = '';
+                    }
+                    contents[n].style.display = 'block';
+                    this.style.backgroundColor = 'red';
+                }
+            }(i));
+        }
+    </script>
+</body>
+
+</html>

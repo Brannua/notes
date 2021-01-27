@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+// 若try里面发生错误,不会执行try里面的错误后面的代码
+        try {
+            console.log('a');
+            console.log(b);
+            console.log(这个错误不会被捕捉因为try里面的代码停止到上一行了);
+            console.log('c');
+        } catch (e) {//error{name : ..., message : ...} --> 系统将错误封装成error对象传入e供我们使用
+            console.log(e);
+            console.log("catch住的错误信息: " + e.name, e.message);
+        }
+        console.log('d');
+        console.log(f);//没有catch住的错误信息会抛到控制台中且终止整个程序
+
+    </script>
+</body>
+
+</html>

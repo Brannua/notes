@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>函数参数的默认值</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            function Person(name, age = 18) {
+                console.log(name, age);
+            }
+            Person('xm');
+            Person('xm', false);
+            Person('xm', 12);
+            Person('xm', 0);
+            Person('xm', null);
+            Person('xm', undefined);
+         */
+        // --------------------------------------------
+        /**
+         * 函数参数的默认值 + 参数的解构赋值
+         */
+         /* 
+            function fn({x, y=5}) {
+                console.log(x, y);
+            }
+            fn({});
+            fn({x:1});
+            fn({x:1, y:2});
+            fn();//Cannot destructure property `x` of 'undefined' or 'null'
+          */
+        // --------------------------------------------
+        function f1({x=0, y=0} = {}) {
+            console.log(x, y);
+        }
+        function f2({x, y} = {x:0, y:0}) {
+            console.log(x, y);
+        }
+        f1();
+        f2();
+        f1({x:1, y:1});
+        f2({x:1, y:1});
+        f1({x:1});
+        f2({x:1});
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+
+.box1 {
+    background-color: #f00;
+    margin-right: 50px;
+}
+
+.box2 {
+    background-color: #0f0;
+    margin-left: 50px;
+}
+
+*/
+
+
+/* BUG-->兄弟元素垂直方向上的margin是合并的 */
+/* 给兄弟元素各自都加持带有bfc渲染规则的父元素来解决 */
+.demo1 {
+    background-color: #f00;
+    margin-bottom: 100px;
+}
+
+.demo2 {
+    background-color: #0f0;
+    margin-top: 100px;
+}
+
+.wrapper {
+    overflow: hidden;
+}
+
+/* 
+    虽然这样可以解决BUG，
+    但是实际开发中因为html的修改会对JavaScript以及css造成很大问题
+    所以这种BUG我们采用数学计算的方式弥补，
+    而不采用加持一层单单为了解决bug的html结构！！！
+*/

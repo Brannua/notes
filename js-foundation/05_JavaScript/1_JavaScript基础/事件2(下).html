@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件分类</title>
+</head>
+
+<body>
+    <div style="width:100px;height:100px;background-color:red"></div>
+    <!-- 
+        鼠标事件
+        click = mousedowm + mouseup
+        contextmenu ==> 右键产生菜单
+        mousemove
+        mouseover mouseout ==> mouseenter mouseleave(HTML5)
+        mousedown mouseup ==> 只有这俩事件可以区分左右键
+--------------------------------------------------
+        用button来区分鼠标的按键, 0/1/2
+        DOM3标准规定:
+            click事件只能监听左键，
+            只能通过mousedown和mouseup来判断鼠标键
+        如何解决mousedown和click的冲突
+     -->
+    <script>
+        /* 测试事件触发顺序 */
+        //  document.onclick = function() {
+        //      console.log('click');
+        //  }
+        //  document.onmousedown = function () {
+        //      console.log('mousedown');
+        //  }
+        //  document.onmouseup = function () {
+        //      console.log('mouseup');
+        //  }
+        // ------------------------------------------------
+        /* 使用 Js 测试 css 中hover的原理 */
+        // var div = document.getElementsByTagName('div')[0];
+        // div.onmouseover = function() {
+        //     div.style.backgroundColor = "yellow";
+        // }
+        // div.onmouseout = function () {
+        //     div.style.backgroundColor = "green";
+        // }
+        /* html5 */
+        // div.onmouseenter = function() {
+        //     div.style.backgroundColor = "yellow";
+        // }
+        // div.onmouseleave = function () {
+        //     div.style.backgroundColor = "green";
+        // }
+        // ------------------------------------------------
+        /* 测试左右键事件(mousedown mouseup) */
+        // document.onmousedown = function (e) {
+        //     var target = e.button;
+        //     if (target == 0) {
+        //         console.log('左键down');
+        //     }
+        //     if (target == 1) {
+        //         console.log('滑轮down');
+        //     }
+        //     if (target == 2) {
+        //         console.log('右键down');
+        //     }
+        // }
+        // document.onmouseup = function (e) {
+        //     var target = e.button;
+        //     if (target == 0) {
+        //         console.log('左键up');
+        //     }
+        //     if (target == 1) {
+        //         console.log('滑轮up');
+        //     }
+        //     if (target == 2) {
+        //         console.log('右键up');
+        //     }
+        // }
+        // ------------------------------------------------
+        /* 区分点击和拖拽 */
+        // var firstTime;
+        // var lastTime;
+        // var key = false;
+        // document.onmousedown = function () {
+        //     firstTime = new Date().getTime();
+        // }
+        // document.onmouseup = function () {
+        //     lastTime = new Date().getTime();
+        //     if (lastTime - firstTime < 300) {
+        //         key = true;
+        //     }
+        // }
+        // document.onclick = function () {
+        //     if (key) {//处理点击操作
+        //         console.log('click');
+        //         key = false;
+        //     } else {//处理非点击操作
+        //         console.log('notclick');
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

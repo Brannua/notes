@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="width: 100px;height: 100px;background-color:red;"></div>
+    <script>
+        var div = document.getElementsByTagName('div')[0];
+
+        // 对象绑定事件方法一
+        // 兼容性好,但一个元素的同一事件只能绑定一个处理函数
+        // div.onclick = function () {
+        //     this.style.backgroundColor='green';
+        // }
+
+        // 方法二(基本和方法一等同)
+        // <div onclick="console.log('a');"></div>
+
+        // 方法三
+        // ie9一下不兼容(w3c标准)
+        // 可以为一个事件绑定多个处理函数并按照绑定的顺序去执行
+        // 注意！！！
+        // 同一元素的同一事件绑定多次相同函数只会执行一次(比如多次绑定同一个函数的引用)
+        // div.addEventListener(事件类型, 处理函数(函数引用), false);
+        // function demo() {
+        //     console.log('a');
+        // }
+        // div.addEventListener('click', demo, false);
+        // div.addEventListener('click', () => {
+        //     console.log('b');
+        // }, false);
+
+        // 方法四(IE独有)
+        // div.attachEvent('on', 事件类型, 处理函数);
+        // 注意！！！
+        // 同一元素的同一事件绑定多次相同函数绑定几次执行几次(比如多次绑定同一个函数的引用就执行多次)
+        // div.attachEvent('onclick', () => {});
+    </script>
+</body>
+
+</html>

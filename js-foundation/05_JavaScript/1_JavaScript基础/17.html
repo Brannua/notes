@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>初识DOM</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // DOM --> Document Object Model
+        // DOM对象 即为宿主对象,由浏览器厂商定义.
+        // DOM 定义了表示和修改文档所需要的方法.
+        // DOM 是用来操作html和xml的一类对象的集合(tips:xml可以自定义标签形成类似对象的一种数据格式,但是已经逐渐被json所取代)
+        // 也有人称 DOM 是对html和xml的标准编程接口
+        // DOM 无法改变css样式表,但是可以通过改变元素行间样式来间接改变元素样式
+/* 
+
+        // dom 对象
+        var div = document.getElementsByTagName('div')[0];
+        div.style.width = '100px';
+        div.style.height = '100px';
+        div.style.backgroundColor = 'red';
+        // 来点交互
+        div.onclick = function () {
+            this.style.backgroundColor = 'green';
+        } 
+
+        */
+        
+
+/* 
+        
+        // 交互的编程思想
+        // 实现点击元素切换样式
+            // 思路:利用计数器,由对2取余结果为奇数偶数作为判断条件实现颜色切换
+        var div = document.getElementsByTagName('div')[0],
+            count = 0;
+        div.style.width = '100px';
+        div.style.height = '100px';
+        div.style.backgroundColor = 'red';
+        div.onclick = function () {
+            if(count % 2 == 1) {
+                div.style.backgroundColor = 'red';
+            } else {
+                div.style.backgroundColor = 'green';
+            }
+            count ++;
+        }
+        
+         */
+
+         
+    </script>
+</body>
+
+</html>

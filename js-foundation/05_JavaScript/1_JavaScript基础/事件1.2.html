@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>解除事件处理函数</title>
+</head>
+
+<body>
+    <div style="width: 100px;height: 100px;background-color:red;"></div>
+    <script>
+        var div = document.getElementsByTagName('div')[0];
+
+        // div.onclick = function () {
+        //     console.log('a');
+        //     this.onclick = null;/* 点击一次则事件解除 */
+        // }
+
+        /* 如果想让一个元素上绑定的事件还可以被清除就不能使用匿名函数 */
+        // function test() {
+        //     console.log('a');
+        //     div.removeEventListener('click', test, false);/* 点击一次则事件解除 */
+        // }
+        // div.addEventListener('click', test, false);
+
+        // ---------------------------------------------------------------------
+        // ie独有(和attachEvent()对应)
+        // div.detachEvent('on' + type, func);
+    </script>
+</body>
+
+</html>

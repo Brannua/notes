@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /**
+         * 此种选择器,限制了类型,即在所修饰元素的类型下选择特定位置的元素
+         */
+        body li:first-of-type{
+            font-size: 60px;
+        }
+        body li:last-of-type{
+            font-size: 10px;
+            color: red;
+        }
+        body li:nth-of-type(2){
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <p>0</p>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <li>7</li>
+</body>
+
+</html>

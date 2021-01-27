@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件处理程序的运行环境</title>
+</head>
+
+<body>
+    <div style="width:100px;height:100px;background-color:red;"></div>
+    <script>
+        var div = document.getElementsByTagName('div')[0];
+        div.onclick = function () {
+            // 1. 程序 this 指向的是dom元素本身
+            console.log(this);
+        }
+        div.addEventListener('click', function () {
+            // 2. 程序 this 指向的是dom元素本身
+            console.log(this);
+        }, false);
+        // ie独有的attachEvent中 this 指向的是window
+        // div.attachEvent('onclick', function () {
+        //     console.log(this);//window
+        // });
+        // --------------------------------------------------------------------------
+        div.attachEvent('onclick', function () {
+            // 改变 this 指向，使 this 指向div
+            handle.call(div);
+        });
+
+        function handle() {
+            // ....(处理程序)
+        }
+    </script>
+</body>
+
+</html>

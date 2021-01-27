@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+        /**
+         * name 动画关键帧
+         * duration 运动总时长 
+         * 运动方式(linear ease ease-in ease-out ...) 
+         * delay 动画开始的延迟时间 
+         * iteration-count 动画播放次数 
+         * direction 动画播放方向 
+         * fill-mode 定义动画开始之前和结束之后的操作(none,forwards,backwords,both)
+         */
+        div#item {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #f00;
+            animation: moveSquare 4s ease;
+        }
+
+        /* 动画关键帧@keyframes */
+        /* 0% ~ 100%代表动画的时间过渡 */
+        /* 帧频里面如果只有0%和100%两个关键帧,那么可以用from to替代 */
+        @keyframes moveSquare {
+            0% {
+                top: 0;
+                left: 0;
+                background-color: #f00;
+            }
+
+            25% {
+                top: 0;
+                left: 300px;
+                background-color: #0f0;
+            }
+
+            50% {
+                top: 300px;
+                left: 300px;
+                background-color: #00f;
+            }
+
+            75% {
+                top: 300px;
+                left: 0;
+                background-color: orange;
+            }
+
+            100% {
+                top: 0;
+                left: 0;
+                background-color: #f00;
+            }
+        }
+
+        #btn {
+            position: absolute;
+            left: 500px;
+            top: 300px;
+            background-color: #000;
+            color: antiquewhite;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="btn">click</div>
+    <div id="item"></div>
+    <script>
+        var flag = true;
+        btn.onclick = () => {
+            if (flag) {
+                // 动画暂停
+                item.style.animationPlayState = "paused";
+                flag = false;
+            } else {
+                // 动画播放
+                item.style.animationPlayState = "running";
+                flag = true;
+            }
+        }
+    </script>
+</body>
+
+</html>

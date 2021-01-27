@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 原型
+        // 原型是function对象的一个属性，它定义了构造函数制造出的对象的公共祖先
+        // 通过该构造函数产生的对象，可以继承该原型的属性和方法，原型也是对象
+        // Person.prototype  --> 原型
+        // Person.prototype = {}  --> 是祖先
+        // 将构造函数中的固定属性方法提取到原型中可以减少代码的耦合，构造出的函数继承原型中的属性方法
+        // 通过构造出的函数delete原型的属性返回值是true但是并没有删除原型中的属性(就像是你让你爹别喝酒你爹说行然后还是喝酒那样)
+        // 对象如何查看对象的构造函数 --> constructor
+
+        // Person.prototype.lastName = "Liu";
+        // Person.prototype.say = function () {
+        //     console.log('hehe');
+        // }
+        // Person.prototype = {
+        //     lastName : "Liu",
+        //     say : function () {
+        //         console.log('hehe');
+        //     }
+        // }
+        // function Person(name, age, sex) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sex = sex;
+        // }
+        // var person = new Person('xiaowang', 30, 'male');
+        // var person1 = new Person('xiaoliu', 23, 'famale');
+
+
+        function Person() {
+
+        }
+        function Car() {
+
+        }
+        // Person.prototype = {
+        //     constructor : Car
+        // }//这样做很不道德
+        var person = new Person();//可以通过person.constructor的方式查找这个对象的构造函数
+        // constructor存在于构造函数的原型中，且可以手动更改
+    </script>
+</body>
+
+</html>

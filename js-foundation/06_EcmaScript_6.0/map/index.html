@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    可以复习参考当前仓库根目录下typescript文件夹泛型中的自定义字典类
+    <script>
+        let m = new Map();
+        m.set(1, 'xm');
+        let obj = {
+            name: 'xl'
+        };
+        m.set(obj, 'happy');
+        console.log(m);
+        console.log(m.get(obj));
+
+        for ([key, value] of m) {
+            console.log(key, value);
+        }
+
+        // -------------------------------------------
+        /* 
+            WeakMap 只接受对象( 除null以外 )作为键名
+        */
+        let wp = new WeakMap();
+        let obj1 = {};
+        wp.set(obj1, 'xm');
+        wp.set(obj1, 'xl');
+        console.log(wp);
+        console.log(wp.get(obj1));
+    </script>
+</body>
+
+</html>

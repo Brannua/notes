@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * () 
+         * 子表达式会记录括号里面匹配的内容
+         * 可以利用 \1 将第一个子表达式的内容反向引用出来
+         * 以此类推...
+         */
+        var str = 'aaaa';// 匹配形式为 ==> xxxx形式
+        var reg = /(\w)\1\1\1/g;
+        var res = str.match(reg);
+        console.log(res);
+        var str = 'aabb';
+        var reg = /(\w)\1(\w)\2/g;
+        var res = str.match(reg);
+        console.log(res);
+        /**
+         * exec方法中会将子表达式记录的东西作为返回类数组的项
+         */
+        var str = 'aabb';
+        var reg = /(\w)\1(\w)\2/g;
+        console.log(reg.exec(str));
+        console.log(reg.exec(str));
+    </script>
+</body>
+
+</html>

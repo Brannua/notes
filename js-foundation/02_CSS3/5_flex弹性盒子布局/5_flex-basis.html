@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /**
+        * flex-basis
+        * 伸缩基准值,项目占据主轴的空间( 该属性设置元素的宽度或高度 )
+        * 如果元素同时出现了width和flex-basis,那么flex-basis会覆盖width的值
+        * 如果基准值相加大于容器宽度,那么由下面的公式分配宽度给子元素
+        * (flex-basis/(flex-basis相加))*容器的宽度
+        */
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 500px;
+            height: 500px;
+            display: flex;
+            border: 1px solid #000;
+        }
+
+        .item:nth-of-type(1) {
+            flex-basis: 20px;
+            background-color: #f00;
+        }
+
+        .item:nth-of-type(2) {
+            flex-basis: 20px;
+            background-color: #0f0;
+        }
+
+        .item:nth-of-type(3) {
+            flex-basis: 20px;
+            flex-grow: 1;
+            background-color: #00f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+</body>
+
+</html>

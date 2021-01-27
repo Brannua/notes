@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /*未使用父子选择器限定DOM结构筛选范围,故body和ul的第一个子元素都是li都会被选中*/
+        li:first-child {
+            color: red;
+        }
+
+        li:last-child {
+            color: #0f0;
+        }
+
+        ul li:nth-child(2){
+            color: blueviolet;
+        }
+
+        ul li:nth-last-child(3){
+            color: blue;
+        }
+
+        ul li:nth-child(even){/*2n*/
+            font-size: 25px;
+        }
+
+        ul li:nth-child(odd){/*2n+1*/
+            font-size: 40px;
+        }
+
+        div.demo div:nth-child(2n){
+            font-size: 30px;
+        }
+        div.demo div:nth-child(2n+1){
+            font-size: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <li>0</li>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <p>5</p>
+    </ul>
+    <li>6</li>
+
+<hr>
+
+    <div class="demo">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+</body>
+
+</html>

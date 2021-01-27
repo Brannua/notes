@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>异步加载js</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            js加载的缺点:
+                加载工具方法没必要阻塞文档
+                过多js加载会影响页面效率,一旦网速不好
+                那么整个网站将等待js加载而不进行后续的渲染工作
+                
+                有些工具方法需要按需加载,等用到在进行加载,不用不需要加载
+         */
+
+        /* 
+           js异步加载的三种方法(执行时不阻塞页面)
+               1. defer异步加载(只有IE9以下能用),
+                  但是要等到dom文档全部解析完才会被执行
+                  也可以将代码写到内部
+                  '<script src="xxx.js" defer='defer'>'
+               2. async异步加载(w3c标准方法) --> 高版本ie和标准浏览器都可以使用
+                  '<script src="xxx.js" async='async'>'
+                  加载完就执行,只能加载外部脚本文件
+               3. 创建script,插入到DOM中,加载完毕后callback
+                   可以实现异步加载和按需加载
+         */
+        // loadScript('json异步加载时间线.1.js', function () {
+        //     test();
+        // });//注意是函数的调用才会执行函数体里面的代码,所以应传入一个函数引用
+        loadScript('json异步加载时间线.1.js', "test");
+    </script>
+
+</body>
+
+</html>

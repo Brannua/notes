@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    /* 
+        拓展:
+        由于子元素的浮动,浮动有浮动流,
+        使得父元素在正常渲染规则下看不到
+        子元素,可以触发父元素的bfc改变渲染规则,
+        就可以看到浮动的子元素并将其包裹
+        触发bfc的四种方式
+            float: left;
+            position: absolute;
+            overflow: hidden;
+            display: inline-block;
+
+        但是设置了position:absolute;float:left/right;的元素会被转换成inline-block;
+        造成父元素紧紧地包裹住子元素！！！！
+    */
+    border: 2px solid red;
+}
+
+.content {
+    /* float: left; */
+    /* 在元素浮动的基础上父元素变宽还有着左对齐或者右对齐的效果 */
+    float: right;
+    /* 浮动的基础上仍然可以改变各种修饰样式 */
+    margin-left: 10px;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 100px;
+    background-color: #000;
+    color: #fff;
+}
+
+/* 末尾加一个设置clear:both;属性的元素可以使得父元素包裹住浮动的子元素 */
+/* Notice！！！这种修改html结构的解决方法实际开发重不使用！！ */
+/* .clear {
+    clear: both;
+} */
+
+/* 我们选择使用伪元素解决这种问题 */
+
+.wrapper::after {
+    content: "";
+    /* clear属性只适用于块级元素,但是伪元素是行级元素 */
+    display: block;
+    clear: both;
+}

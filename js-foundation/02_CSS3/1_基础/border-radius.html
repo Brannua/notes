@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo1 {
+            width: 100px;
+            height: 100px;
+            background-color: #f99;
+            border-radius: 50%;
+        }
+
+        .demo2 {
+            width: 200px;
+            height: 100px;
+            background-color: #f40;
+            border-top-left-radius: 50% 100%;
+            border-top-right-radius: 50% 100%;
+        }
+
+        .demo3 {
+            width: 200px;
+            height: 100px;
+            background-color: #0f0;
+
+            border-top-left-radius: 153px 106px;
+            -webkit-border-top-left-radius: 153px 106px;
+            -moz-border-top-left-radius: 153px 106px;
+            -ms-border-top-left-radius: 153px 106px;
+            -o-border-top-left-radius: 153px 106px;
+
+            border-bottom-right-radius: 153px 106px;
+            -webkit-border-bottom-right-radius: 153px 106px;
+            -moz-border-bottom-right-radius: 153px 106px;
+            -ms-border-bottom-right-radius: 153px 106px;
+            -o-border-bottom-right-radius: 153px 106px;
+            /* opera现在的浏览器内核采用webkit,故-o-前缀可以不写 */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 整圆 -->
+    <div class="demo1"></div>
+    <!-- 半圆 -->
+    <div class="demo2"></div>
+    <!-- 树叶 -->
+    <div class="demo3"></div>
+</body>
+
+</html>

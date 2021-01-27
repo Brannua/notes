@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>节流</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: #ccc;
+            text-align: center;
+            line-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">0</div>
+    <script>
+        /**
+         * 计时器版节流函数
+         * @params {callback} 回调函数
+         * @params {wait} 间隔时间
+         */
+        function throttle(callback, wait) {
+            // 一次性声明变量
+            var timer = null,// 声明定时器
+                that,// 用于改变this指向
+                argu;// 用于保存参数列表arguments
+            return function () {
+                that = this;
+                argu = arguments;
+                // 如果满足(timer == null)
+                if (!timer) {
+                    // 先清除定时器
+                    clearTimeout(timer);
+                    // 再设置定时器
+                    timer = setTimeout(function () {
+                        // 倒计时结束触发节流函数
+                        callback.call(that, argu);
+                        // 然后将timer置为null
+                        timer = null;
+                    }, wait)
+                }
+            }
+        }
+        // 测试节流函数
+        box.onmousemove = throttle(function (e) {
+            console.log(e);
+            this.innerHTML = ++this.innerHTML;
+        }, 1000);
+    </script>
+</body>
+
+</html>

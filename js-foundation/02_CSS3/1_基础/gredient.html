@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* - gredient
+            - linear-gredient(direction, color1[percent], color2[percent], ...)
+            - radial-gradient(shap at position, color[percent], color[percent], ...)
+                - shape:放射的形状
+                    - circle( 圆形 )
+                    - ellipse( 椭圆形 )
+                - position:圆心的位置 */
+        .liner {
+            width: 200px;
+            height: 200px;
+            /* background: linear-gradient(to top, rgb(0, 0, 255), rgb(186, 98, 198)); */
+            /* background: linear-gradient(to top left, rgb(0, 0, 255), rgb(186, 98, 198)); */
+            /* background: linear-gradient(60deg, rgb(0, 0, 255), rgb(186, 98, 198)); */
+            /* background: linear-gradient(0, rgb(0, 0, 255) 10%, rgb(180, 95, 199), rgb(43, 206, 22) 20%, rgb(249, 204, 157) 100%); */
+            /* background: radial-gradient(circle at center, rgb(0, 0, 255) 10%, rgb(180, 95, 199), rgb(43, 206, 22) 20%, rgb(249, 204, 157) 100%); */
+            /* background: radial-gradient(circle 50px at center, rgb(0, 0, 255) 10%, rgb(180, 95, 199), rgb(43, 206, 22) 20%, rgb(249, 204, 157) 100%); */
+            /* background: radial-gradient(circle 50px at center, rgb(0, 0, 255) 10%, rgb(180, 95, 199), rgb(43, 206, 22) 20%, rgb(249, 204, 157) 100%, transparent 100%); */
+            /* background: radial-gradient(circle at 30%, rgb(0, 0, 255) 10%, rgb(180, 95, 199), rgb(43, 206, 22) 20%, rgb(249, 204, 157) 100%); */
+            /* background: radial-gradient(circle at 30px 100px, rgb(0, 0, 255) 10%, rgb(180, 95, 199), rgb(43, 206, 22) 20%, rgb(249, 204, 157) 100%); */
+            /* background: radial-gradient(circle at 20% 30%, rgb(0, 0, 255) 10%, rgb(180, 95, 199), rgb(43, 206, 22) 20%, rgb(249, 204, 157) 100%); */
+            background: radial-gradient(ellipse 50px 70px at center, rgb(0, 0, 255), rgb(180, 95, 199), rgb(43, 206, 22), rgb(249, 204, 157));
+            margin: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="liner"></div>
+</body>
+
+</html>

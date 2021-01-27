@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <link rel="stylesheet" href="./component/layer/theme/default/layer.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="title">【 图书管理系统 】</div>
+    <!-- href="javascript:void(0)"防止a标签默认情况下的跳转 -->
+    <a id="addBook" class="edit" href="javascript:void(0)">添加图书</a>
+    天气查询 -> 
+    <span>
+        城市名称: 
+        <input type="text" id="cityName">
+        <input type="button" value="查询" id="weather">
+    </span>
+    <!-- 图书列表 -->
+    <div>
+        <table cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>名称</th>
+                    <th>作者</th>
+                    <th>分类</th>
+                    <th>描述</th>
+                    <th>编辑</th>
+                    <th>删除</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <!-- 添加新图书 -->
+    <!-- 发送ajax请求提交数据到服务端 -->
+    <form id="formData">
+        名称: <input type="text" name="name"><br>
+        作者: <input type="text" name="author"><br>
+        分类: <input type="text" name="category"><br>
+        描述: <input type="text" name="desc"><br>
+        <!-- type用button而不用submit是因为不是用form的默认action属性提交的,而是通过ajax来提交的 -->
+        <!-- <input class="submit" type="button" value="提交"> -->
+    </form>
+    <script src="./js/jquery.js"></script>
+    <script src="./component/layer/layer.js"></script>
+    <script src="./js/template-web.js"></script>
+    <script src="./js/index.js"></script>
+    <!-- 前端加载模板 -->
+    <script type="text/html" id="template">
+        {{each list}}
+        <tr>
+            <td>{{$value.id}}</td>
+            <td>{{$value.name}}</td>
+            <td>{{$value.author}}</td>
+            <td>{{$value.category}}</td>
+            <td>{{$value.desc}}</td>
+            <!-- href="javascript:void(0)" ==> 取消默认跳转 -->
+            <td><a eid="{{$value.id}}" class="edit" href="javascript:void(0)">编辑</a></td>
+            <td><a did="{{$value.id}}" class="delete" href="javascript:void(0)">删除</a></td>
+        </tr>
+        {{/each}}
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!-- <!DOCTYPE html> -->
+<!-- 标准模式的写法还有两种,写哪一种都行 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>渲染模式</h1>
+    <p>
+        
+    </p>
+    <!-- 
+        将username和input输入框绑定在一起
+        label的for属性填入input框的id值
+     -->
+    <label for="demo">username:</label>
+    <input type="text" id="demo">
+
+    <script>
+        /**
+         * 渲染模式(即使注释掉第一行,先今大多数浏览器也不会按照怪异模式渲染页面,但是IE6就可以)
+         */
+        /**
+         * 在IE6诞生之前,各浏览器都处于各自比较封闭的发展中( 基本没有兼容性可谈 ),随着web的发展,兼容性问题的解决显得越来越迫切,
+         * 随即,各浏览器厂商发布了按照标准模式( 遵循各厂商制定的统一标准 )工作的浏览器,比如IE6就是其中之一,但是考虑到以前建设的网站
+         * 并不支持标准模式,所以也保留了之前的混杂模式(怪异模式)
+         */
+        /* 怪异模式下:
+        1. width=content+padding+border
+        2. 行元素可以设置宽高 */
+
+        alert(document.compatMode);
+        // ---------------------------------------------------------------------------
+        /**
+         * label的for属性
+         */
+        var oLabel = document.getElementsByTagName('label')[0],
+            oInput = document.getElementById('demo');
+        oLabel.onclick = () => {
+            alert('label');// 弹出label,再弹出input
+        }
+        oInput.onclick = () => {
+            alert('input');// 弹出input
+        }
+        // ---------------------------------------------------------------------------
+        /**
+         * HTML元素和DOM元素的
+         * 属性映射
+         */
+        /**
+         * 因为DOM元素和HTML元素可以一一映射上的属性都是先天就有的
+         * 可以使用点运算符进行读写
+         * 但是自定义属性就不可以映射,但是可以通过
+         *      setAttribute()方法
+         *      getAttribute()方法
+         */
+        var oLabel = document.getElementsByTagName('label')[0],
+            oInput = document.getElementById('demo');
+        oInput.name = 'asd';
+        oInput.hh = 'asd';
+        // <input type="text" id="demo" name="asd">
+        // ---------------------------------------------------------------------------
+        var res = typeof (new Array).__proto__.constructor();
+        console.log(res);
+        </script>
+</body>
+
+</html>

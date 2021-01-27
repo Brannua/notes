@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 写一个正则表达式,检验字符串首尾是否含有数字( 三种情况 )
+         * 1. 首有
+         * 2. 尾有
+         * 3. 首尾都有
+         */
+        // var reg = /^\d|\d$/g;
+        // var str = '123asd132';
+        // var res = reg.test(str);
+        // console.log(res);
+        /**
+         * 首尾都有数字的写法
+         */
+        // var reg = /^\d[\s\S]*\d$/g;
+        // var str = '123asd123';
+        // var res = reg.test(str);
+        // console.log(res);
+        // ----------------------------------------
+        /**
+         * 凡是遇到xxyy形式的字符串,变成yyxx形式的
+         * 先将所有xxyy形式的匹配出来
+         * 然后进行替换
+         * $1代表第一个子表达式的内容
+         * 以此类推...
+         */
+        // var str = 'aabb';
+        // var reg = /(\w)\1(\w)\2/g;
+        // var res = str.replace(reg, "$2$2$1$1");
+        // console.log(res);
+        // ----------------------------------------
+        /**
+         * 将the-first-name
+         * 变成theFirstName
+         */
+        var str = 'the-first-name';
+        var reg = /-(\w)/g;
+        var res = str.replace(reg, function($, $1){
+            return $1.toUpperCase();
+        });
+        console.log(res);
+    </script>
+</body>
+
+</html>

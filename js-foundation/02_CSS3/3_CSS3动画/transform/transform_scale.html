@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            margin: 100px;
+        }
+
+        .item {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background-color: #f00;
+        }
+
+        /**
+         * scale( 缩放 )的参数
+         * 参数的值表示倍数,没有单位
+         * 1. 绝对值大于1 --> 放大
+         * 2. 绝对值[0, 1) --> 缩小
+         * 3. 正负 --> 缩放的对边是否互换位置( 负值互换位置 )
+         */
+        .item1 {
+            transform: scaleX(1.5);
+        }
+
+        .item2 {
+            transform: scaleY(0.5);
+        }
+
+        .item3 {
+            /* 因为没有厚度,所以并没有什么明显的效果 */
+            transform: scaleZ(2);
+        }
+
+        .item4 {
+            /* 不写XYZ则默认接受两个参数,分别为X/Y,若第二个参数不传,则第二个参数会使用第一个参数 */
+            transform: scale(0.5, 1.5);
+        }
+        .item5 {
+            /* 和拆开写是一样的效果 */
+            transform: scale3d(0.5, 1.5, 2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="item item1">item1</div>
+    </div>
+    <div class="box">
+        <div class="item item2">item2</div>
+    </div>
+    <div class="box">
+        <div class="item item3">item3</div>
+    </div>
+    <div class="box">
+        <div class="item item4">item4</div>
+    </div>
+    <div class="box">
+        <div class="item item5">item5</div>
+    </div>
+</body>
+
+</html>

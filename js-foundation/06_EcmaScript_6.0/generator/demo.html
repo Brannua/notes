@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * generator函数
+         */
+        function* helloWorldGenerator() {
+            yield 'hello';
+            yield 'world';
+            return 'ending';
+        }
+
+        var hw = helloWorldGenerator();
+        /**
+         * 返回一个遍历器对象,代表generator函数的内部指针
+         * 每次调用遍历器对象的next()方法,
+         * 就会返回一个有着value和done两个属性的对象
+         * value属性是yield表达式后面那个表达式的值
+         * done属性是一个布尔值,表示是否遍历结束
+         */
+        // console.log(hw);
+        /**
+         * 遍历器对象调用next()方法分段执行语句
+         */
+        console.log(hw.next());
+        console.log(hw.next());
+        console.log(hw.next());
+        // for (item of hw) {
+        //     console.log(item);
+        // }
+
+
+
+        // ---------------------------------
+
+        function* foo(x) {
+            var y = 2 * (yield(x + 1));
+            console.log(y);
+            var z = yield(y / 3);
+            return (x + y + z);
+        }
+
+        // var a = foo(5);
+        // console.log(a.next());
+        // console.log(a.next());
+        // console.log(a.next());
+
+        // var b = foo(5);
+        // console.log(b.next());// {value: 6, done:false}
+        // console.log(b.next(12));// 24{value: 8, done: false}
+        // console.log(b.next(13));// {value: 42, done: true}
+    </script>
+</body>
+
+</html>

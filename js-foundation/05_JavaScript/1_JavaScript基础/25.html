@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>定时器demo(计时三分钟)</title>
+    <style>
+        input {
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    minutes: <input type="text" value="0" id="min">
+    seconds: <input type="text" value="0" id="sec">
+    <script>
+        // 实现一个程序计时三分钟
+        var sec = document.getElementById("sec");
+        var min = document.getElementById("min");
+        var timer = setInterval(function () {
+            sec.value++;
+            if (sec.value == 60) {
+                sec.value = 0;
+                min.value++;
+                if (min.value == 3) {
+                    clearInterval(timer);
+                }
+            }
+        }, 100)
+    </script>
+</body>
+
+</html>

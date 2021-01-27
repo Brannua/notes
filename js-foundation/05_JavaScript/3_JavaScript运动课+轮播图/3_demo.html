@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 400px;
+            height: 80px;
+            background: yellow;
+            position: absolute;
+            left: -400px;
+            top: 300px;
+        }
+
+        .show {
+            width: 40px;
+            height: 80px;
+            background: orange;
+            position: absolute;
+            right: -40px;
+            top: 0px;
+        }
+
+        span {
+            width: 1px;
+            height: 500px;
+            background: #000;
+            position: absolute;
+            left: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="show"></div>
+    </div>
+    <span></span>
+    <script>
+        /**
+         * 缓冲运动函数
+         * @params {obj} 运动的DOM元素
+         * @params {target} 目标点
+         * @params {hz} 运动频率
+         */
+        var timer = null,
+            oWrapper = document.getElementsByClassName('wrapper')[0];
+
+        function startMove(obj, target, hz) {
+            var speed;
+            clearInterval(timer);
+            timer = setInterval(() => {
+                speed = (target - obj.offsetLeft) / 8;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                if (obj.offsetLeft === target) {
+                    clearInterval(timer);
+                } else {
+                    obj.style.left = obj.offsetLeft + speed + 'px';
+                }
+            }, hz);
+        }
+        /* 事件委托 */
+        oWrapper.onmouseenter = function () {
+            startMove(this, 0, 30);
+        }
+        oWrapper.onmouseleave = function () {
+            startMove(this, -400, 30);
+        }
+    </script>
+</body>
+
+</html>

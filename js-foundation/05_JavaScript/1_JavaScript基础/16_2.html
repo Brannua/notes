@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        
+        // 现行浏览器基于 " es3.0的方法 + es5.0的新增方法 " 执行
+        // es3和es5都有的方法浏览器会按照es3的执行
+        // es5严格模式 --> es3和es5都有的方法使用es5的
+        // "use strict";使用字符串的形式而不是函数调用的形式可以" 兼容老版本没有更新到es5.0的浏览器 "
+        // es5.0拒绝重复参数和属性
+        // es3.0都不能使用eval() --> eval()是魔鬼
+        // eval()可以将字符串当做代码执行
+        // eval()可以改变作用域
+
+/* 
+
+        //es5.0严格模式的启动
+        "use strict";//写在页面的逻辑的最顶端或使用函数内部严格模式(依然写在函数体内部的最顶端)
+        // 严格模式不支持arguments.callee和func.caller(指代func被调用的环境)的写法
+        function test() {
+            console.log(arguments.callee);
+        }
+        test();
+
+ */
+
+
+/* 
+
+        // 局部函数内严格模式(推荐)
+        function demo() {
+            console.log(arguments.callee);
+        }
+        demo();
+        function test() {
+            "use strict";
+            console.log(arguments.callee);
+        }
+        callee();
+
+ */
+
+/* 
+
+        // es5.0不支持with()的用法
+        // es5.0严格模式变量赋值前必须声明
+        // es5.0
+        var obj = {
+            name : 'obj'
+        }
+        var name = 'window';
+        function test() {
+            var name = 'scope';
+            with(obj) {//with将传入的对象当做with代码体的作用域链的最顶端
+                console.log(name);
+            }
+        }
+        // with(obj){}的优点:
+                // 1.可以改变with代码体最近的AO,配合使用命名空间可以解决多人协作开发产生的变量相互污染问题
+                // 2.可以简化代码
+                        document.write('a');  -->  with(document){
+                        document.write('b');            write('a');write('b');write('c');
+                        document.write('c');       }
+        // with(obj){}的缺点: --> 更改作用域链会消耗大量的浏览器性能,使程序变得非常慢(所以es5.0严格模式不可以使用with(obj){})
+
+        */
+
+/* 
+
+        // es5.0严格模式中预编译环节this不再指向window
+        // es5.0严格模式中全局中的this仍然指向window
+        // this必须被赋值,被赋什么就是什么
+        // "use strict"
+        // function demo() {
+        //     console.log(this);
+        // }
+        // demo();
+
+ */
+
+        // 
+    </script>
+</body>
+
+</html>

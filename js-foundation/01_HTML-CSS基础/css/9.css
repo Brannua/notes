@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+}
+
+/* div {
+    width: 100px;
+    height: 100px;
+    background-color: #f00;
+    border: 10px solid black;
+    padding: 10px 20px 30px;
+    margin: 10px 20px;
+} */
+
+/* 100+20+40
+100+20+40
+160px */
+
+
+#my-defined {
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+    padding: 0 100px;
+    border: 1px solid orange;
+    margin: 10px 20px 30px 40px;
+    padding: 0;
+}
+/* 100+2=102
+100+2=102 */

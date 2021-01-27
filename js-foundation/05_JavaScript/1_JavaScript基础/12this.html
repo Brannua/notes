@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // this题目
+        // 1.
+        // var x = 1;
+        // y = z = 0;
+        // function add(n) {0
+        //     return n = n + 1;
+        // }
+        // y = add(x);
+        // function add(n) {
+        //     return n = n + 3;
+        // }
+        // z = add(x);
+
+        // 2.
+        // function foo() {
+        //     bar.apply(null, arguments);//并没有改变任何this指向，和bar()并没有任何区别
+        // }
+        // function bar() {
+        //     console.log(arguments);
+        // }
+        // foo(1, 2, 3, 4, 5);
+
+
+        // 3.
+        // 逗号操作符，看一眼前面的看一眼后面的然后返回后面的
+        // var f = (
+        //     function f() {
+        //         return "1";
+        //     },
+        //     function g() {
+        //         return 2;
+        //     }
+        // )();
+        // typeof f;
+
+
+        // 4.
+        // var x = 1;
+        // if (function f() {}) {//function被括号括了起来变成了表达式，函数引用失效，f没有用了
+        //     x += typeof f;
+        // }
+        // console.log(x);
+
+        // 6.
+        // console.log(undefined == null);
+        // console.log(undefined === null);
+        // console.log(isNaN("100"));
+        // console.log(parseInt("1a"));
+        // console.log({} == {});//引用值是两个房间，引用值比较的是地址，地址一样才相等
+        
+
+        // 7.
+        // var foo = '123';
+        // function print() {
+        //     var foo = '456';
+        //     this.foo = '789';
+        //     console.log(foo);
+        // }
+        // print();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+/* span {
+    text-decoration: line-through;
+    color: rgb(133, 32, 228);
+    text-decoration: underline;
+    cursor: pointer;
+} */
+
+/* 伪类选择器(权重10)之一 " :hover " */
+a {
+    text-decoration: none;
+}
+a:hover {
+    background-color: #f40;
+    text-decoration: underline;
+    color: #fff;
+    border-radius: 2px;
+}

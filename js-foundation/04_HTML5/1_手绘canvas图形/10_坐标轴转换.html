@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <script>
+        var oCanvas = document.getElementById("canvas"),
+            ctx = oCanvas.getContext("2d");
+
+        ctx.save();// 画布状态入栈
+
+        ctx.translate(100, 100);// 当前画布平移
+        ctx.fillRect(0, 0, 100, 100);// 画矩形
+
+        ctx.save();// 平移后的画布状态入栈
+        ctx.scale(2, 1);// 缩放
+        ctx.fillStyle = "red";// 填充色
+        ctx.fillRect(100, 100, 50, 50);// 画矩形
+
+        ctx.restore();// 弹栈(最后save的画布状态恢复)
+        ctx.fillStyle = 'green';
+        ctx.fillRect(20, 20, 20, 20);
+
+        ctx.restore();// 弹栈(最后save的画布状态恢复)
+        ctx.fillStyle = 'deeppink';
+        ctx.rotate(Math.PI/180 * 45);
+        ctx.fillRect(20, 20, 20, 20);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /**
+         * 伪类的效果可以通过添加一个实际的类来达到
+         * 伪元素的效果则需要通过添加一个实际的元素才能达到
+         * 这也是为什么他们一个称为伪类,一个称为伪元素的原因
+         */
+        /**
+         * css权重值(权重值之间进制是256进制)
+         * !important(Infinity)
+         * 行间样式(1000)
+         * id(100)
+         * class|属性|伪类(10)
+         * 标签|伪元素(1)
+         * 通配符*(0)
+         */
+        :root {
+            /*根标签选择器 ==> 考虑到xml文档,建议写:root*/
+            background-color: #ccc;
+        }
+
+        html {
+            background-color: #0f0;
+        }
+
+        /* ------------------------------------------------------ */
+        div:not([class*="ck"]) {
+            /* 否定选择器 */
+            color: crimson;
+        }
+
+        /* ------------------------------------------------------ */
+        div:empty {
+            width: 100px;
+            height: 100px;
+            background-color: #888;
+        }
+
+        .empty::after {
+            content: '123';
+        }
+    </style>
+</head>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div class="aa bb cckk">3</div>
+    <div class="bb ck dd">4</div>
+    <div>5</div>
+    <div>6</div>
+
+    <div></div>
+    <div class="empty"></div>
+</body>
+
+</html>

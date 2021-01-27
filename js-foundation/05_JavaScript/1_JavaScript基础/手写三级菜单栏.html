@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>刚开始学自己写的三级菜单(很菜)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .wrapper {
+            position: relative;
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            border: 1px solid;
+        }
+
+        li.sub-tab {
+            box-sizing: border-box;
+            width: 150px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background-color: rgba(26, 115, 232, 0.4);
+            color: #fff;
+            font-weight: bold;
+            border-radius: 20px;
+            margin: 10px;
+        }
+
+        .grand-tab {
+            border-radius: 100px;
+        }
+
+        .father-tab {
+            position: absolute;
+            top: 0;
+            left: 150px;
+        }
+
+        .son-tab {
+            position: absolute;
+            left: 300px;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul class="grand-tab">
+            <li class="sub-tab">一级导航栏1</li>
+            <li class="sub-tab">一级导航栏2</li>
+            <li class="sub-tab">一级导航栏3</li>
+            <li class="sub-tab">一级导航栏4</li>
+            <li class="sub-tab">一级导航栏5</li>
+        </ul>
+        <ul class="father-tab" style="display: none;">
+            <li class="sub-tab">二级导航栏1</li>
+            <li class="sub-tab">二级导航栏2</li>
+            <li class="sub-tab">二级导航栏3</li>
+        </ul>
+        <ul class="son-tab" style="display: none;">
+            <li class="sub-tab">三级导航栏1</li>
+            <li class="sub-tab">三级导航栏2</li>
+        </ul>
+    </div>
+    <script>
+        var lis = document.getElementsByClassName('sub-tab');
+        var father_tab = document.getElementsByClassName("father-tab")[0];
+        var son_tab = document.getElementsByClassName('son-tab')[0];
+        /* 鼠标移入闪动特效 */
+        var length = lis.length;
+        for (let i = 0; i < length; i++) {
+            lis[i].onmouseenter = function () {
+                this.style.backgroundColor = "rgba(26, 115, 232, 0.8)";
+            }
+            lis[i].onmouseleave = function () {
+                this.style.backgroundColor = "rgba(26, 115, 232, 0.4)";
+            }
+        }
+        /* 三级菜单效果 */
+        for (let i = 0; i < length; i++) {
+            if (i == 0) {
+                lis[i].onmouseover = function () {
+                    father_tab.style.display = "block";
+                    son_tab.style.display = "none";
+                }
+            } else if (i < 5 && i != 0) {
+                lis[i].onmouseover = function () {
+                    son_tab.style.display = "none";
+                    father_tab.style.display = "none";
+                }
+            } else if ((i == 5) || (i == 8)) {
+                lis[i].onmouseover = function () {
+                    son_tab.style.display = "block";
+                    father_tab.style.display = "block";
+                }
+            } else if (i > 5 && i < 8) {
+                lis[i].onmouseover = function () {
+                    son_tab.style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

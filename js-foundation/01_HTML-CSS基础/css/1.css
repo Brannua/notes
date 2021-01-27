@@ -1,0 +1,7 @@
+/* 外部css文件 */
+div{
+    width : 100px;
+    height : 100px;
+    background-color : black;
+    border-radius: 50%;
+}

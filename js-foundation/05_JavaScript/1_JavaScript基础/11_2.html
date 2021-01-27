@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  命名空间的问题(过时的解决方案，现今多用webpack等)
+        // 防止污染全局，适用于模块化开发
+
+        // var org = {
+        //     department1: {
+        //         zhangsan: {
+        //             name: "asd",
+        //             age: 13
+        //         },
+        //         lisi: {
+
+        //         }
+        //     },
+        //     department2: {
+        //         wangwu: {
+
+        //         },
+        //         liuliu: {
+
+        //         }
+        //     }
+        // }
+        // var zhangsan = org.department1.zhangsan;
+        // zhangsan.name;
+
+
+
+        // 闭包的变量私有化，不会污染全局变量
+        // 就可以将自己的特定功能写到如下的一个闭包中，留出一个函数接口，方便去启动它
+        var name = 'abc';
+        var init = (function () {
+            var name = 'asd';
+
+            function callName() {
+                console.log(name);
+            }
+            return function () {
+                callName();
+            }
+        }());
+
+        init();
+    </script>
+</body>
+
+</html>

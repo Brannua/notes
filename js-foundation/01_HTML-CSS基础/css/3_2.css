@@ -1,0 +1,45 @@
+/* 只要写在同一行的选择器就将其权重值相加,权重值大的优先级高 */
+/*100 1 */
+/* div#idDiv p.classP {
+    background-color: red!important;
+} */
+
+/* 10       10 */
+/* .classDiv p#idP {
+    background-color: green!important;
+} */
+
+/* 分组选择器 */
+/* em, strong, span { */
+    /* background-color: blue; */
+/* } */
+
+/* 浏览器默认字体大小16px */
+/* 字体大小设置的是字体高度 */
+
+/* div{ */
+    /* font-weight: lighter normal bold bolder 100 200 300 --- 900 */
+    /* bolder和字体包里面是否有更粗的样式有关 */
+/* }1 */
+
+/* p{
+    font-family: arial;乔布斯的字体
+} */
+
+
+/* color
+    1.土鳖式 (纯英文单词)
+    2.颜色代码 (#ff0000;)十六进制
+    3.颜色函数 (rgb(0-255,0-255,0-255)十进制
+*/
+
+/* 
+  r       g       b
+00-ff   00-ff   00-ff  (颜色饱和度)
+
+*/
+
+/* border : 1px solid black; */
+/* border-width:
+border-style:
+border-color: */

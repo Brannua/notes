@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        ul {
+            position: relative;
+            width: 600px;
+            height: 80px;
+            margin: 100px auto 0px;
+        }
+
+        ul li.nav {
+            width: 148px;
+            height: 78px;
+            border: 1px solid #000;
+            color: #f00;
+            text-align: center;
+            line-height: 78px;
+            float: left;
+        }
+
+        ul li.bg {
+            width: 150px;
+            height: 80px;
+            background: #f40;
+            opacity: .5;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li class="nav">ES6</li>
+        <li class="nav">Webpack</li>
+        <li class="nav">vue</li>
+        <li class="nav">node</li>
+        <li class="bg"></li>
+    </ul>
+    <script>
+        /**
+         * @func {startMove} 弹性运动
+         * @params {obj} 运动的物体
+         * @params {hz} 运动的频率
+         * @params {target} 钉子所在位置
+         * @params {u} 摩擦系数
+         * @params {v0} 初速度
+         */
+        function startMove(obj, hz, target, u, v0) {
+            var av; // 加速度
+            clearInterval(obj.timer);
+            obj.timer = setInterval(() => {
+                /* 无摩擦力计算加速度 */
+                av = (target - obj.offsetLeft) / 7;
+                /* 无摩擦力计算末速度 */
+                v0 = v0 + av;
+                /* 考虑摩擦力计算末速度 */
+                v0 = v0 * u;
+                /* 物体和钉子(目标点)距离很小并且速度的绝对值小于1时视为运动停止 */
+                if (Math.abs(v0) < 1 && Math.abs(target - obj.offsetLeft) < 10) {
+                    obj.style.left = target + 'px';
+                    clearInterval(obj.timer);
+                } else {
+                    obj.style.left = obj.offsetLeft + v0 + 'px';
+                }
+            }, hz);
+        }
+
+        var oLiArr = document.getElementsByClassName('nav'),
+            length = oLiArr.length,
+            oBg = document.getElementsByClassName('bg')[0];
+        for (let i = 0; i < length; i++) {
+            oLiArr[i].onmouseenter = function () {
+                // * @params {obj} 运动的物体
+                // * @params {hz} 运动的频率
+                // * @params {target} 钉子所在位置
+                // * @params {u} 摩擦系数
+                // * @params {v0} 初速度
+                /* 参数还是得自己试着调啊啊啊啊啊。。。 */
+                startMove(oBg, 20, this.offsetLeft, 0.8, 40);
+            }
+        }
+    </script>
+</body>
+
+</html>

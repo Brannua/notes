@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            
+            transform-style: preserve-3d;
+            perspective: 600px;
+        }
+
+        .wrapper div {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+        }
+
+        .item1 {
+            background-color: red;
+            transform: rotateX(90deg) translateZ(60px);
+        }
+
+        .item2 {
+            background-color: green;
+            transform: rotateX(-90deg) translateZ(60px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="item1"></div>
+        <div class="item2"></div>
+    </div>
+</body>
+
+</html>

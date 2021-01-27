@@ -1,0 +1,49 @@
+body {
+    background-image: url("../img/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+a.edit {
+    display: inline-block;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+    margin: 10px 0 10px;
+    color: rgb(255, 0, 157);
+    font-size: 20px;
+}
+
+a.edit#addBook{
+    margin-bottom: 40px;
+}
+
+.title {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-color: black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+td,
+th {
+    height: 35px;
+    line-height: 35px;
+    border-color: black;
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+}
+
+#formData {
+    padding: 20px 50px;
+    display: none;
+}

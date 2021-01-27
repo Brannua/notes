@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#btn{
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 10px;
+    background-color: #000;
+    color: aliceblue;
+    margin: 10px;
+    cursor: pointer;
+    opacity: .2;
+}
+
+#btn:hover {
+    font-size: 18px;
+    opacity: 1;
+    text-shadow: 10px 10px 10px #f00;
+    box-shadow: 0 0 2px 2px #000;
+}
+
+.wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pan{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 50px solid #333;
+    background: url("./img/bg.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    animation: zhuan 10s linear paused infinite;
+}
+
+.zhen{
+    width: 10px;
+    height: 150px;
+    background-color: #ccc;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+
+    position: absolute;
+    top: -80px;
+    left: 50%;
+
+    transform-origin: top;
+    transform: translateX(-50%) rotateZ(-50deg);
+
+    transition: all 0.3s linear;
+}
+
+.active {
+    transform: rotateZ(-26deg);
+}
+
+@keyframes zhuan{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}

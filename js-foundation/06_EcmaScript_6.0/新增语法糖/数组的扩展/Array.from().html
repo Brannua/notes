@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <script>
+        /**
+         * Array.from()
+         *      ==> 将类数组转化为数组
+         *      ==> 传入数组则深克隆出一个新数组
+         */
+        // let obj = {
+        //     "0": "h",
+        //     "1": "e",
+        //     "2": "l",
+        //     "3": "l",
+        //     "4": "o",
+        //     length: 5
+        // }
+
+        /**
+         * tips: 回调函数和map()方法类似
+         */
+        // let arr1 = Array.from(obj, function mapFn(item, index) {
+        //     return item + index;
+        // })
+        // let arr2 = Array.from(obj).map((item, index) => item + index);
+        // console.log(arr1);
+        // console.log(arr2);
+
+        /**
+         * tips: 常见类数组
+         *      1. NodeList
+         *      2. arguments
+         *      3. 包装类对象
+         */
+        //  let divs = document.getElementsByTagName('div');
+        // let arr = Array.from(divs);
+        // console.log(arr);
+        // let arr1 = Array.from(divs, item => item.innerText);
+        // console.log(arr1);
+        // let arr2 = Array.from('hello');
+        // console.log(arr2);
+
+        /**
+         * 封装返回一个数组中每一项的类型的数组
+         */
+        // function typesOf() {
+        //     return Array.from(arguments, item => typeof item);
+        // }
+        // typesOf('1', false, NaN, [], null);
+
+        /**
+         * 将参数列表返回新数组
+         */
+        function returnArr() {
+            // 以下两种写法效果一样
+            // return Array.prototype.slice.call(arguments);
+            return Array.from(arguments);
+        }
+        console.log(returnArr(1, 2, 3, 4));
+    </script>
+</body>
+
+</html>

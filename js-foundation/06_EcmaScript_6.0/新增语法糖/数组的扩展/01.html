@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>扩展运算符回顾</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 将数组arr推入数组arr1中
+         */
+        // let arr = [1, 2, 3, 4, 5];
+        // let arr1 = [];
+        /* 方法一( 循环 ) */
+        // for (let i = 0; i < arr.length; i ++) {
+        //     arr1.push(arr[i])
+        // }
+        // console.log(arr1);
+        // ----------------------------------------------
+        /* 方法二( 利用apply ) */
+        // Array.prototype.push.apply(arr1, arr);
+        // console.log(arr1);
+        // ----------------------------------------------
+        /* 方法三( 利用ES6的扩展运算符 ) */
+        // arr1.push(...arr);
+        // console.log(arr1);
+        // ----------------------------------------------
+        /**
+         * 扩展运算符的解构赋值
+         */
+        let [x, ...y] = [1, 2, 3, 4, 5];
+        console.log(x, y);
+        let [n, ...m] = [1];
+        console.log(n, m);// m为空数组,因为undefined不允许使用扩展运算符
+        let strArr = [...'hello'];
+        console.log(strArr);// 由于包装类的存在,扩展运算符可以将类数组转化为数组
+
+    </script>
+</body>
+
+</html>

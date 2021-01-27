@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Unicode编码 ==> 16进制 ==> 16层
+         */
+        /**
+         * \u010000 - \u01ffff
+         * \u020000 - \u02ffff
+         * ...
+         * \u100000 - \u10ffff
+         */
+        var reg = /\u5c0f\u5218\u6700\u5e05/g;            
+        var str = '小刘最帅';
+        var res = str.match(reg);
+        console.log(res);
+        var reg = /[\u3000-\ua000]/g;
+        var res = str.match(reg);
+        console.log(res);
+    </script>
+</body>
+
+</html>

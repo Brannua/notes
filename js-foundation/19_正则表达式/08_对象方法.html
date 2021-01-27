@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RegExp对象方法</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * compile 编译正则表达式
+         * exec 检索字符串中指定的值,返回找到的值,并确定其位置
+         * test 检索字符串中指定的值,返回布尔值
+         */
+        var reg = /ab/g;
+        var str = 'abababab';
+        console.log(reg.lastIndex);// 游标
+        console.log(reg.exec(str));
+        console.log(reg.lastIndex);
+        console.log(reg.exec(str));
+        console.log(reg.lastIndex);
+        console.log(reg.exec(str));
+        console.log(reg.lastIndex);
+        console.log(reg.exec(str));
+        console.log(reg.lastIndex);
+        console.log(reg.exec(str));
+        console.log(reg.lastIndex);
+        console.log(reg.exec(str));
+        console.log(reg.lastIndex);
+        console.log(reg.exec(str));
+    </script>
+</body>
+
+</html>

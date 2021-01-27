@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 数组实例的方法fill()
+         * Array.prototype.fill();
+         */
+        let arr = new Array(5);        
+        console.log(arr);
+        arr.fill(7, 3, 4);//从下标3开始填充,到下标4为止( 不包括下标4 ),填充7,填充了4-3=1位
+        console.log(arr);
+        arr.fill(7);//数组的每一位都填充成7
+        console.log(arr);
+        
+    </script>
+</body>
+
+</html>

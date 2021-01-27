@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Symbol是es6新增数据类型
+         * 为了解决对象中属性名冲突的问题
+         */
+        let p = {
+            name: 'xm',
+            age: 20
+        }
+
+        let name = Symbol();
+        p[name] = 'xl';
+
+        console.log(p);
+        console.log(p['name']);
+        console.log(p[name]);
+        console.log(typeof name); // Symbol
+        console.log(Symbol() == Symbol()); // false
+
+
+        console.log('------------分割线------------');
+
+        /**
+         * Symbol数据类型的属性无法在对象中遍历得到
+         */
+        for (item in p) {
+            console.log(item + ':', p[item]);
+        }
+    </script>
+</body>
+
+</html>

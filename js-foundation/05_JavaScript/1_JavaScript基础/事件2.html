@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>拖拽运动</title>
+</head>
+
+<body>
+    <div style="width:100px;height:100px;background-color:red;position:absolute;left:0;top:0;"></div>
+    <script>
+        // event.pageX + " " + event.pageY;
+        // event.clientX + " " + event.clientY;
+
+        /* 
+            拖拽运动
+         */
+        // var div = document.getElementsByTagName('div')[0];
+        // div.onmousedown = function (e) {
+        //     var event = e || window.event,
+        //         // 鼠标点相对于div元素本身的偏移量
+        //         disX = event.pageX - parseInt(this.style.left),
+        //         disY = event.pageY - parseInt(this.style.top);
+        //     // 让拖拽运动受到系统监控
+        //     document.onmousemove = function (e) {
+        //         var event = e || window.event;
+        //         div.style.left = event.pageX - disX + "px";
+        //         div.style.top = event.pageY - disY + "px";
+        //     }
+        // }
+        // div.onmouseup = function () {
+        //     document.onmousemove = null;
+        // }
+
+        /* 
+            自己写的拖拽函数 drag()
+            使用addEventListener
+         */
+        var div = document.getElementsByTagName('div')[0];
+
+        // function drag(elem) {
+        //     var test1 = (e) => {
+        //         var event = e || window.event;
+        //         var disX = event.pageX - parseInt(elem.style.left);
+        //         var disY = event.pageY - parseInt(elem.style.top);
+        //         var test2 = (e) => {
+        //             var event = e || window.event;
+        //             elem.style.left = event.pageX - disX + "px";
+        //             elem.style.top = event.pageY - disY + "px";
+        //             elem.addEventListener('mouseup', () => {
+        //                 document.removeEventListener('mousemove', test2, false);
+        //                 elem.removeEventListener('mousedown', test1, false);
+        //             }, false);
+        //         }
+        //         document.addEventListener('mousemove', test2, false);
+        //     }
+        //     elem.addEventListener('mousedown', test1, false);
+        // }
+
+        /* 
+            更好的版本 ==> 拖拽函数drag()
+             ==> 使用了之前封装的兼容性的方法addEvent(elem, type, handle);
+             ==> 使用了之前封装的兼容ie和其他浏览器的方法getStyle(elem)来获取传入元素的css样式表;
+         */
+        function addEvent(elem, type, handle) {
+            if (elem.addEventListener) {
+                elem.addEventListener(type, handle, false);
+            } else if (elem.attachEvent) {
+                elem.attachEvent('on' + type, function () {
+                    handle.call(elem);
+                });
+            } else {
+                elem['on' + type] = handle;
+            }
+        }
+        function removeEvent(elem, type, handle) {
+            if (elem.removeEventListener) {
+                elem.removeEventListener(type, handle, false);
+            } else if (elem.detachEvent) {
+                elem.detachEvent('on' + type, function () {
+                    handle.call(elem);
+                });
+            } else {
+                elem['on' + type] = null;
+            }
+        }
+        /* 封装的兼容ie和其他浏览器的方法getStyle(elem)来获取传入元素的css样式表 */
+        function getStyle(elem, prop) {
+            if (window.getComputedStyle) {
+                /* 因为prop是字符串形式,所以必须使用[prop]的方式 */
+                return window.getComputedStyle(elem, null)[prop];
+            } else {
+                return elem.currentStyle[prop];
+            }
+        }
+        function drag(elem) {
+            var disX,
+                disY;
+            addEvent(elem, mousedown, function (e) {
+                var event = e || window.event;
+                disX = event.clientX - parseInt(getStyle(elem, 'left'));
+                disY = event.clientY - parseInt(getStyle(elem, 'top'));
+                addEvent(document, 'mousemove', mouseMove);
+                addEvent(document, 'mouseup', mouseUp);
+                /* 这俩接口函数尚未引入 */
+                stopBubble(event);
+                cancleHandler(event);
+            });
+            function mouseMove(e) {
+                var event = e || window.event;
+                elem.style.left = event.clientX - disX + "px";
+                elem.style.top = event.clientY - disY + "px";
+            }
+            function mouseUp(e){
+                var event = e || window.event;
+                removeEvent(document, 'mousemove', mouseMove);
+                removeEvent(document, 'mouseup', mouseUp);
+            }
+        }
+
+        /* 
+            事件处理模型(2种):
+                事件捕获 && 事件冒泡
+                    addEventListener(event, function, true) ==> true为事件捕获
+                    
+            拓展:(仅适用于IE浏览器)
+                div.setCapture(); <==> div.releaseCapture();
+                这是非事件处理模型的事件捕获
+                页面中所有的事件都会被div强行捕获
+                从而解决了拖拽问题中鼠标移动帧频比事件监听的帧频快的问题
+         */
+
+    </script>
+</body>
+
+</html>

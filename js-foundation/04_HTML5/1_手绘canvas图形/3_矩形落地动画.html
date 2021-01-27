@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #canvas1 {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas1" width=500 height=500></canvas>
+    <script>
+        var oCanvas = document.getElementById("canvas1"),
+            ctx = oCanvas.getContext("2d");
+
+        /**
+         * 下落函数
+         * @param y 每次小矩形的高度
+         */
+        var y = 100,
+            timer = null,
+            w = oCanvas.width,
+            h = oCanvas.height;
+
+        function drawRect(y) {
+            ctx.clearRect(0, 0, w, h);// 清屏
+            ctx.fillRect(100, y, 30, 30);// 绘制新帧
+        }
+        timer = setInterval(() => {
+            drawRect(y);// 当前高度绘制动画帧
+            y += 10;// 下落10
+            if (y > 470) {
+                drawRect(470);
+                clearInterval(timer);
+            }
+        }, 50);
+    </script>
+</body>
+
+</html>

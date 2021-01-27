@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    请输入密码: <input type="password">
+    <input class="btn" type="button" value="提交">
+    <script>
+        var input = document.getElementsByTagName('input')[0];
+        var button = document.getElementsByClassName('btn')[0];
+        button.onclick = function () {
+            if (input.value) {
+                console.log(input.value);
+            }
+        }
+    </script>
+</body>
+
+</html>

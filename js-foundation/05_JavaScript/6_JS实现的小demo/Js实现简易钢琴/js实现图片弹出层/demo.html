@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .btn {
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: linear-gradient(to left, #0054ff, #00e4ff);
+            cursor: pointer;
+
+            position: fixed;
+            top: 100px;
+            left: 100px;
+        }
+
+        .wrap {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: none;
+        }
+
+        .wrap .box {
+            width: 600px;
+            height: 400px;
+            margin: 100px auto;
+        }
+
+        .wrap .box img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .wrap span {
+            color: #fff;
+            font-weight: bold;
+            font-size: 30px;
+            position: absolute;
+            top: 40%;
+            cursor: pointer;
+            /* 取消重复点击蓝色背景 */
+            user-select: none;
+        }
+
+        .wrap span.left {
+            left: 32%;
+        }
+
+        .wrap span.right {
+            right: 32%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="btn">点击弹出图片</div>
+    <div class="wrap">
+        <div class="box">
+            <img class="image" src="./images/1.png" alt="">
+        </div>
+        <span class="left">&lt;</span>
+        <span class="right">&gt;</span>
+    </div>
+    <script>
+        var btn = document.getElementsByClassName("btn")[0];
+        var wrap = document.getElementsByClassName("wrap")[0];
+        var box = document.getElementsByClassName("box")[0];
+        var left = document.getElementsByClassName("left")[0];
+        var right = document.getElementsByClassName("right")[0];
+        var image = document.getElementsByClassName("image")[0];
+        var nowPic = 1;
+
+        function move(change) {
+            nowPic = nowPic + change;
+            nowPic = nowPic > 5 ? 1 : nowPic;
+            nowPic = nowPic < 1 ? 5 : nowPic;
+            image.setAttribute("src", "./images/"+ nowPic +".png");
+        }
+
+        function init() {
+            btn.addEventListener("click", function () {
+                wrap.style.display = "block";
+            });
+            wrap.addEventListener("click", function() {
+                this.style.display = "none";
+            });
+            // 阻止事件冒泡
+            box.addEventListener("click", function(e) {
+                e.stopPropagation();
+            });
+            left.addEventListener("click", function(e) {
+                e.stopPropagation();
+                move(-1);
+            });
+            right.addEventListener("click", function(e) {
+                e.stopPropagation();
+                move(1);
+            });
+        }
+
+        window.onload = function () {
+            init();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            transform-style: preserve-3d;
+            /* perspective: 600px; */
+            perspective-origin: top;
+        }
+
+        .item {
+            width: 200px;
+            height: 200px;
+            background-color: #f00;
+            /* transform: rotateX(110deg); */
+            transform: perspective(600px) rotateX(110deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <iframe src="./lxb.html" frameborder="0"></iframe>
+    <script>
+        var age = 20;
+        // console.log(window.parent.oldAge);
+
+        /* 
+            下面这种方法耗时耗费性能( 建议不用 )
+         */
+        // var lastHash = window.location.hash;
+        // setInterval(() => {
+        //     if (window.location.hash != lastHash) {
+        //         console.log(window.location.hash.slice(1));
+        //         lastHash = window.location.hash;
+        //     }
+        // }, 10);
+    </script>
+</body>
+
+</html>

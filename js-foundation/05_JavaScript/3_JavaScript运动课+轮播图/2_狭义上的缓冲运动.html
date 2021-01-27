@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 100px;
+        height: 100px;
+        background: orange;
+        position: absolute;
+        top: 0px;
+        left: 400px;
+    }
+
+    span {
+        position: absolute;
+        left: 300px;
+        top: 0px;
+        width: 1px;
+        height: 100px;
+        background: #000;
+    }
+
+    #oBtn {
+        margin-top: 150px;
+    }
+</style>
+
+<body>
+    <div></div>
+    <span></span>
+    <button id="oBtn">run</button>
+    <script>
+        var oDiv = document.getElementsByTagName('div')[0],
+            oSpan = document.getElementsByTagName('span')[0];
+
+        /* button注册click事件对物体的运动进行控制 */
+        oBtn.onclick = function () {
+            /* 调用运动函数 */
+            startMove(oDiv, oSpan, 30);
+        }
+
+        /* 定义定时器 */
+        var timer = null;
+
+        /**
+         * 缓冲运动函数
+         * @params {obj} 运动的DOM元素
+         * @params {target} 运动的目标
+         * @params {hz} 运动的频率
+         */
+        function startMove(obj, target, hz) {
+            /* 缓冲运动速度非定值 */
+            var speed;
+            /* 先清除之前的定时器 */
+            clearInterval(timer);
+            timer = setInterval(() => {
+                /**
+                 * {@BUG}
+                 * 由于每次获取offsetLeft都是整数
+                 * 会导致speed的绝对值小于1的时候
+                 * 每次获取的offsetLeft都是定值
+                 * 物体会运动到距离目标点差一点点的距离不再继续运动
+                 */
+                /* 改变speed,使得物体做缓冲运动 */
+                // 注意这里的speed是矢量,带有方向
+                speed = (target.offsetLeft - obj.offsetLeft) / 8;
+                /* {@解决BUG} */
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                /* 运动停止清除定时器条件判断 */
+                if (obj.offsetLeft !== target.offsetLeft) {
+                    /* 缓冲运动 */
+                    obj.style.left = obj.offsetLeft + speed + 'px';
+                } else {
+                    clearInterval(timer);
+                }
+            }, hz);
+        }
+    </script>
+</body>
+
+</html>

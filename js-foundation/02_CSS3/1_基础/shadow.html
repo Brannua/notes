@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>shadow</title>
+    <style>
+        /* - shadow是性能杀手,适量使用！！！
+            - box-shadow: x轴偏移量 y轴偏移量 [阴影模糊半径] [阴影扩展半径] [阴影颜色] [投影方式]
+                - 模糊半径非负
+                - 投影方式: 默认向区域外部投影; inset ==> 向区域内部投影
+            - text-shadow: x-offset y-offset blur color */
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            padding: 10px;
+        }
+
+        .demo {
+            margin: 10px;
+            width: 200px;
+            height: 100px;
+            background-color: #f40;
+            border-top-left-radius: 50% 100%;
+            border-top-right-radius: 50% 100%;
+            box-shadow: 0px 68px 10px 3px #000 inset;
+        }
+
+        /* ---------------------------------------------------------------------------- */
+        ul {
+            width: 300px;
+            border: 1px solid #ccc;
+        }
+
+        li {
+            width: 100%;
+            height: 40px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        li:hover {
+            box-shadow: 0 -3px 6px 0px red, 0 3px 6px 0px yellow, -3px 0 6px 0px blue, 3px 0 6px 0px green;
+        }
+
+        /* ---------------------------------------------------------------------------- */
+        p {
+            text-shadow: 10px 10px 3px deeppink;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- 半圆 -->
+    <div class="demo"></div>
+    <!-- 带有hover阴影效果的列表 -->
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <p>hello</p>
+</body>
+
+</html>

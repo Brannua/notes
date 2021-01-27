@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+span::before{
+    content: "刘哥";
+}
+
+span::after{
+    content: "是的,的确是这样！";
+}

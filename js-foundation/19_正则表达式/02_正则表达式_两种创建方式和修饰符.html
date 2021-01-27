@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>正则表达式RegExp</title>
+</head>
+
+<body>
+    <!-- 
+        正则表达式的作用:
+            匹配特殊字符或者有特殊搭配原则的字符的最佳选择
+     -->
+    <!-- email: <input type="text" value=""> -->
+    <script>
+        /* 
+            两种创建方式
+                1. 直接量 ==> 推荐！！！
+                2. new RegExp();
+        */
+        /* 使用正则表达式直接量( 字面量 )测验字符串
+        看是否含有正则表达式规定的字符串片段 */
+        // var reg = /abc/;
+        // var str = "erfghabclkj";
+        // var res = reg.test(str);
+        // console.log(res);
+        // //  i ==> ignoreCase( 忽略大小写 )
+        // var reg1 = /abc/i;
+        // var str1 = "erfghABclkj";
+        // var res1 = reg1.test(str1);
+        // console.log(res1);
+// --------------------------------------------
+        /* 使用正则表达式的构造函数 */
+        // var str = "abcdeFgjkf";
+        // var reg = new RegExp("def", "i");
+        // var res = reg.test(str);
+        // console.log(res);
+// ---------------------------------------------
+        /* 区别测试 */
+        // var reg = /abc/i;
+        // var reg1 = RegExp(reg);
+        // var reg2 = new RegExp(reg);
+        // reg1.abc = "test";
+        // console.log(reg.abc, reg1.abc);//reg和reg1是同一个东西( 同一个引用 )
+        // reg2.bcd = "test2";
+        // console.log(reg.bcd, reg2.bcd);//reg和reg2不是同一个东西( 两块不同的内存空间 )
+// ---------------------------------------------
+        /* 
+        修饰符 
+            i : ignoreCase ==> 忽略大小写
+            g : global ==> 全局匹配
+            m : multiline ==> 多行匹配
+         */
+        // var str = "abababababababab";
+        // var reg = /ab/g;
+        // var res = str.match(reg);
+        // console.log(res);
+        /**
+         * 全局匹配的前提下进行多行匹配
+         */
+        // var reg1 = /^a/gm;
+        // var str1 = "asdfg\na";
+        // var res1 = str1.match(reg1);
+        // console.log(res1);
+    </script>
+</body>
+
+</html>

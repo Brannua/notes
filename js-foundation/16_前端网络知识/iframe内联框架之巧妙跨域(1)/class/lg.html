@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <iframe src="./ls.html" frameborder="0" name="ls"></iframe>
+    <script>
+        var oldAge = 21;
+        var oIframe = document.getElementsByTagName('iframe')[0];
+        /* 
+            iframe借助哈希值实现跨域
+         */
+        // var oSrc = oIframe.src;
+        // document.onclick = function () {
+        //     oIframe.src = oSrc + "#" + oldAge;
+        //     oldAge++;
+        // }
+
+        var flag = true;//利用标志位只更改一次iframe的src属性( 也就只触发两次load事件 )
+        oIframe.onload = function () {
+            if (flag) {
+                oIframe.src = './xiaoli.html';
+                flag = false;
+            } else {
+                console.log(oIframe.contentWindow.age);
+            }
+        }
+
+
+
+
+        /* 
+            注意oIframe是异步加载的资源
+         */
+        // var oIframe = document.getElementsByTagName('iframe')[0];
+        // oIframe.onload = function () {
+        //     console.log(window.frames['ls'].age);
+
+        //     var lsAge = oIframe.contentWindow.age;
+        //     console.log(lsAge);
+        // }
+    </script>
+</body>
+
+</html>

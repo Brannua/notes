@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+        a{
+            position: fixed;
+        }
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #999;
+            position: absolute;
+        }
+        #item1{
+            top: 500px;
+        }
+        #item2{
+            top: 1000px;
+        }
+        #item3{
+            top: 1500px;
+        }
+        div:target{/*目标元素选择器,用来匹配被location.hash选中的元素(即锚点元素)*/
+            background-color: #00f;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#item1" style="left:0">click1</a>
+    <a href="#item2" style="left:100px">click2</a>
+    <a href="#item3" style="left:200px">click3</a>
+    <div id="item1">1</div>
+    <div id="item2">2</div>
+    <div id="item3">3</div>
+</body>
+
+</html>

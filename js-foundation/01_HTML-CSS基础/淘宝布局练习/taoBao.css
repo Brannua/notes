@@ -1,0 +1,583 @@
+/* 样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #3C3C3C;
+}
+
+input,
+button {
+    outline: none;
+    border: none;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    height: 1000px;
+}
+
+/* 顶部导航栏样式 */
+.topTab {
+    box-sizing: border-box;
+    width: 100%;
+    height: 35px;
+    background-color: rgb(245, 245, 245);
+    border-bottom: 1px solid rgb(238, 238, 238);
+    display: inline-block;
+    padding: 0 164px;
+}
+
+.topTab .left {
+    height: 100%;
+    display: inline-block;
+}
+
+.topTab .left li {
+    float: left;
+    line-height: 35px;
+    font-family: tahoma, arial, "Hiragino Sans GB", 宋体, sans-serif;
+    font-size: 12px;
+    color: #3C3C3C;
+}
+
+.topTab .left li.location {
+    padding: 0 6px;
+}
+
+.topTab .left li.location span {
+    margin-right: 7px;
+    display: inline-block;
+    height: 100%;
+}
+
+.topTab .left li.regist-login a {
+    display: inline-block;
+    height: 100%;
+    height: 100%;
+}
+
+.topTab .left li.regist-login {
+    padding: 0 6px;
+}
+
+.topTab .left li.regist-login span.login {
+    margin-right: 7px;
+    display: inline-block;
+    height: 100%;
+    color: rgb(242, 48, 3);
+}
+
+.topTab .left li.regist-login span.login:hover {
+    color: rgb(242, 48, 3);
+}
+
+.topTab .left li.regist-login span.free-regist {
+    margin-right: 7px;
+    display: inline-block;
+    height: 100%;
+}
+
+.topTab .left li.regist-login span.free-regist:hover {
+    color: rgb(242, 48, 3);
+}
+
+.topTab .left li.mobile-taoBao {
+    padding: 0 6px;
+}
+
+.topTab .left li.mobile-taoBao a:hover {
+    color: rgb(242, 48, 3);
+}
+
+.topTab .left li.mobile-taoBao a {
+    display: inline-block;
+    height: 100%;
+    height: 100%;
+}
+
+.topTab .left li.mobile-taoBao a span {
+    display: inline-block;
+    height: 100%;
+    height: 100%;
+}
+
+.topTab .left li i.iconfont.icon-arrow-down {
+    font-size: 10px;
+    color: rgb(156, 156, 156);
+}
+
+.topTab .right {
+    height: 35px;
+    display: inline-block;
+    float: right;
+}
+
+.topTab .right li.separate {
+    height: 100%;
+    line-height: 31px;
+    padding: 0 5px;
+}
+
+.topTab .right .myTaoBao,
+.topTab .right .gouwuche,
+.topTab .right .shoucangjia,
+.topTab .right .shangpinfenlei,
+.topTab .right .maijiazhongxin,
+.topTab .right .lianxikefy,
+.topTab .right .wangzhandaohang {
+    padding: 0 6px;
+}
+
+.topTab .right .gouwuche .sub-gouwuche,
+.topTab .right .shoucangjia .sub-shoucangjia,
+.topTab .right .wangzhandaohang .sub-wangzhandaohang {
+    display: inline-block;
+    margin-right: 7px;
+    cursor: pointer;
+}
+
+.topTab .right .gouwuche .icon-gouwuche,
+.topTab .right .shoucangjia .icon-shoucangjia,
+.topTab .right .wangzhandaohang .icon-wangzhandaohang {
+    margin-right: 5px;
+}
+
+.topTab .right .gouwuche .icon-gouwuche,
+.topTab .right .wangzhandaohang .icon-wangzhandaohang {
+    color: rgb(255, 68, 0);
+}
+
+.topTab .right li {
+    float: left;
+    color: #6C6C6C;
+    font-size: 12px;
+    height: 100%;
+}
+
+.topTab .right li a:hover {
+    color: rgb(255, 68, 0);
+}
+
+.topTab .right li i,
+.topTab .right li a,
+.topTab .right li a span {
+    display: inline-block;
+    height: 100%;
+    line-height: 35px;
+}
+
+.topTab .right li a,
+.topTab .right li a span {
+    font-size: 12px;
+}
+
+.topTab .right li i {
+    font-size: 10px;
+    color: rgb(156, 156, 156);
+}
+
+.topTab .right li i,
+.topTab .right li a {
+    margin-top: -1px;
+    /*a标签和i标签为什么会往下串一像素*/
+}
+
+/* 搜索栏区样式 */
+
+.middle-bar {
+    position: relative;
+    height: 121px;
+    padding: 0 180px;
+    overflow: hidden;
+    /*解决297行margin塌陷*/
+}
+
+.middle-bar a.taobaowang-img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: inline-block;
+    width: 160px;
+    height: 64px;
+
+    background-image: url(./assets/img/taoBaoWang.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.search {
+    position: absolute;
+    width: 42%;
+    height: 80%;
+    left: 48%;
+    top: 50%;
+    transform: translate(-50%, -40%);
+    display: inline-block;
+}
+
+.search .search-keywords {
+    margin-left: 24px;
+}
+
+.search .search-keywords li {
+    float: left;
+    font-size: 12px;
+    font-family: tahoma, arial, "Hiragino Sans GB", 宋体, sans-serif;
+    height: 18px;
+    line-height: 18px;
+    padding: 4px 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    color: rgb(255, 118, 0);
+}
+
+.search .search-keywords li.active {
+    color: #fff;
+    font-weight: bold;
+    background-color: rgb(255, 118, 0);
+}
+
+.search .main-search {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80%;
+    height: 45px;
+    border: 2px solid rgb(255, 118, 0);
+    border-top-left-radius: 24px 20px;
+    border-bottom-left-radius: 24px 20px;
+}
+
+.search .main-search .sub-main-search {
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    transform: translateY(-50%);
+    display: inline-block;
+    width: 96%;
+}
+
+.search .main-search .sub-main-search input.typeIn {
+    width: 90%;
+    height: 100%;
+    padding: 8px 0;
+}
+
+.search .main-search .sub-main-search i {
+    float: right;
+    font-size: 28px;
+}
+
+.search button.search-btn {
+    position: absolute;
+    height: 49px;
+    width: 90px;
+    line-height: 49px;
+    text-align: center;
+    right: 36px;
+    top: 24px;
+    background-color: rgb(255, 118, 0);
+    font-size: 20px;
+    color: #fff;
+    font-family: tahoma, arial, "Hiragino Sans GB", 宋体, sans-serif;
+    font-weight: bold;
+    border-top-right-radius: 24px 20px;
+    border-bottom-right-radius: 24px 20px;
+}
+
+.search .recommand-goods {
+    position: absolute;
+    bottom: 0;
+}
+
+.search .recommand-goods li {
+    float: left;
+    font-size: 12px;
+    padding: 0 2px;
+}
+
+.search .recommand-goods li.active a {
+    color: rgb(255, 68, 0);
+}
+
+.middle-bar .search .recommand-goods li a:hover {
+    color: rgb(255, 68, 0);
+}
+
+.search .recommand-goods::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.middle-bar .qr {
+    margin-right: 84px;
+    margin-top: 20px;
+}
+
+.middle-bar .qr::after {
+    content: "";
+    display: inline-block;
+    clear: both;
+}
+
+.middle-bar .qr .close-qr {
+    float: right;
+    display: inline-block;
+    border: 1px solid rgb(238, 238, 238);
+    color: rgb(238, 238, 238);
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    text-align: center;
+}
+
+.middle-bar .qr .main-qr {
+    float: right;
+    display: inline-block;
+    padding: 4px 6px;
+    border: 1px solid rgb(238, 238, 238);
+}
+
+.middle-bar .qr .main-qr .title {
+    color: rgb(255, 118, 0);
+    font-size: 12px;
+    font-family: tahoma, arial, "Hiragino Sans GB", 宋体, sans-serif;
+    text-align: center;
+    height: 18px;
+}
+
+.middle-bar .qr a.main-qr img.qrcode {
+    width: 62px;
+    height: 62px;
+}
+
+
+/* 首屏主区域样式 */
+.wrapper {
+    width: 80%;
+    background-color: #eee;
+    padding: 0 10%;
+    position: relative;
+}
+
+.wrapper .nav-bar {
+    position: relative;
+    width: 100%;
+    height: 30px;
+}
+
+.wrapper .nav-bar .side-title {
+    display: inline-block;
+    color: #fff;
+    height: 100%;
+    width: 17%;
+    line-height: 30px;
+    text-align: center;
+    background-color: rgb(255, 80, 0);
+}
+
+.wrapper .nav-bar .main-title {
+    display: inline-block;
+    width: 83%;
+    height: 30px;
+    background:linear-gradient(to right, rgb(255, 134, 0), rgb(255, 80, 0));
+    line-height: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.wrapper .nav-bar .main-title li{
+    float: left;
+    padding: 0 7px;
+}
+
+.wrapper .nav-bar .main-title li a,
+.wrapper .nav-bar .main-title li span {
+    color: #fff;
+}
+
+.wrapper .nav-bar .main-title::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.wrapper .side-bar {
+    border: 1px solid rgb(255, 80, 0);
+    display: inline-block;
+    width: 204px;
+    height: 508px;
+    background-color: #fff;
+    padding: 5px 0 3px;
+}
+
+.wrapper .side-bar li {
+    padding: 0 19px 0 25px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 14px;
+    color: #666666;
+}
+
+.wrapper .side-bar li:hover {
+    background-color: rgb(255, 228, 220);
+    color: rgb(255, 80, 0);
+}
+
+.wrapper .side-bar li i {
+    float: right;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.wrapper .images {
+    position: absolute;
+    top: 40px;
+    left: 368px;
+}
+
+.wrapper .images img:nth-child(2n) {
+    position: absolute;
+    left: 530px;
+}
+
+.wrapper .title-sub-scroll-bar {
+    position: absolute;
+    top: 330px;
+    left: 370px;
+}
+
+.wrapper .title-sub-scroll-bar img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.wrapper .title-sub-scroll-bar .slogan {
+    display: inline-block;
+    margin-left: 128px;
+    color: rgb(102, 102, 102);
+    font-size: 12px;
+    font-family: tahoma, arial, "Hiragino Sans GB", 宋体, sans-serif;
+}
+
+.wrapper .title-sub-scroll-bar .pages-now {
+    display: inline-block;
+    height: 100%;
+    margin-left: 280px;
+    font-size: 12px;
+    font-family: tahoma, arial, "Hiragino Sans GB", 宋体, sans-serif;
+    color: rgb(255, 22, 72);
+}
+
+.wrapper .title-sub-scroll-bar .pages-sum {
+    display: inline-block;
+    height: 100%;
+    font-size: 12px;
+    font-family: tahoma, arial, "Hiragino Sans GB", 宋体, sans-serif;
+}
+
+.wrapper .line {
+    position: absolute;
+    top: 349px;
+    left: 367px;
+}
+
+.wrapper .line li {
+    float: left;
+    width: 87px;
+    height: 3px;
+    background-color: rgb(255, 22, 72);
+}
+
+.wrapper .line li.active {
+    background-color: rgb(0, 0, 0);
+}
+
+.wrapper .imgs {
+    position: absolute;
+    width: 521px;
+    height: 195px;
+    top: 353px;
+    left: 368px;
+    background-color: #fff;
+}
+
+.wrapper .imgs img {
+    margin: 6px;
+    width: 248px;
+}
+
+.wrapper .imgs img:nth-child(2n) {
+    margin-left: 0px;
+}
+
+.wrapper .todayHot {
+    position: absolute;
+    top: 332px;
+    left: 893px;
+}
+
+.wrapper .todayHot .slogan {
+    display: block;
+    font-size: 12px;
+    color: #a1a1a1;
+}
+/* 
+    首屏底部样式
+*/
+div.footer {
+    width: 901px;
+    height: 95px;
+    background-color:#fff;
+    position: relative;
+    margin-top: 10px;
+}
+
+.leftFooter {
+    position: absolute;
+    left: 32px;
+    top: 24px;
+    color: #999;
+    font-size: 12px;
+}
+
+.rightFooter {
+    position: absolute;
+    right: 0px;
+    width: 684px;
+    top: 14px;
+}
+
+.rightFooter a img {
+    width: 120px;
+    height: 62px;
+}
+
+.rightFooter a .top {
+    /* position: absolute; */
+    /* right: 0; */
+}
+
+.rightFooter a .content {
+    width: 300px;
+    height: 200px;
+    background-color: #eee;
+}

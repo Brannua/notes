@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // class A {
+        //     constructor() {
+        //         this.name = 'xm'
+        //     }
+        //     print() {// 原型链上的方法
+        //         console.log(this.name);
+        //     }
+        // }
+        // A.prototype.name = 'Father prototype name';
+        // class B extends A {
+        //     constructor() {
+        //         // 子类调用super()方法去调用父类的构造函数并将this绑定在子类上,接下来子类才可以使用this
+        //         super();
+        //         this.name = 'xz'
+        //     }
+        //     show(){
+        //         // super是父类的原型对象
+        //         super.print();
+        //         console.log(super.name);
+        //     }
+        // }
+        // let b = new B();
+        // console.log(b);
+        // b.print();
+        // b.show();
+// -------------------------------------------------------------------------------------------------------------
+        class A {
+
+        }
+        class B extends A {
+
+        }
+        // 子类.__proto__表示构造函数的继承
+        console.log(B.__proto__ === A);
+        // 子类.__proto__.prototype表示方法的继承
+        console.log(B.__proto__.prototype === A.prototype);
+
+    </script>
+</body>
+
+</html>

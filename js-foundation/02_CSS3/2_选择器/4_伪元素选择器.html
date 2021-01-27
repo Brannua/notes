@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        p.demo {
+            width: 200px;
+            border: 1px solid;
+        }
+
+        p.demo::first-letter{
+            font-size: 30px;
+        }
+
+        p.demo::first-line{
+            color: #0f0;
+        }
+
+        ::selection{
+            background: #0f0;
+            color: #f00;
+        }
+
+        p.canNotSelect {
+            width: 200px;
+            border: 1px solid;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <p class="demo">大佛IEN多欧尼权恩菲年纪都为爱活动为奥嗯佛IQ饿哦ID你大佛IEN多欧尼权恩菲年纪都为爱活动为奥嗯佛IQ饿哦ID你</p>
+    <p class="canNotSelect">不能被鼠标选中的文本！！！不能被鼠标选中的文本！！！不能被鼠标选中的文本！！！</p>
+</body>
+
+</html>

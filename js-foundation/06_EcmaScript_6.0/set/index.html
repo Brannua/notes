@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let s1 = new Set([1, 2, 3, 4, 4, 5, false, false, 'str', 'str', null, null, new Object(), new Object(),
+        Symbol(), Symbol()
+        ]);
+        console.log('-----------------分割线------------------');
+
+        // console.log(s1);
+        // console.log(Array.from(s1));
+
+        // console.log(s1.size);
+        // s1.add(77);
+        // console.log(s1.has(77));
+        // console.log(s1.size);
+        // s1.add(77);
+        // console.log(s1.size);
+        // let boo = s1.delete(77);
+        // console.log(boo);
+        // console.log(s1.size);
+        // console.log(s1.has(77));
+
+        // s1.clear();
+        // console.log(s1);
+
+        console.log('-----------------分割线------------------');
+        /**
+         * 数组去重
+         */
+        // function arrSpecial(arr) {
+        //     return new Set(arr);
+        // }
+        // let arr = [1, 2, 1, 2, 4, 5, 'str', 'str'];
+        // console.log(arr);
+        // console.log(arrSpecial(arr));
+
+        console.log('-----------------分割线------------------');
+        // for ([item, index] of s1.entries()) {
+        //     console.log(item, index);
+        //     console.log(item === index);
+        // }
+        // console.log(s1.keys());
+        // console.log(s1.values());
+        // console.log(s1.keys() == s1.values());
+
+        console.log('-----------------分割线------------------');
+        /**
+         * WeakSet只能通过add的方式添加对象
+         */
+        let ws = new WeakSet();
+        let obj = {
+            name: 'xm',
+            age: 20
+        };
+        let obj1 = obj;//引用无法添加
+        let obj2 = {// 新开辟内存空间的新对象可以添加
+            name: 'xm',
+            age: 20
+        };
+        ws.add(obj);
+        ws.add(obj1);
+        ws.add(obj2);
+        console.log(ws);
+    </script>
+</body>
+
+</html>

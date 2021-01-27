@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 封装异步加载图片
+         * @params url 图片的url
+         * 实例化出oImg对象并赋予url
+         * 基于promise
+         * 用事件监听onload对应resolved()
+         *          onerror对应rejected()
+         */
+        const loadUrlSync = url => new Promise((resolved, rejected) => {
+            let oImg = new Image();
+            oImg.src = url;
+            oImg.onload = () => resolved(oImg);
+            oImg.onerror = () => rejected(new Error('can not load image at ' + url));
+        });
+
+        /**
+         * 基于jq封装ajax
+         */
+        const myAjax = (url, type = 'GET', data = {}) => {
+            return new Promise((resolved, rejected) => {
+                $.ajax({
+                    type,
+                    url,
+                    data,
+                    success: data => {
+                        resolved(data);
+                    },
+                    error: err => {
+                        rejected(err);
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

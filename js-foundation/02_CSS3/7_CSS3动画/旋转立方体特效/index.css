@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(pink, blue);
+}
+
+.wrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    top: 200px;
+    left: 600px;
+    transform-style: preserve-3d;
+    transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg);
+    animation: turn 6s ease infinite;
+}
+
+.wrapper .item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: .8;
+    border: 2px solid;
+}
+
+.item1 {
+    background-color: #f00;
+    transform: translateZ(100px);
+}
+
+.item2 {
+    background-color: #0f0;
+    transform: rotateX(-90deg) translateZ(100px);
+}
+
+.item3 {
+    background-color: #00f;
+    transform: rotateX(90deg) translateZ(100px);
+}
+
+.item4 {
+    background-color: #ff0;
+    transform: rotateY(270deg) translateZ(100px);
+}
+
+.item5 {
+    background-color: #f0f;
+    transform: rotateY(90deg) translateZ(100px);
+}
+
+.item6 {
+    background-color: #0ff;
+    transform: rotateY(180deg) translateZ(100px);
+}
+
+/**
+ * 翻滚吧,皮卡丘！
+ */
+@keyframes turn {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    }
+}

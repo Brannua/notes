@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* 一般不使用bottom因为一般的文档都没有底或者底非常往下 */
+/* 相反的两个方向不能同时出现 */
+
+
+
+
+/* .demo1 {
+    width: 100px;
+    height: 100px;
+    background-color: #ff0;
+}
+
+.demo2 {
+    width: 200px;
+    height: 200px;
+    background-color: #f0f;
+    opacity: .5;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+} */
+
+
+
+
+
+
+/* .demo {
+    width: 100px;
+    height: 100px;
+    background-color: #f00;
+    position: relative;
+    top: 30px;
+    left: 30px;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    background-color: #0f0;
+} */
+
+
+
+
+div {
+    width: 100px;
+    height: 200px;
+    color: #fff;
+    background-color: #f00;
+    /* 用固定定位配合居中 */
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -50px;
+    margin-top: -100px;
+}

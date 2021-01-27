@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表达式</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * reg.test(); ==> 匹配字符串片段,返回布尔值
+         * str.match(); ==> 返回匹配的字符串片段
+         */
+        // var reg = /[0-9][0-9][0-9]/g;
+        // var str = 'iubf9239rhr0103ur1098y4782trq013g9g9h289826';
+        // var res = str.match(reg);
+        // console.log(res);
+        // -----------------------------------------------------------
+        // var reg = /[ab][cd][d]/g;
+        // var str = 'abcd';
+        // var res = str.match(reg);
+        // console.log(res);
+        // -----------------------------------------------------------
+        // var reg = /[^a][^b]/g;
+        // var str = 'ab1cd';
+        // var res = str.match(reg);
+        // console.log(res);
+        // -----------------------------------------------------------
+        var reg = /(abc|bcd)[0-9]/g;
+        var str = 'bcd3';
+        var res = str.match(reg);
+        console.log(res);
+    </script>
+</body>
+
+</html>

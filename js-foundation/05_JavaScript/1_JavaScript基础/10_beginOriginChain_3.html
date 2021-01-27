@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 原型链
+        // Grand.prototype.__proto__  <==>  Object.prototype(所有对象的最终原型)
+        // Grand.prototype.lastname = 'Liu';
+        // function Grand() {}
+        // var grand = new Grand();
+
+        // Father.prototype = grand;
+        // function Father() {
+        //     this.name = 'xuming';
+        //     this.fortune = {
+        //         card1 : 'visa'
+        //     };
+        //     this.num = 100;
+        // }
+        // var father = new Father();
+
+        // Son.prototype = father;
+        // function Son() {
+        //     this.hobby = 'smoke'
+        // }
+        // var son = new Son();
+
+
+        // 原型链属性上的增删改查
+        // 增删改都是只有本人有权限  通过delete 构造函数名.prototype.属性 的方式
+        // 查看属性就算是从进的找一直找到远端的终点，一旦找到就回返回，如果终点都没有那就是undefined
+        // 但是修改有特例就是子孙可以修改其原型的属性值为引用值的属性，仅限于这种引用值的修改
+        // son.num ++;  <==> son.num = son.num + 1;//不会修改父亲的num值，而会给自己增加一个num值为101的属性
+
+        
+        // Person.prototype = {
+        //     name : 'a',
+        //     sayName : function () {
+        //         console.log(this.name);
+        //     }
+        // }
+        // function Person() {
+        //     this.name = 'b';
+        // }
+        // var person = new Person();
+        // console.log(person.sayName());
+        // console.log(Person.prototype.sayName());
+        // // 谁调用的这个方法这个方法就指向谁
+
+
+        // var obj = {};//对象字面量的形式这样写也有原型
+        // var obj1 = new Object();//这样写也有原型
+        // obj.__proto__ = Object.prototype = obj1.__proto__
+        // 所以上述两种方式产生的对象是一样的，建议采用第一种写法
+
+
+        // var obj = Object.create(原型);
+        // var obj = {name : "xiaowang", age : 20};
+        // var obj1 = Object.create(obj);
+
+        // Person.prototype.name = 'xiaowang';
+        // function Person() {}
+        // var person = Object.create(Person.prototype);//如果function Person(){}中没有进行自定义，这种方式产生的对象和new构造函数产生的对象是一样的
+        
+        // 绝大多数对象都最终继承自Object.prototype
+        // var obj = Object.create(null);//这样产生的对象里面No properties，
+        // 不继承自任何原型,手动加__proto__不管用
+
+        // undefined和null没有toString()方法，因为他们不是对象且没有包装类,
+        // 无法一层层往上访问
+
+
+        // var num = 123;
+        // num.toString();  -- > var num1 = new Number(num); num1.toString();
+        // Number.prototype.toString() = function() {...}
+        // Number.prototype.__proto__ = Object.prototype
+        // Object.prototype.toString() = function () {***}
+        // 像上面这种同名的方法可以有不同的操作，叫做方法的重写形式，例子如下
+
+        // Object.prototype.toString = function () {}
+        // Person.prototype = {
+        //     toString: function () {
+        //         return 'hehe';
+        //     }
+        // }
+        // function Person() {}
+        // var person = new Person();
+        // console.log(person.toString());
+
+        // 机器自己重写了一些方法比如说往下看
+        // Object.prototype.toString();
+        // Array.prototype.toString();
+        // Number.prototype.toString();
+        // Boolean.prototype.toString();
+        // String.prototype.toString();
+
+
+        // var obj = Object.create(null);
+        // obj.toString = function () {
+        //     return 'hehhe';
+        // }
+        // document.write(obj);
+        //隐式的调用toString()方法再在页面上打印,
+        // 但是没有原型的对象是没有toString()方法的,所以打印就会报错,
+        // 可以手动加上toString()方法加以验证
+
+
+        // Javascript尽量避免单独小数操作,可以配合Math.floor/ceil使用
+        // js能处理的数据范围小数点前16位后16位
+
+    </script>
+</body>
+
+</html>

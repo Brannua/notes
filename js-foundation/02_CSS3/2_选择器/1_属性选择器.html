@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        li[class="item"] {
+            color: aqua;
+        }
+        li[class~="bb"] {
+            color: yellowgreen;
+        }
+        div[class^="val"] {
+            color: blueviolet;
+        }
+        div[class$="4"] {
+            color: brown;
+        }
+        div[lg*="ls"] {
+            color: violet;
+        }
+    </style>
+</head>
+
+<body>
+    <li class="item">示例CSS2的属性选择器</li>
+    <li class="aa bb cc">示例CSS3的属性选择器</li>
+
+    <div class="value1">CSS3的属性选择器</div>
+    <div class="value2">CSS3的属性选择器</div>
+    <div class="value3">CSS3的属性选择器</div>
+    
+    <div class="value4">CSS3的属性选择器</div>
+    <div lg="333ls222">CSS3的属性选择器</div>
+</body>
+
+</html>

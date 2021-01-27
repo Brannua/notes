@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /**
+         * flex-wrap属性
+         * flex-wrap: nowrap|wrap|wrap-reverse;
+         * 默认情况下,项目都排列在一条线( 又称轴线上 )
+         * flex-wrap属性定义,如果一条轴线排不下,如何换行
+         * no-wrap( 默认 ): 不换行
+         * wrap: 换行,第一行在上方
+         * wrap-reverse: 换行,第一行在下方
+         */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+            display: flex;
+            /* flex-wrap: nowrap; */
+            /* flex-wrap: wrap; */
+            flex-wrap: wrap-reverse;
+
+            
+            /**
+             * 简写形式
+             */
+            /* flex-flow: <flex-direction>|<flex-wrap> */
+            /* 默认值 row nowrap */
+        }
+
+        .item {
+            width: 200px;
+            height: 40px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+</body>
+
+</html>

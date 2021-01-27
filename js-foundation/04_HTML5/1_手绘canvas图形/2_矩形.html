@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #canvas1 {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas1" width=500 height=500></canvas>
+    <script>
+        /**
+         * 1. 获取画布和画笔
+         */
+        var oCanvas1 = document.getElementById('canvas1'); // 获取( 画布 )
+        var ctx = oCanvas1.getContext('2d'); // 获取画布上下文对象( 画笔 )
+        /**
+         * 2. 心中定义要画一个矩形
+         */
+        // ctx.rect(100, 100, 100, 200);
+        /**
+         * 3. 画！
+         */
+        // ctx.stroke();// 描边画法
+        // ctx.fill();// 填充画法
+
+        /**
+         * 第2步和第3步可以合并写法
+         * strokeRect和fillRect这两个方法都会开启一个新的路径！！！
+         */
+        ctx.strokeStyle = '#f00';
+        ctx.strokeRect(100, 100, 100, 200);
+        ctx.strokeStyle = '#0ff';
+        ctx.strokeRect(300, 100, 100, 200);
+    </script>
+</body>
+
+</html>

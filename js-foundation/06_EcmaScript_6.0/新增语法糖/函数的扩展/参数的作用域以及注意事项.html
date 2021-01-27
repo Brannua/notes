@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>参数的作用域以及注意事项</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 使用let就会有块级作用域,形参相当于`let x = 1`,不允许重复声明
+         */
+        // function fn(x = 1){
+        //     let x = 10;
+        // }
+        // fn();
+        // -----------------------------
+        /**
+         * 参数没有默认值则相当于形参按照var形式声明变量,允许重复声明
+         */
+        // function fn1(x, x) {
+        //     console.log(x);
+        // }
+        // fn1(4);
+        // fn1(4, 5);
+        // -----------------------------
+        /**
+         * 参数有默认值则相当于形参按照es6的let形式声明变量,故不允许重复声明
+         */
+        // function fn2(x, x, y = 10) {}
+        // -----------------------------
+        let y = 10;
+        function fn(x = y) {
+            let y = 20;
+            console.log(x, y);
+        }
+        fn();
+    </script>
+</body>
+
+</html>

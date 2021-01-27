@@ -1,0 +1,23 @@
+@media screen and (max-width: 800px){
+    div {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+    }
+}
+
+@media screen and (min-width: 801px) and (max-width: 1000px) {
+    div {
+        width: 200px;
+        height: 100px;
+        background-color: #0f0;
+    }
+}
+
+@media screen and (min-width: 1001px){
+    div {
+        width: 200px;
+        height: 100px;
+        background-color: #00f;
+    }
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="demo"></div>
+    <script src="./jquery-1.10.2.js"></script>
+    <script>
+        /**
+         * $.ajax()前端发送请求有两种跨域解决方案
+         * 1. 前端ajax设置dataType:'jsonp'
+         * 2. 服务器端配置字段
+         */
+        $.ajax({
+            type: 'GET',
+            // 同域请求
+            // url: './getNew.php',
+            // 同域请求请求成功回调函数
+            // success: cbs,
+            // 跨域请求获取百度联想词接口
+            url: "https://www.baidu.com/sugrec?prod=pc",
+            // ajax实现了跨域请求
+            dataType: 'jsonp',
+            data: 'wd=lol',
+            jsonp: 'cb',
+            jsonpCallback: 'cbs',
+            // 请求错误处理函数
+            error(err) {
+                console.log(err);
+            },
+        });
+        // 请求成功回调函数
+        function cbs(data) {
+            console.log(data);
+        }
+    </script>
+</body>
+
+</html>

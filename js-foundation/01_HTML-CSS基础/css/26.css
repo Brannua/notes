@@ -1,0 +1,10 @@
+span {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #f00;
+    font-size: 30px;
+    /* 对齐基准线可以调整 */
+    /* vertical-align: 20px; */
+    /* vertical-align: middle; */
+}

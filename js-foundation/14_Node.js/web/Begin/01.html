@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://localhost">
+</head>
+
+<body>
+    <a href="http://localhost"></a>
+    <img src="http://localhost/bg.jpg" alt="">
+    <script src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/js/lib/jquery-1.10.2_1c4228b8.js"></script>
+    <iframe src="http://localhost/subpage.php" frameborder="0"></iframe>
+    <form action="URL" method="GET">
+        <input type="text" name="userName">
+        <input type="password" name="passWord">
+    </form>
+    <script>
+        $(function () {
+            $.ajax({
+                type: 'get',
+                url: 'http://m.ndlib.cn',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

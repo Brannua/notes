@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /**
+         * flex-direction属性决定主轴的方向,即项目的排列方向
+         * flex-direction: row|row-reverse|column|column-reverse;
+         * row(默认值): 主轴为水平方向,起点在左端
+         * row-reverse: 主轴为水平方向,起点在右端
+         * column: 主轴为垂直方向,起点在上沿
+         * column-reverse: 主轴为垂直方向,起点在下沿
+         */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+            display: flex;
+            /*默认值*/
+            /* flex-direction: row;
+            flex-direction: row-reverse; */
+            /* flex-direction: column; */
+            flex-direction: column-reverse;
+        }
+
+        .item {
+            flex-grow: 1;
+            border: 1px solid #000;
+        }
+
+        .item:nth-of-type(1){
+            background-color: #f00;
+        }
+        .item:nth-of-type(2){
+            background-color: #0f0;
+        }
+        .item:nth-of-type(3){
+            background-color: #00f;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+</body>
+</html>

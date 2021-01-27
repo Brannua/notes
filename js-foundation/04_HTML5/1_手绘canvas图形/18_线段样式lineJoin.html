@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="1500" height="600"></canvas>
+    <script>
+        var oCanvas = document.getElementById("canvas"),
+            ctx = oCanvas.getContext("2d");
+        ctx.beginPath();
+        ctx.moveTo(100, 100);
+        ctx.lineTo(200, 100);
+        ctx.lineTo(100, 200);
+        ctx.lineWidth = 40;
+        ctx.lineJoin = 'milter';
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.miterlimit = 20;
+        ctx.moveTo(100, 300);
+        ctx.lineTo(200, 300);
+        ctx.lineTo(100, 321);
+        ctx.lineWidth = 40;
+        ctx.lineJoin = 'milter';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(300, 100);
+        ctx.lineTo(400, 100);
+        ctx.lineTo(300, 200);
+        ctx.lineWidth = 40;
+        ctx.lineJoin = 'round';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(500, 100);
+        ctx.lineTo(600, 100);
+        ctx.lineTo(500, 200);
+        ctx.lineWidth = 40;
+        ctx.lineJoin = 'bevel';
+        ctx.stroke();
+
+    </script>
+</body>
+
+</html>

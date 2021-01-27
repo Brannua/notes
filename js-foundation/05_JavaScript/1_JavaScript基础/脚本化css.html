@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .green::after{
+            content:"";
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: green;
+        }
+
+        .yellow::after{
+            content:"";
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="green" style="width:100px;height:100px;background-color:red;"></div>
+    <script>
+        /* 
+            DOM可以间接地操作css
+         */
+          var div = document.getElementsByTagName("div")[0];
+          /* 
+            div.style的方式间接操作css是唯一的可以进行写入操作的方式
+            div.style返回一个
+                    可读写的(没有兼容性问题)
+                    描述当前元素的
+                    css样式表的
+                    类数组(对象)
+            注意div.style读取的是css的行间样式表
+            float === cssFloat(这种写法的好处是避免了和保留字冲突)
+            复合属性必须拆解
+           */
+           /* 
+            由于变量名称只包含
+                        数字
+                        字母
+                        下划线
+                        $符号
+            所以js间接操作css的时候
+            所有带有连字符的属性都改写成小驼峰式的写法
+            写入的值必须是字符串形式的
+            */
+            /* 
+                查询计算样式
+                计算样式只读
+                返回的计算样式的值都是绝对值(%, em, ...都会经过计算然后返回值)
+                ie和ie8以下不兼容
+                    但是ie和ie8以下用的是elem.currentStyle来查找元素的css样式
+                    这是ie独有的属性
+                    返回的值不是经过转换的绝对值
+                window.getComputedStyle(elem, null)获取的是当前元素所展示样式的所有显示值(包括默认值)
+             */
+
+             /* 
+                查看伪元素的样式表
+                window.getComputedStyle(elem, "after");
+              */
+    </script>
+    <script>
+        // 动态改变伪元素的样式从css上考虑
+        // 不同的class实现不同的功能然后给元素动态切换class即可
+        var afterDiv = document.getElementsByTagName("div")[0];
+        afterDiv.onclick = function () {
+            this.className = 'yellow';
+        }
+    </script>
+</body>
+
+</html>

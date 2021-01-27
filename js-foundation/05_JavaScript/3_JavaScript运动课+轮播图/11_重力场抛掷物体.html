@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            background: orange;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        /**
+         * @func {startMove} 合成运动函数
+         * @params {obj} 运动的物体
+         * @params {hz} 运动的频率
+         * @params {vx} 运动的水平初速度
+         * @params {vy} 运动的竖直初速度
+         * @params {lossEn} 运动碰壁的能量损失比率
+         */
+        function startMove(obj, hz, vx, vy, lossEn) {
+            var g = 10; // 模拟重力加速度
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                vy += g; // 竖直方向受重力加速度影响
+                /* 每次运动更新物体坐标 */
+                var newLeft = obj.offsetLeft + vx,
+                    newTop = obj.offsetTop + vy;
+                /**
+                 * @func {lossEn} 能量损失函数
+                 * @params {vx} 若无能量损失撞壁之后物体的水平速度
+                 * @params {vy} 若无能量损失撞壁之后物体的竖直速度
+                 * @params {lossEn} 能量损失比率
+                 */
+                function lossEn(vx, vy, lossEn) {
+                    vx *= lossEn;
+                    vy *= lossEn;
+                    return {
+                        x: vx,
+                        y: vy
+                    }
+                }
+                /**
+                 * if条件语句进行碰壁条件判断,碰壁后
+                 * 1. 速度取反
+                 * 2. 能量损失
+                 * 3. 不能越界导致出现滚动条(要进行预判,如果预判下一步运动超出视口,则置为不超出,就不会出现滚动条了)
+                 */
+                if (newTop >= document.documentElement.clientHeight - obj.offsetHeight) {
+                    vy *= -1;
+                    vx = lossEn(vx, vy, 0.8).x;
+                    vy = lossEn(vx, vy, 0.8).y;
+                    newTop = document.documentElement.clientHeight - obj.offsetHeight;
+                }
+                if (newLeft >= document.documentElement.clientWidth - obj.offsetWidth) {
+                    vx *= -1;
+                    vx = lossEn(vx, vy, 0.8).x;
+                    vy = lossEn(vx, vy, 0.8).y;
+                    newLeft = document.documentElement.clientWidth - obj.offsetWidth;
+                }
+                if (newTop <= 0) {
+                    vy *= -1;
+                    vx = lossEn(vx, vy, 0.8).x;
+                    vy = lossEn(vx, vy, 0.8).y;
+                    newTop = 0;
+                }
+                if (newLeft <= 0) {
+                    vx *= -1;
+                    vx = lossEn(vx, vy, 0.8).x;
+                    vy = lossEn(vx, vy, 0.8).y;
+                    newLeft = 0;
+                }
+
+                /* 将更新后的物体坐标同步到视图 */
+                obj.style.left = newLeft + 'px';
+                obj.style.top = newTop + 'px';
+
+                /* 监测是否运动停止 */
+                if (Math.abs(vx) < 6) {
+                    vx = 0;
+                }
+                if (Math.abs(vy)<6) {
+                    vy = 0;
+                }
+                if (vx == 0 && vy == 0 && newTop == document.documentElement.clientHeight - obj.offsetHeight) {
+                    clearInterval(obj.timer);
+                    console.log('over');
+                }
+            }, hz)
+        }
+
+        var oDiv = document.getElementsByTagName('div')[0];
+        oDiv.onmousedown = function (e) {
+            /* 当物体还在运动但是又抓住物体,也必须清理一下之前的定时器 */
+            clearInterval(oDiv.timer);
+            /* 兼容 */
+            var event = e || window.event,
+                /* 拖拽功能(记录鼠标点和物体边界的偏移量) */
+                offsetX = event.clientX - this.offsetLeft,
+                offsetY = event.clientY - this.offsetTop,
+                /* 抛掷功能 */
+                lastX = oDiv.offsetLeft,
+                lastY = oDiv.offsetTop,
+                newX,
+                newY,
+                /* hack */
+                that = this;
+            document.onmousemove = function (e) {
+                /* 兼容 */
+                var event = e || window.event;
+                /* 抛掷功能 */
+                newX = that.offsetLeft - lastX;
+                newY = that.offsetTop - lastY;
+                lastX = that.offsetLeft;
+                lastY = that.offsetTop;
+                /* 拖拽功能 */
+                var newLeft = event.clientX - offsetX,
+                    newTop = event.clientY - offsetY;
+                that.style.left = newLeft + 'px';
+                that.style.top = newTop + 'px';
+            }
+            document.onmouseup = function () {
+                document.onmousemove = null;
+                document.onmouseup = null;
+                /* 抬起鼠标,物体做抛出的合成运动 */
+                startMove(that, 40, newX, newY, 0.8);
+            }
+        }
+    </script>
+</body>
+
+</html>

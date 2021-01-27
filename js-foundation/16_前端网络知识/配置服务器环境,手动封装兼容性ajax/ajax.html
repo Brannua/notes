@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模拟AJAX</title>
+</head>
+
+<body>
+    <!-- - 前情提要( 订外卖 )
+    - 1. 手机,电脑
+    - 2. 美团外卖,饿了么,百度外卖
+    - 3. 打开app 商家 商品 张亮麻辣烫
+    - 4. 下单,备注信息( 不要麻辣不要烫 )
+    - 5. 监听外卖信息
+    - 6. 开门 验货 处理
+- AJAX
+    - 1. 浏览器
+    - 2. ajax对象
+    - 3. ajax.open(method, url, true)  ==> true是异步
+    - 4. ajax.send();
+    - 5. onreadystatechange 0~4
+    - 6. status == 200 404 403 503 -->
+
+    <button id="btn">获取新闻</button>
+
+    <form>
+        <input type="text" name="username" id="username">
+        <input type="text" name="age" id="age">
+        <input type="submit" id="sub">
+    </form>
+
+    <ul id="ul"></ul>
+
+    <script>
+        btn.onclick = function () {
+            /* 参数为不同的回调函数对响应回来的数据可以做不同的处理 */
+            ajaxFunc('GET', './getNews.php', '', showList, true);
+            // ajaxFunc('POST', './post.php', 'username=brannua&age=20', showPerson, true);
+        }
+
+        sub.onclick = function (e) {
+            e.preventDefault();
+            var data = 'username=' + username.value + '&age=' + age.value;
+            ajaxFunc('POST', './post.php', data, showPerson, true);
+        }
+        /* 
+            手动封装兼容性ajax
+         */
+        function ajaxFunc(method, url, data, callback, flag) {
+            /* 转大写 */
+            method = method.toUpperCase();
+            /* 兼容的AJAX对象 */
+            var xhr = null;
+            if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest();
+            } else { //兼容IE
+                xhr = new ActiveXObject('Microsoft.XMLHttp');
+            }
+
+
+            /*  */
+            if (method == 'GET') {
+                xhr.open(method, url, flag);
+                xhr.send();
+            } else if (method == 'POST') {
+                xhr.open(method, url + '?' + data, flag);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); //设置请求头,使用form表单的默认编码格式
+                xhr.send(data);
+            }
+            // console.log(xhr.resposeText);//在这里由于ajax请求的发送是异步操作,发送后还没有接收到服务端响应,故打印不出值
+
+            /*  */
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        callback(xhr.responseText);
+                    }
+                }
+            }
+        }
+
+        function showList(data) {
+            var value = JSON.parse(data);
+            var str = '';
+            value.forEach(function (elem, index) {
+                str += '<li>' + elem.title + '-' + elem.date + '</li>';
+            });
+            ul.innerHTML = str;
+        }
+
+        function showPerson(data) {
+            alert(data);
+        }
+    </script>
+</body>
+
+</html>

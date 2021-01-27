@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 1. forEach循环遍历数组
+        // 不会改变原数组,没有返回值
+        var personArr = [
+            {name:'xiaoliu', age:18},
+            {name:'xiaolan', age:19}
+        ]
+        personArr.forEach(function(elem, index){
+            console.log(index,elem);
+        })
+
+        /**
+         * 模拟forEach源码
+         * 由forEach的源码可以看出
+         * 当调用foeEach的时候,break语句和return语句都无法阻止继续遍历循环
+         * 因为源码的for循环没有被终止,for循环的每一遍都会调用callback函数
+         * 所以某些情况下for循环更好
+         */
+        Array.prototype.forEach = function(callback){
+            for (var i = 0;i < this.length; i ++) {
+                callback(this[i], i);
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

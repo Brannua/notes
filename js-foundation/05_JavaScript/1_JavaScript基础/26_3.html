@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="
+    width: 100px; 
+    height: 100px; 
+    background-color: red; 
+    position: absolute; 
+    top: 100px; 
+    left: 100px;
+    padding: 100px;
+    border: 1px solid;
+    "></div>
+
+    <script>
+        // 查看元素的几何尺寸-->domEle.getBoundingClientRect();
+        // 兼容性很好
+        // 返回一个对象,但是width和height属性在老版本IE中并未实现
+        // 返回的结果并不是实时的,只是当时元素属性的一个静态写照
+        // 这里求得的元素宽高其实就是元素的可视区的宽高,而不是元素的content的宽高
+        // var div = document.getElementsByTagName("div")[0];
+        // domEle.getBoundingClientRect();
+
+
+
+        // 求元素的宽高其实比上面方便的方式太多了,如下
+        // 这里求得的元素宽高其实就是元素的可视区的宽高,而不是元素的content的宽高
+        var div = document.getElementsByTagName("div")[1];
+        // var w = div.offsetWidth;
+        // var h = div.offsetHeight;
+        // console.log({"width": w, "height": h});
+
+        // 查看元素的位置
+        // offsetLeft/offsetTop-->都是忽略元素自身是否有定位,直接返回元素本身相对于最近的已经定位的父元素的距离
+        // var x = div.offsetLeft;
+        // var y = div.offsetTop;
+        // console.log({"x": x, "y": y});
+
+        // 返回最近的有定位的父级,如果没有就返回body
+        // dom.offsetParent
+
+        // 求任意一个元素相对于文档的坐标getElementPosition()
+        // 初始化位置为0
+        // 1.如果当前元素有最近父元素，则在0的基础上累加相对于该父元素距离
+        // 2.当前元素改为父元素
+        // 返回步骤1
+        Element.prototype.getElementPosition = function () {
+            var x = 0,
+                y = 0,
+                nowElem = this;
+            while (nowElem.offsetParent) {
+                x += nowElem.offsetLeft;
+                y += nowElem.offsetTop;
+                nowElem = nowElem.offsetParent;
+            }
+            return {
+                "x": x,
+                "y": y
+            }
+        }
+    </script>
+</body>
+
+</html>

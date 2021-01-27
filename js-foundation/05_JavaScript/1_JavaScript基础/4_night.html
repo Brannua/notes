@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // js执行三部曲
+        // 语法分析 -> 预编译 -> 解释执行
+
+        // 预编译
+        // 函数声明整体提升
+        // 变量  声明提升
+
+        // imply global(暗示全局变量)
+        // 即任何变量，如果未经声明就赋值，此变量就为全局对象所有，全局对象是window
+        // eg  a = 10;
+        //   ->  window.a = 10;
+        // 全局上的任何变量，即使声明了，也归window所有
+        // window就是全局的域
+        // var a = 123;
+        // console.log(a); -> window.a
+        // var a = b = 1;连续赋值的时候b是没有声明的，归window所有
+
+        // function test(){
+        //     var b = 4;
+        // }
+        // test();
+        // console.log(window.b);//undefined
+
+        // var a = 123;
+        // var b = 3224;
+        // var c = 543;
+        // window {
+        //     a: 123,
+        //     b: 3224,
+        //     c: 543
+        // }
+        // console.log(a); -> console.log(window.a);
+
+        // function fn(a) {
+        //     console.log(a); //1
+
+        //     var a = 123;
+        //     console.log(a); //123
+
+        //     function a() {};
+        //     console.log(a); //123
+
+        //     var b = function () {};
+        //     console.log(b); //object
+
+        //     function d() {}
+        // }
+        // fn(1);
+        // 预编译发生在函数执行的前一刻
+        // 预编译四部曲
+        // 1. 创建AO对象 -> Activation Object活跃对象，就是理解的作用域，官方名字叫 -> 执行期上下文(由于函数要执行而产生的存储空间库)
+        // AO{
+
+        // }
+        // 2. 找形参和变量声明，将变量和形参名作为AO属性名，值为undefined
+        // AO {
+        //     a : undefined,
+        //     b : undefined
+        // }
+        // 3. 将实参值和形参值统一
+        // AO {
+        //     a : 1,
+        //     b : undefined
+        // }
+        // 4. 在函数体里面找函数声明，值赋予函数体
+        // AO {
+        //     a : function a() {},
+        //     b : undefined,
+        //     d : function d() {}
+        // }
+
+        // test
+        // function test(a, b) {
+        //     console.log(a);//1
+        //     c = 0;
+        //     var c;
+        //     a = 3;
+        //     b = 2;
+        //     console.log(b);//2
+        //     function b() {}
+        //     function d() {}
+        //     console.log(b);//2
+        // }
+        // test(1);
+        // 函数执行的前一刻执行函数的预编译
+        // AO {
+        //     a : 3,
+        //     b : 2,
+        //     c : 0,
+        //     d : function d () {}
+        // }
+
+        // function test(a, b) {
+        //     console.log(a);//function a () {}
+        //     console.log(b);//undefined
+        //     var b = 234;
+        //     console.log(b);//234
+        //     a = 123;
+        //     console.log(a);//123
+        //     function a () {}
+        //     var a;
+        //     b = 234;
+        //     var b = function () {}//这不叫函数声明，这叫函数表达式，函数表达式不能提升
+        //     console.log(a);//123
+        //     console.log(b);//function () {}
+        // }
+        // test(1);
+
+        // AO  {
+        //     a : 123,
+        //     b : function () {}
+        // }
+
+        // 以上是函数体系里面的预编译，预编译不止发生在函数体系里，还发生在全局
+        // 1. 生成了一个GO对象 Global Object    GO === window
+        // var a = 123;
+        // function a () {}
+        // console.log(a);//123
+
+        // GO {
+        //     a : 123,
+        // }
+
+        // function test() {
+        //     var a = b = 3;//b是暗示全局变量
+        //     console.log(window.b);//3
+        //     console.log(window.a);//undefined
+        // }
+        // test();
+
+        // AO {
+        //     a : undefined,//b拿不出来，因为b既不是参数，也不是变量声明，他是暗示全局变量，归window所有
+        // }
+
+
+        // 讨论一下GO和AO的生成顺序
+        // console.log(test); //function test(test) {console.log(test);var test = 234;console.log(test);function test() {}}
+        // function test(test) {
+        //     console.log(test); //function test() {},如果AO里面没有test，就会从GO里面找
+        //     var test = 234;
+        //     console.log(test); //234
+        //     function test() {}
+        // }
+        // test(1);
+        // var test = 123;
+
+        // GO {
+        //     test: function test(test) {console.log(test);var test = 234;console.log(test);function test() {}},
+        // }
+        // AO {
+        //     test: 234
+        // }
+
+        // 如果AO里面没有test，就会从GO里面找
+        // var global = 100;
+        // function fn() {
+        //     console.log(global);//100
+        // }
+        // fn();
+
+        // GO {
+        //     global : 100,
+        //     fn : function fn() {console.log(global);}
+        // }
+        // AO {
+
+        // }
+
+
+        // global = 100;
+        // function fn() {
+        //     console.log(global);//undefined
+        //     global = 200;
+        //     console.log(global);//200
+        //     var global = 300;
+        // }
+        // fn();
+        // var global;
+
+        // GO {
+        //     global : 100,
+        //     fn : function fn() {console.log(global);global = 200;console.log(global);var global = 300;}
+        // }
+        // AO {
+        //     global : 200
+        // }
+
+
+
+        // function test() {
+        //     console.log(b);//undefined
+        //     if(a) {
+        //         var b = 100;
+        //     }
+        //     console.log(b);//undefined
+        //     c = 234;
+        //     console.log(c);//234
+        // }
+        // var a;
+        // test();
+        // a = 10;
+        // console.log(c);//234
+
+        // GO {
+        //     a : 10,
+        //     test : function test() {console.log(b);if(a) {var b = 100;}c = 234;console.log(c);}
+        //     c : 234
+        // }
+        // AO {
+        //     b : undefined
+        // }
+
+
+
+        // function bar() {
+        //     return foo;
+        //     foo = 10;
+        //     function foo() {}
+        //     var foo = 11;
+        // }
+        // console.log(bar());//function foo() {}
+        // GO {
+        //     bar : function bar() {return foo;foo = 10;function foo() {}var foo = 11;}
+        // }
+        // AO {
+        //     foo : function foo() {},
+        // }
+
+
+
+        // console.log(bar());//11
+        // function bar() {
+        //     foo = 10;
+        //     function foo() {}
+        //     var foo = 11;
+        //     return foo;
+        // }
+        // GO {
+        //     bar: function bar() {foo = 10;function foo() {}var foo = 11;return foo;}
+        //     foo : 10
+        // }
+        // AO {
+        //     foo : 11,
+        // }
+    </script>
+</body>
+
+</html>

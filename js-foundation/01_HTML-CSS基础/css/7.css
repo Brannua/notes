@@ -1,0 +1,26 @@
+.red {
+    background-color: #f00;
+}
+
+.green {
+    background-color: #0f0;
+}
+
+.blue {
+    background-color: #00f;
+}
+
+.size1 {
+    width: 100px;
+    height: 100px;
+}
+
+.size2 {
+    width: 200px;
+    height: 200px;
+}
+
+.size3 {
+    width: 300px;
+    height: 300px;
+}

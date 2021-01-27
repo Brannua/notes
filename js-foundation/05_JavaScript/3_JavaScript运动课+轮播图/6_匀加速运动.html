@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        /**
+         * @func {startMove} 加速运动函数
+         * @params {obj} 运动的物体
+         * @params {hz} 运动的频率
+         * @params {speed} 运动的初速度
+         * @params {av} 运动的加速度
+         */
+        function startMove(obj, hz, speed, av) {
+            // ve = v0 + at;(加速运动的速度公式)
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function(){
+                speed = speed + av;
+                obj.style.left = obj.offsetLeft + speed + 'px';
+            }, hz);
+        }
+
+        var oDiv = document.getElementsByTagName('div')[0];
+        oDiv.onclick = function () {
+            /* 匀加速运动 */
+            // startMove(this, 30, 0, 3);
+            /* 匀减速运动 */
+            startMove(this, 30, 40, -3);
+        }
+    </script>
+</body>
+
+</html>

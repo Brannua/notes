@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class=" demo  item   aaa    ">
+        <p class="   demo  bbb ">
+            <span class=" demo cc dd "></span>
+        </p>
+        <li class="  li  "></li>
+    </div>
+    <script>
+        /**
+         * 补充slice方法的实现思想
+         */
+        // Array.prototype.slice = function(a, b){
+        //     var newArr = [];
+        //     for (var i = a; i < b; i ++) {
+        //         newArr.push(this[i]);
+        //     }
+        //     return newArr;
+        // }
+        // ----------------------------------------------------------------------------
+        /**
+         * @func {byClassNmae} 通过类名获取所有元素的方法
+         * @params {className} 元素类名
+         * 先通过tagName获取所有元素,然后筛选
+         */
+        Document.prototype.byClassName = function (className) {
+            var filterArr = [];
+            /* 类数组 */
+            var likeArr = document.getElementsByTagName('*');
+            /* 改变this指向类数组,将类数组截取成数组 */
+            var arr = Array.prototype.slice.call(likeArr);
+            /* 用来处理class类名的方法 */
+            function dealClass(dom) {
+                // " demo  item   aaa    "
+                // "demo item aaa"
+                var reg = /\s+/g,
+                    arrClassName = dom.className.replace(reg, ' ').trim();
+                    /* 一个以上的空格( 含一个 )都被一个空格替代,然后trim方法去掉前后空格 */
+                return arrClassName;
+            }
+            /* 遍历数组,筛选类名中有demo的 */
+            arr.forEach(function (elem, index) {
+                /* 先处理类名 */
+                var itemClassStr = dealClass(elem),
+                    /* 将处理完的类名用空格分割成数组 */
+                    itemClassArr = itemClassStr.split(' ');
+                    /* 遍历数组并进行判断 */
+                for (var i = 0; i < itemClassArr.length; i ++) {
+                    if (itemClassArr[i] == className) {
+                        /* 满足条件则推入数组 */
+                        filterArr.push(elem);
+                        /* 一但找到类名,就不用继续循环了,直接终止本次循环,开始下一次循环 */
+                        break;
+                    }
+                }
+            });
+            /* 将结果有传入类名的DOM数组返回 */
+            return filterArr;
+        }
+        /* 测试 */
+        console.log(document.byClassName('demo'));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.wrapper {
+    width: 320px;
+}
+
+.wrapper:hover {
+    width: 400px;
+}
+
+.wrapper img {
+    float: left;
+    width: 100px;
+    height: 100px;
+}
+
+.wrapper span.top {
+    height: 40px;
+    line-height: 20px;
+    font-size: 20px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+.wrapper span.bottom {
+    font-size: 12px;
+    color: #666;
+    display: block;
+    line-height: 1.2em;
+}

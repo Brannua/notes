@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 写一个函数，功能是告知你所选定的小动物的叫声
+        // 多分支使用switch case语句
+        // function scream(animal) {
+        //     switch (animal) {
+        //         case "dog":
+        //             document.write("wang!");
+        //             return;
+        //         case "cat":
+        //             document.write("miao!");
+        //             return;
+        //         case "fish":
+        //             document.write("o~o~o~");
+        //             return;
+        //     }
+        // }
+
+        // 写一个函数，实现加法计数器
+        // function sum() {
+        //     var res = 0;
+        //     for (var i = 0; i < arguments.length; i++) {
+        //         res += arguments[i];
+        //     }
+        //     return res;
+        // }
+
+        // 定义一组函数，输入数字，逆转并输出汉字形式
+        // function reverse(number) {
+        //     var res = "";
+        //     for (var i = number.length - 1; i >= 0; i--) {
+        //         res += tranverse(number[i]);
+        //     }
+        //     console.log(res);
+        // }
+        // var number = window.prompt("input");
+        // reverse(number);
+
+        // function tranverse(number) {
+        //     switch (number) {
+        //         case "1" : 
+        //             return "壹";
+        //         case "2" : 
+        //             return "俩";
+        //         case "3" : 
+        //         return "仨";
+        //     }
+        // }
+
+        // 写一个函数，实现n的阶乘
+        // 方法一
+        // function factorial(n) {
+        //     var res = n;
+        //     while(-- n) {
+        //         res *= n;
+        //     }
+        //     return res;
+        // }
+        // 方法二
+        // function jc(n) {
+        //     if (n == 1) {
+        //         return 1;
+        //     }
+        //     return n * jc(n - 1);
+        // }
+
+        // 写一个函数，实现斐波那契额数列
+        // 1 1 2 3 5 8
+        // var arr = [];
+        // arr[0] = arr[1] = 1;
+
+        // function Fibonacci(n) {
+        //     for (var i = 2; i < n; i++) {
+        //         arr[i] = arr[i - 1] + arr[i - 2];
+        //     }
+        //     for (var j = 0; j < arr.length; j ++){
+        //         document.write(arr[j] + " ");
+        //     }
+        // }
+        // var n = window.prompt("input");
+        // Fibonacci(n);
+
+        // 递归函数写斐波那契额数列
+        // 递归 -> 找规律，找出口(拿已知条件找出口)
+        // function Fibonacci(n) {
+        //     if (n === 1 || n === 2) {
+        //         return 1;
+        //     }
+        //     return Fibonacci(n -1) + Fibonacci(n - 2);
+        // }
+        
+        // 作用域初识，函数越往内部权力越大，内部函数可以访问外部变量，并列函数之间，各自变量不可以相互访问
+        // var b = 1;
+        // function outer() {
+        //     var b = 2;
+        //     function inner() {
+        //         b++;
+        //         var b = 3;
+        //         document.write(b);
+        //     }
+        //     inner();
+        // }
+        // outer();
+
+
+        
+    </script>
+</body>
+
+</html>

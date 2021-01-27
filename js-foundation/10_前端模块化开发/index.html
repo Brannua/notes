@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    前端模块化的演变(还没有模块化规范的时候)
+    <p>以下四种模块化思想的写法有弊端</p>
+    <p>1. 依赖关系不好处理</p>
+    <p>2. 需要按需加载</p>
+    <p>3. 会阻塞页面</p>
+    <script>
+        // 1.函数
+        function add(a, b) {
+            return a + b;
+        }
+
+        // 2.对象( 弊端: 外界可以使用点运算符改变对象内部属性方法 )
+        var ppt = {
+            len: 3,
+            init: function () {},
+            creatDom: function () {}
+        }
+
+        // 3.匿名函数( 外部无法直接调用该立即执行函数内部的属性方法 )
+        var obj = (function () {
+            // 这里len变量被私有化
+            var len = 3;
+            // 想把哪一个属性方法暴露给外部使用就可以return出去
+            // 这里的add就是一个接口函数
+            function add(a, b) {
+                return a + b;
+            }
+            return {
+                add: add
+            }
+        })();
+        console.log(obj.add(1, 2)); // 3
+
+        // 4.依赖传入实参
+        // 例如给一个模块增添功能
+        /* 
+            立即执行函数传入要被扩展功能的模块( 或空对象{}以兼容处理 )
+            然后在立即执行函数的内部对传入的模块进行功能扩展
+            然后返回该模块,用新模块接收
+         */
+        var newModule = (function (m) {
+            m.add = function (a, b) {
+                return a + b;
+            }
+            return m;
+        })(window.module1 || {});
+        // 或者jq源码实现
+        (function (a, b) {
+            b(a);
+        })(window, function (win) {
+            // jq代码
+            function jQuery() {
+
+            }
+            // window上挂载jquery代码
+            win.jQuery = jQuery;
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        .active {
+            width: 200px;
+            height: 200px;
+            background-color: #0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        /* 
+            js配合css使用改变DOM元素的样式
+                1. 高效(DOM操作浪费效率) ---》 每一次点操作都是操作DOM
+                2. 好维护
+         */
+         /* 
+            position:absolute;的元素如果不写left,则默认left:auto;
+          */
+        var div = document.getElementsByTagName("div")[0];
+        div.onclick = function () {
+            // this.style.width = "200px";
+            // this.style.width = "200px";
+            // this.style.backgroundColor = "#0f0";
+
+            this.className = "active";
+        }
+    </script>
+</body>
+
+</html>

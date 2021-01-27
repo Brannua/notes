@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Grand.prototype.LastName = 'Liu';
+        // function Grand() {
+
+        // }
+        // var grand = new Grand();
+
+        // Father.prototype = grand;
+        // function Father() {
+        //     this.name = 'hehe';
+        // }
+        // var father = new Father();
+
+        // Son.prototype = father;
+        // function Son() {
+
+        // }
+        // var son = new Son();
+
+
+
+        // 继承发展史
+        // 1. 传统形式  --> 原型链
+                // 过多的继承了没用的属性
+        // 2. 借用构造函数(严格意义来讲不算继承，但是也是继承发展史上的一部分)
+                // 不能继承借用的构造函数的原型
+                // 每次构造函数都要多走一个函数
+        // 3. 共享原型
+                // 不能随便改动自己的原型
+        // 4. 圣杯模式(两种写法)
+
+
+
+        // function Person(name, age, sex) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sex = sex;
+        // }
+        // function Student(name, age, sex, grade) {
+        //     Person.call(this, name, age, sex);
+        //     this.grade = grade;
+        // }
+        // var student = new Student();
+
+
+
+
+        // Father.prototype.LastName = 'Liu';
+        // function Father() {
+
+        // }
+        // function Son() {
+
+        // }
+        // function inherit(Target, Origin) {
+        //     Target.prototype = Origin.prototype;
+        // }
+        // inherit(Son, Father);
+        // var father = new Father();
+        // var son = new Son();
+
+
+
+
+// 圣杯模式(最终的继承的实现方式)
+                                    // Father.prototype 
+
+                                                                // function F() {}
+                                                                // F.prototype = Father.prototype;
+                                                                // Son.prototype = new F();
+
+        // Father                                                              Son
+
+        // 圣杯模式写法一 --> 平民写法
+        function inherit(Target, Origin) {
+            function F(){};//由闭包实现变量私有化
+            F.prototype = Origin.prototype;
+            Target.prototype = new F();
+            Target.prototype.constructor = Target;//由于上一行使得son的constructor指向紊乱，由于继承的缘故会指向Origin，所以给son的constructor归位
+            Target.prototype.uber = Origin.prototype;//如果想知道Target构造出来的对象究竟继承自谁，需要找一个变量uber保存住它的超类
+        }
+
+        // 圣杯模式写法一 --> 高端写法
+        var inherit = (function () {
+            // 闭包的私有化变量使用
+            function F() {};//因为下面形成闭包，且F本身就是用来过渡继承的东西，故设置为私有变量
+            return function (Target, Origin) {
+                F.prototype = Origin.prototype;
+                Target.prototype = new F();
+                Target.prototype.constructor = Target;
+                Target.prototype.uber = Origin.prototype;
+            }            
+        }());
+
+        Father.prototype.lastName = 'Liu';
+        function Father() {
+
+        }
+        function Son() {
+
+        }
+        inherit(Son, Father);
+        var father = new Father();
+        var son = new Son();
+
+        // son.__proto__  -->  new F().__proto__  --> Father.prototype
+        // 只有原型有constructor，对象没有constructor，其constructor在原型中
+
+    </script>
+</body>
+
+</html>

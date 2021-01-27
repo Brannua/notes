@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 包装类
+
+        // 只有原始值数字才是原始值，数字不一定都是原始值
+        var num = new Number(123);//num就是一个对象类型的数字，对象有的操作他都有
+        num = num * 2;//但是对象类型的数字一旦参与运算就又回归数字类型的数字
+        // 字符串和布尔类型同上
+        var str = new String('asd');
+        var bol = new Boolean("true");
+
+        var str = 'abcd';//原始值没有属性但是竟然可以写str.length
+        str.name = 'asd';//str.name是undefined
+
+        // 原始值是坚决没有属性和方法的,可以访问的原因是包装类的存在
+        var num = 123;
+        num.len = 3;
+        // 系统知道原始值没有属性
+        // 但是善良的系统帮助你new Number(3)  delete
+        console.log(num.len);
+        // 系统看见你不长记性却同样会帮助你new Number()并打印出undefined
+
+        // 数组含有length属性，且可通过设置数组长度打达到截断数组的目的
+        var str = 'asd';
+        str.length = 1;
+        console.log(str);//'asd'
+                // new Array('asd').length;
+        console.log(str.length);//系统对于对象类型的字符串自带length属性
+
+
+        // typeof能返回的有6个值number string boolean undefined object function
+        var str = 'abc';
+        str += 1;//'abc1'
+        var test = typeof(str);//"String"
+        if (test.length == 6) {
+            test.sign = "typeof的返回结果可能为String";
+        }
+        console.log(test.sign);//undefined
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>翻页</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="page"></div>
+    <script src="jquery.js"></script>
+    <script src="index1.js"></script>
+    
+    <script>
+        // 调用插件  传入参数
+        $('.page').createPage({
+            // 总页数
+            pageCount:13,
+            // 默认选中页数
+            current:3,
+            // 点击选中页数后 回调
+            backFn:function(p){
+                console.log(p)
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /**
+         * align-content属性
+         * 定义了多根轴线的对齐方式,如果项目只有一根轴线,该属性不起作用
+         * align-content: flex-start|flex-end|center|space-between|space-around|stretch( 默认值 );
+         * flex-start 与交叉轴的起点对齐
+         * flex-end 与交叉轴的终点对齐
+         * center 与交叉轴的中点对齐
+         * space-between 与交叉轴两端对齐,轴线之间的间隔平均分
+         * space-around 每根轴线两侧的间隔都相等,所以轴线之间的间隔比轴线与边框的间隔大一倍
+         * stretch( 默认值 ) 轴线占满整个交叉轴
+         */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+            display: flex;
+            flex-wrap: wrap;
+
+            /* 默认值 */
+            /* align-content: stretch; */
+            /* align-content: flex-start; */
+            /* align-content: center; */
+            /* align-content: flex-end; */
+            /* align-content: space-between; */
+            align-content: space-around;
+        }
+
+        .item {
+            width: 200px;
+            height: 40px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+</body>
+
+</html>

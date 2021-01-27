@@ -1,0 +1,40 @@
+/* 父子选择器|派生选择器 */
+/* 父子选择器不一定只是使用标签选择器 */
+/* 只要满足父子关系就可以 */
+/* 间接的父子关系也可以(满足子孙关系) */
+/* div span {
+    background-color: red;
+}
+
+div .box em {
+    background-color: blue;
+}
+
+strong em {
+    background-color: green;
+}
+
+div em {
+    background-color: rgba(55,66,100,.3);
+} */
+
+
+/* 直接子元素选择器 */
+/* div > em {
+    background-color: gold;
+} */
+
+/* 浏览器遍历父子选择器的顺序是自右向左的 */
+/* section div ul li a em{
+    background-color: red;
+} */
+/* 属性选择器 */
+/* [class="demo"] {
+    background-color: red;
+} */
+/* 并列选择器 */
+/* 用多个限制条件限制同一个元素并且不加空格选到一起 */
+/* div.demo {
+    background-color: red;
+} */
+

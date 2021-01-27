@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas1 {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="canvas1" width=500 height=500></canvas>
+
+    <script>
+        /**
+         * 1. 获取画布和画笔
+         */
+        var oCanvas1 = document.getElementById('canvas1'); // 获取( 画布 )
+        var ctx = oCanvas1.getContext('2d'); // 获取画布上下文对象( 画笔 )
+        /**
+         * 2. 定义颜料
+         */
+        ctx.strokeStyle = 'green'; // 画笔颜色
+        ctx.lineWidth = 40; // 画笔宽度
+        ctx.fillStyle = 'red'; // 填充颜色
+        /**
+         * 3. 定义画画方式
+         */
+        ctx.moveTo(100, 100); // 移动画笔到落笔处
+        ctx.lineTo(200, 100); // 画线
+        ctx.lineTo(200, 200); // 画线
+        ctx.closePath(); // 首尾闭合
+        /**
+         * 4. 画线,填充颜料
+         * fill和stroke方法都是作用在当前所有的子路径
+         */
+        ctx.stroke(); // 画线！
+        ctx.fill(); // 将起始点和终止点相连接并且默认填充颜色！
+
+        /**
+         * 完成一条路径后要重新开始另一条路径时必须使用beginPath()方法,
+         * beginPath方法开始子路径的一个新的集合。
+         * 
+         * 5. 再画一个一模一样的等腰直角三角形
+         */
+        ctx.beginPath();//开启一个新的路径
+        ctx.lineWidth = 40; // 画笔宽度
+        ctx.strokeStyle = 'red'; // 画笔颜色
+        ctx.fillStyle = 'green'; // 填充颜色
+        ctx.moveTo(300, 100); // 移动画笔到落笔处
+        ctx.lineTo(400, 100); // 画线
+        ctx.lineTo(400, 200); // 画线
+        ctx.closePath(); // 首尾闭合
+        ctx.stroke(); // 画线！
+        ctx.fill(); // 将起始点和终止点相连接并且默认填充颜色！
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+img {
+    width: 200px;
+    height: 100px;
+    /* 使用margin-left处理img等带有文本特性的标签的文本分隔bug只适用于测试阶段 */
+    /* 打包压缩代码会自动去回车和空格,和margin设置负值会产生叠加效果 */
+    margin-left: -5px;
+}

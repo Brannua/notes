@@ -1,0 +1,13 @@
+{
+  "name": "initProjectTool",
+  "version": "1.0.0",
+  "description": "- 该文件夹是基于Node.js应用于项目目录结构创建的包",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["init"],
+  "author": "Brannua",
+  "finishTime": "2019.04.20-21:45",
+  "license": "ISC"
+}

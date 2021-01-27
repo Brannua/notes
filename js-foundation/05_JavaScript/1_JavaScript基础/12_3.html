@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // arguments上面只有length和callee属性
+
+        // function test() {
+        //     console.log(arguments.callee);
+        //     console.log(arguments.callee === test);
+        // }
+        // test();
+
+
+        // 使用立即执行函数初始化计算100的阶乘
+        // arguments.callee指向函数本身的引用
+        // var res = (function (n) {
+        //     if (n == 1) {
+        //         return 1;
+        //     }
+        //     return n * arguments.callee(n - 1);
+        // }(100));
+
+
+        // function test() {
+        //     console.log(arguments.callee);
+
+        //     function demo() {
+        //         console.log(arguments.callee);
+        //     }
+        //     demo();
+        // }
+        // test();
+
+
+        // function test() {
+        //     demo();
+        // }
+        // function demo() {
+        //     console.log(demo.caller);//caller是demo函数被调用的环境,es5的严格模式下不好使
+        // }
+
+
+        // var foo = 123;
+        // function print() {
+        //     this.foo = 234;
+        //     console.log(foo);
+        // }
+        // new print();
+
+
+        //运行test()和new test()的结果分别是什么050  0undefied0
+        // var a = 5;
+        // function test() {
+        //     a = 0;
+        //     alert(a);
+        //     alert(this.a);
+        //     var a;
+        //     alert(a);
+        // }
+
+
+        // 阅读以下代码写出执行结果
+        // function print(){
+        //     console.log(foo);
+        //     var foo = 2;
+        //     console.log(foo);
+        //     console.log(hello);
+        // }
+        // print();
+
+
+        // function print() {
+        //     var test;
+        //     test();
+        //     function test() {
+        //         console.log(1);
+        //     }
+        // }
+        // print();
+
+
+        // function print() {
+        //     var x = 1;
+        //     if (x == '1') {//隐式类型转换
+        //         console.log("one");
+        //     }
+        //     if (x === "1") {
+        //         console.log("two");
+        //     }
+        // }
+        // print();
+
+
+
+        // function print() {
+        //     var marty = {
+        //         name : "marty",
+        //         printName: function () {console.log(this.name);}
+        //     }
+        //     var test1 = {name : "test1"};
+        //     var test2 = {name : "test2"};
+        //     var test3 = {name : "test3"};
+        //     test3.printName = marty.printName;
+        //     var printName2 = marty.printName.bind({name:123});
+        //     marty.printName.call(test1);//test1
+        //     marty.printName.apply(test2);//test2
+        //     marty.printName();//marty
+        //     printName2();//123
+        //     test3.printName();//test3
+        // }
+        // print();
+
+
+        // var bar = {
+        //     a: "002"
+        // };
+        // function print() {
+        //     bar.a = "a";
+        //     Object.prototype.b = 'b';
+        //     return function inner() {
+        //         console.log(bar.a);
+        //         console.log(bar.b);
+        //     }
+        // }
+        // print()();
+
+
+        // 实现一个浅层克隆
+        // var obj = {
+        //     name: 'xiaoliu',
+        //     age: 23,
+        //     sex: 'male',
+        //     card: ['visa', 'unionpay']
+        // }
+        // var obj1 = {};
+
+        // function clone(origin, target) {
+        //     var target = target || {}; //如果用户没传对象就补上一个对象
+        //     for (prop in origin) {
+        //         target[prop] = origin[prop];
+        //     }
+        //     return target;
+        // }
+        // clone(obj, obj1);
+
+
+        // 实现一个深层克隆(递归且引用值只考虑数组和对象)
+        var obj = {
+            name: 'abc',
+            age: 123,
+            card: ['visa', 'master'],
+            wife: {
+                name: 'bcd',
+                son: {
+                    name: "aaa"
+                }
+            }
+        }
+        var obj1 = {}
+
+        // 第一步遍历origin对象  for(var prop in obj); 
+        // 第二步利用typeof()来判断是不是原始值 object
+        // 第三步判断是数组还是对象 (三种方法) toString() instanceOf constructor
+        // 建立相应的数组或对象
+        // 递归
+        function deepClone(origin, target) {
+            //容错处理
+            var target = target || {},
+                toStr = Object.prototype.toString,
+                arrStr = "[object Array]",
+                objStr = "[object Object]";
+            for (var prop in origin) {
+                // console.log(toStr.call(origin[prop]) === arrStr);
+                // 但凡是forin循环，且深度拷贝本意是不想拷贝原型链上继承过来的的属性 
+                // 需要有一层判断条件
+                if (origin.hasOwnProperty(prop)) {
+
+                    // if (origin[prop] !== null && typeof (origin[prop]) === "object") {
+                    //     if (toStr.call(origin[prop]) === arrStr) {
+                    //         target[prop] = [];
+                    //     } else {
+                    //         target[prop] = {};
+                    //     }
+                    //     deepClone(origin[prop], target[prop]);
+                    // } else {
+                    //     target[prop] = origin[prop];
+                    // }
+
+                    //     // 利用三目运算符简化如下
+
+                    if (origin[prop] !== null && typeof (origin[prop]) === "object") {
+                        target[prop] = toStr.call(origin[prop]) === arrStr ? [] : {};
+                        deepClone(origin[prop], target[prop]);
+                    } else {
+                        target[prop] = origin[prop];
+                    }
+                }
+            }
+            // return target;
+        }
+
+        // 三目运算符
+        // var num = 1 > 0 ? ("10" > "9" ? 1 : 0) : 2;
+        // console.log("10" > "9");//字符串相比较是逐位比较asc码，打印结果为false
+    </script>
+</body>
+
+</html>

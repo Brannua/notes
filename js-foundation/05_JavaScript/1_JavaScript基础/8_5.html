@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造函数内部原理
+        // 1. 在函数体内部隐式的加上this = {}
+        // 2. 执行this.xxx = xxx;
+        // 3. 隐式的返回this
+
+        function Person(name, height) {
+            this.name = name;
+            this.height = height;
+            this.say = function () {
+                console.log(this.say);
+            }
+            // return {};这样可以对构造函数的隐式返回this起到阻碍作用
+            // return 123; 但是return 五大原始值起不到阻碍作用(有new就一定返回对象)
+        }
+        var person = new Person("xiaowang", 189);
+        var person1 = new Person("xiaoliu", 149);
+        // console.log(new Person("xiaowang", 180).name);
+        
+        // var person = new Person();
+
+        // 浅层次模拟构造函数的三段论
+        // function Person(name, height) {
+        //     var that = {};
+        //     that.name = name;
+        //     that.height = height;
+        //     return that;
+        // }
+        // var person = Person("xiaowang", 189);
+        // var person1 = Person("xiaoliu", 149);
+    </script>
+</body>
+
+</html>

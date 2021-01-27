@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 类数组,比如arguments,数组有的方法类数组都没有
+
+        // 1.可以利用属性名模拟数组的特性
+        // 2.可以动态的增长length属性
+        // 3.如果强行让类数组调用push方法,则会根据属性值的位置进行属性的扩充
+        // var obj = {
+        //     // 属性要为索引数字属性
+        //     "0" : 'a',
+        //     "1" : 'b',
+        //     "2" : 'c',
+        //     "length" : 3,//类数组一定要有该属性
+        //     "push" : Array.prototype.push,//该属性可以增加属性，改变length
+        //     "splice" : Array.prototype.splice//加上该属性，对象长得就特别像数组
+        // }
+        // console.log(obj);
+        // Array.prototype.push = function (target) {
+        //     obj[obj.length] = target;
+        //     obj.length ++;
+        // }
+
+
+        var obj = {
+            "2" : 'a',//c
+            "3" : 'b',//d
+            "length" : 2,//3  4
+            "push" : Array.prototype.push
+        }
+        obj.push("c");
+        obj.push("d");
+        console.log(obj);
+// 类数组的push由length属性决定
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 模仿一下jQuery的链式操作实现
+        // var liu = {
+        //     smoke : function () {
+        //         console.log("I am smoking~ cool!!!");
+        //         return this;
+        //     },
+        //     drink : function () {
+        //         console.log("I am drinking!cool!!!");
+        //         return this;
+        //     },
+        //     perm : function () {
+        //         console.log("I am perming! cool!!!!");
+        //         return this;
+        //     }
+        // }
+        // liu.smoke().drink().perm();
+
+
+
+
+        // var obj = {
+        //     name : "abc"
+        // }
+        // obj.name    隐式转换-->   obj["name"];
+        // 可以直接写obj["name"];且这种字符串形式的执行速度更快，写法更加灵活，可以字符串拼接
+
+        var liu = {
+            wife1 : {name : "xiaoliu"},
+            wife2 : {name : "xiaowang"},
+            wife3 : {name : "xiaozhang"},
+            wife4 : {name : "xiaoli"},
+            sayWife : function (num) {
+                return this["wife" + num];
+            }
+        }
+
+        
+    </script>
+</body>
+</html>

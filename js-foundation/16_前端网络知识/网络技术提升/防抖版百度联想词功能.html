@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>百度搜索框联想词功能</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        .wrapper {
+            width: 400px;
+            margin: 240px auto;
+        }
+
+        input {
+            width: 400px;
+            height: 34px;
+        }
+
+        ul {
+            display: none;
+            width: 400px;
+            border: 1px solid #ccc;
+        }
+
+        li {
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        li:hover {
+            background-color: #ddd;
+            cursor: pointer;
+        }
+
+        a {
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <p style="text-align: center;font-size:40px;margin-bottom:20px;font-family: monospace">培杰搜索</p>
+        <input type="text">
+        <ul></ul>
+    </div>
+    <script>
+        var oInput = document.getElementsByTagName('input')[0],
+            oUl = document.getElementsByTagName('ul')[0];
+
+        function cb() {
+            var value = this.value;
+            var oScript = document.createElement('script');
+            oScript.src = 'https://www.baidu.com/sugrec?prod=pc&wd=' + value + '&cb=doJson'
+            document.body.appendChild(oScript);
+            document.body.removeChild(oScript);
+        }
+        
+        oInput.oninput = debounce(1000, cb);
+
+        function doJson(data) {
+            var g = data.g,
+                str = '';
+            if (g !== undefined) {
+                g.forEach(function (value) {
+                    var title = value.q;
+                    str += '<li><a href="https://www.baidu.com/s?wd=' + title + '">' + title + '</a></li>';
+                });
+                oUl.innerHTML = str;
+                oUl.style.display = 'block';
+            } else {
+                oUl.style.display = 'none';
+            }
+
+        }
+
+
+
+        /**
+         * @function {debounce} 防抖函数
+         * @params {time} 时间间隔
+         * @params {callback} 回调函数
+         * @params {flag} 标志位,用于区分防抖方式(如果没有传flag,则flag为undefined,!flag为true)
+         *      false ==> 先等待,再触发
+         *      true ==> 先触发,再等待
+         * @methods {debounce.cancel} 取消计时器
+         */
+        function debounce(time, callback, flag) {
+            // 两函数之间实现定时器声明的一次性
+            var timer = null;
+            // 将具体的防抖操作以外层函数嵌套内层函数的形式封装起来
+            var debounced = function () {
+                // 这里的this指向DOM元素
+                var that = this;
+                // 保存该函数的所有参数
+                var argu = arguments;
+                // 判断标志位,确定防抖方式
+                // 清除定时器
+                clearTimeout(timer);
+                if (!flag) { // 先等待,再触发
+                    timer = setTimeout(function () {
+                        // 改变this指向DOM,传入argu
+                        callback.call(that, argu);
+                    }, time)
+                } else { // 先触发,再等待
+                    console.log(timer, !timer);
+                    if (!timer) {
+                        // 改变this指向DOM,传入argu
+                        callback.call(that, argu);
+                    }
+                    // 真的和上电梯一模一样,如果连续输入,就会卡在42行不再往下执行
+                    // 而一旦停止输入,时间间隔 === time,timer就会变成null,从而可以触发44行
+                    timer = setTimeout(function () {
+                        timer = null;
+                    }, time)
+                }
+            }
+            /**
+             * 增添手动取消计时器的功能
+             */
+            debounced.cancel = function () {
+                clearTimeout(timer);
+                timer = null;
+            }
+            /**
+             * 最外层函数返回函数对象,函数也是对象,可以增添方法
+             */
+            return debounced;
+        }
+    </script>
+</body>
+
+</html>

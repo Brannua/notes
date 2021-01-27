@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 
+         * 正则表达式符合贪婪匹配原则
+         * 使用 ? 可以打破规则
+         */
+        // var str = 'aaaaa';
+        // var reg = /a+/g;
+        // var res = str.match(reg);
+        // console.log(res);
+        // var str = 'aaaaa';
+        // var reg = /a+?/g;
+        // var res = str.match(reg);
+        // console.log(res);
+        /**
+         * 
+         * 连用两个?
+         * 第一个?叫量词
+         * 第二个?叫取消贪婪匹配
+         */
+        var str = 'aaaaa';
+        var reg = /a?/g;
+        var res = str.match(reg);
+        console.log(res);
+        var str = 'aaaaa';
+        var reg = /a??/g;
+        var res = str.match(reg);
+        console.log(res);
+        var str = 'aaaaa';
+        var reg = /a*?/g;
+        var res = str.match(reg);
+        console.log(res);
+    </script>
+</body>
+
+</html>

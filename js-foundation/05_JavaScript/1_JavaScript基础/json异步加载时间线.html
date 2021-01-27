@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        JSON是一种传输数据的格式(以对象为样板,本质为对象;
+                                对象是本地用的,json是用来传输的)
+
+        //  json在传输的过程中是字符串的形式
+        '{"name": "liu","age": 20}'
+
+        // JSON静态类
+        JSON.parse(); string -> json
+        JSON.stringfy(); json -> string
+     -->
+    <script>
+        /* 
+            domTree + cssTree = renderTree
+            dom树的构建 ==> 深度优先 
+         */
+        /* 
+            低效操作
+                reflow(页面的重排)
+                    dom结点的删除,添加
+                    dom结点的宽高变化,位置变化
+                    重排一定会带来重绘
+                repaint(页面的重绘)
+                    重绘是一个元素外观的改变所触发的浏览器行为，例如改变outline、背景色等属性。浏览器会根据元素的新属性重新绘制，
+                    使元素呈现新的外观。重绘不会带来重新布局，所以并不一定伴随重排。
+优化
+（1）将多次改变样式属性的操作合并成一次操作
+（2）将需要多次重排的元素，position属性设为absolute或fixed，
+这样此元素就脱离了文档流，它的变化不会影响到其他元素。例如有动画效果的元素就最好设置为绝对定位。
+（3）由于display属性为none的元素不在渲染树中，对隐藏的元素操作不会引发其他元素的重排。
+如果要对一个元素进行复杂的操作时，可以先隐藏它，操作完成后再显示。这样只在隐藏和显示时触发2次重排。
+          */
+
+
+//   -------------------------------------------------------------------------------------------------
+
+        /* 
+            配合参数为函数引用
+        */
+        // function test() {
+        // console.log('js脚本下载完毕');
+        // }
+        /* 
+            配合参数为字符串
+        */
+        var obj = {
+            test: function () {
+                console.log('hello');
+            },
+            demo: function () {
+                console.log('as');
+            }
+        }
+    </script>
+</body>
+
+</html>

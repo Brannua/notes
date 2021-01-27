@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    position: relative;
+}
+
+li {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    /* 相对于li自身设置旋转原点 */
+    transform-origin: 50% 100px;
+}
+
+li span {
+    /*span为块级元素则不能旋转*/
+    display: inline-block;
+}
+
+ul li:nth-of-type(2) {
+    transform: rotate(30deg);
+}
+ul li:nth-of-type(2) span {
+    transform: rotate(-30deg);
+}
+ul li:nth-of-type(3) {
+    transform: rotate(60deg);
+}
+ul li:nth-of-type(3) span {
+    transform: rotate(-60deg);
+}
+ul li:nth-of-type(4) {
+    transform: rotate(90deg);
+}
+ul li:nth-of-type(4) span {
+    transform: rotate(-90deg);
+}

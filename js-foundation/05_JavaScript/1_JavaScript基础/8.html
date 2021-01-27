@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        li:nth-of-type(2n) {
+            background-color: #ccc;
+        }
+
+        li:nth-of-type(2n + 1) {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+    </ul>
+    <script>
+        // 闭包
+        // function test() {
+        //     var arr = [];
+        //     for (var i = 0; i < 10; i ++) {
+        //         // 注意下一行的赋值语句只是一个函数引用，浏览器并不会读取函数体内部到底执行了什么，函数体内部语句的执行发生在函数执行时
+        //         arr[i] = function () {
+        //             document.write(i + " ");
+        //         }                
+        //     }
+        //     return arr;
+        // }
+        // var myArr = test();
+        // for (var j = 0; j < 10; j ++) {
+        //     myArr[j]();
+        // }
+
+        // GO {
+        //     test : fuction () {},
+        //     myArr : undefined
+        // }
+        // AO {
+        //     arr : [],
+        //     i : 10
+        // }
+
+
+        // 如果我就想让这十个函数保存在外面并且输出是0-9
+        // 使用立即执行函数，通过设置形参将每一次的i保存到立即执行函数内部
+        // 每一个立即执行函数都有自己的AO，保存到外部每次执行都找自己的AO里面的j
+        // function test() {
+        //     var arr = [];
+        //     for (var i = 0; i < 10; i ++) {
+        //         (function (j) {
+        //             // j是立即执行函数内部的变量
+        //             arr[j] = function () {
+        //             document.write(j + " ");
+        //         }
+        //         }(i));                
+        //     }
+        //     return arr;
+        // }
+        // var myArr = test();
+        // for (var j = 0; j < 10; j ++) {
+        //     myArr[j]();
+        // }
+
+
+        // 应用实例
+        function test() {
+            var liCollection = document.getElementsByTagName("li");
+            for (var i = 0; i < liCollection.length; i ++) {
+                (function (j) {
+                    liCollection[j].onclick = function () {
+                    console.log(j);
+                }
+                }(i));
+            }
+        }
+        test();
+    </script>
+</body>
+
+</html>

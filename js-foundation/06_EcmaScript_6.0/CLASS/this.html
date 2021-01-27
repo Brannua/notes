@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var name1 = 'window xm';
+        // let obj = {
+        //     name1: 'xm',
+        //     showMsg: () => {
+        //         console.log(this.name1);//注意简单的对象不构成作用域,所以这里的this是window
+        //     }
+        // }
+        // obj.showMsg();
+        // ------------------------------------------------------------------------------------------
+        // var name1 = 'window xm';
+
+        // function F() {
+        //     console.log(this);
+        //     var fn = function () {
+        //         var name1 = 'sub;'
+        //         console.log(name1);
+        //         console.log(this);
+        //         console.log(this.name1);
+        //     }
+        //     fn();
+        // }
+        // F(); // F() === window.F()
+        // ------------------------------------------------------------------------------------------
+        /* 箭头函数没有自己的this */
+        // var name1 = 'window xm';
+        // function F() {
+        //     console.log(this);
+        //     var fn = () => {
+        //         console.log(this);
+        //     }
+        //     fn();
+        // }
+        // F.call({name1:'haha'});
+        // ------------------------------------------------------------------------------------------
+        class Person3 {
+            constructor() {
+                this.name = 'xm';
+                //给定showName的this指向解决实例对象解构赋值后提取出的函数的this指向问题
+                // this.showName = this.showName.bind(this);
+                // 或者利用箭头函数没有this的特点,让箭头函数的this附着在构造函数的this即实例p3上
+                this.showName = () => this.print(`my name is ${this.name}`);
+            }
+            print(data) {
+                console.log(data);
+            }
+            showName() {
+                console.log(`my name is ${this.name}`);
+            }
+        }
+        let p3 = new Person3();
+        let {
+            showName
+        } = p3;
+        showName();
+    </script>
+</body>
+
+</html>

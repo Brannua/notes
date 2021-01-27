@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            background: orange;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        
+        /**
+         * @func {startMove} 合成运动函数
+         * @params {obj} 运动的物体
+         * @params {hz} 运动的频率
+         * @params {vx} 运动的水平初速度
+         * @params {vy} 运动的竖直初速度
+         * @params {lossEn} 运动碰壁的能量损失比率
+         */
+        function startMove(obj, hz, vx, vy, lossEn) {
+            var g = 10;// 模拟重力加速度
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function(){
+                vy += g;
+                var newLeft = obj.offsetLeft + vx,
+                    newTop = obj.offsetTop + vy;
+                /**
+                 * 1. 要进行预判,如果取大于号,判为下一步运动超出视口,置为不超出,就不会出现滚动条了
+                 * 2. 物体碰撞视口边界要有能量损失
+                 */
+                function lossEn(vx, vy, lossEn){
+                    vx *= lossEn;
+                    vy *= lossEn;
+                    return {x: vx, y: vy}
+                }
+                if (newTop >= document.documentElement.clientHeight - obj.offsetHeight) {
+                    vy *= -1;
+                    newTop = document.documentElement.clientHeight - obj.offsetHeight;
+                    vx = lossEn(vx, vy, 0.8).x;
+                    vy = lossEn(vx, vy, 0.8).y;
+                }
+                if (newLeft >= document.documentElement.clientWidth - obj.offsetWidth) {
+                    vx *= -1;
+                    newLeft = document.documentElement.clientWidth - obj.offsetWidth;
+                    vx = lossEn(vx, vy, 0.8).x;
+                    vy = lossEn(vx, vy, 0.8).y;
+                }
+                if (newTop <= 0) {
+                    vy *= -1;
+                    newTop = 0;
+                    vx = lossEn(vx, vy, 0.8).x;
+                    vy = lossEn(vx, vy, 0.8).y;
+                }
+                if (newLeft <= 0) {
+                    vx *= -1;
+                    newLeft = 0;
+                    vx = lossEn(vx, vy, 0.8).x;
+                    vy = lossEn(vx, vy, 0.8).y;
+                }
+                obj.style.left = newLeft + 'px';
+                obj.style.top = newTop + 'px';
+            }, hz)
+        }
+
+        var oDiv = document.getElementsByTagName('div')[0];
+        oDiv.onclick = function() {
+            startMove(this, 40, 40, 0, 0.8);
+        }
+    </script>
+</body>
+
+</html>

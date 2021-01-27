@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        主流浏览器(1. 有自己独立研发的浏览器内核。2. 市场占有率大于3%)
+        IE              trident
+        firefox         Gecko
+        Opera           presto
+        Safari          Webkit
+        Chrome          Webkit/blink
+    -->
+    <!-- 
+        1. js是解释型语言， 动态语言， 脚本语言
+        2. js是单线程(同一时间只能干一件事)
+        3. 引入js的方式
+                页面级的js(写在哪里都好使)  <script type="text/javascript">这里写js代码</script>
+                引入外部js文件  <script type="text/javascript" src="location"></script>
+        4. 为了符合web标准(w3c标准中的一项) 结构，样式，行为 相分离，通常会采用外部引入 (结构清晰，容易维护)
+        5. 有特殊需求的js写在页面里面，没有特殊需求的写在外部文件，方便打包，
+            如果一个script标签同时写了src并且包裹了js代码，则只有外部文件起作用，不可以这样写
+      -->
+    <script type="text/javascript">
+        // 声明变量, 变量赋值
+        // var a = 100;
+        // var b;
+        // var c;
+        // var d;
+        // 声明多个变量尽量采用单一var模式
+        // var a,
+        //     b = 100,
+        //     c,
+        //     d;
+
+        // 页面打印数据的值
+        // document.write(a, b, c, d);
+
+        // 变量的命名规则
+            /*
+                1. 变量名必须以英文字母，_，$ 开头
+                2. 变量名可以包括 英文字母，_，$，数字
+                3. 不可以用系统的关键字，保留字作为变量名
+            */
+        // a = 20;
+        // b = 30;
+        // c = a + b;
+        // document.write(c);
+
+        // 数据类型
+        /*
+            1. 原始值
+                Number, Boolean, String, NULL, Undefined
+                var a = 1.23456;//数字类型，天生就是浮点型
+                var b = "123";//字符串类型
+                var c = true;//true,false布尔类型
+                var d;//变量声明后没有赋值就是undefined类型，值是undefined
+            2. 引用值(堆数据)
+                array, Object, function, date, RegExp...
+                var arr = [1,2,3,a,b,"cde", false, undefined];
+
+            上述两种值赋值的情况不太一样
+            首先明确一个概念
+                js的变量类型由值得类型决定(其他很多语言都是由类型决定值)
+                js是动态语言就可以从下面的代码体现
+                var a = 123;
+                a = "asd";
+
+            var a = 1;
+            var b = a;
+            a = 2;
+            document.write(b);//这种情况下b的值依然是1，因为原始值是存放在栈(stack)里面，而引用值是存放在堆(heap)里面的
+            // 栈内存之间的关系式拷贝(copy),互相之间不影响；
+            // 但是引用值的值会被放在堆里面，此时栈依然要放东西，从栈底到栈顶存放堆里面存放的数据的地址，
+            // arr1存放的是从arr里面拷贝过来的地址，所以栈里面的内容改变，则arr和arr1同步改变
+            var arr = [1];
+            var arr1 = arr;
+            arr.push(2);//调用函数修改arr指向的堆中的内存空间的值
+            document.write(arr1);//这种情况下arr和arr1两个数组同步修改
+
+            var arr = [1,2,3];
+            var arr2 = arr;
+            arr = [4,5,6];//这是新申请的一块内存空间，改变了栈中arr的地址指向，但是arr2仍然指向原来的那一块堆中的内存空间
+            document.write(arr2);//1,2,3
+
+
+            function(){}
+            for(){}
+            if(){}这三者后面不需要加分号;
+            书写格式要规范，/=+-*两边都应该有空格
+            js语法错误会引发后续代码终止，但不会影响其他js代码块
+
+            js报错分两种
+
+            1. 低级错误(语法解析错误，一行代码都不会执行)
+            2. 逻辑错误(标准错误，情有可原)
+        */
+    </script>
+</body>
+
+</html>

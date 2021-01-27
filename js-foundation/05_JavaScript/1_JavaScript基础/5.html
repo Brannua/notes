@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var b = 1;
+        console.log(b);//1
+        function outer() {
+            console.log(b);//undefined
+            var b = 3;
+            console.log(b);//3
+            function inner() {
+                console.log(b);//undefined
+                b ++;
+                console.log(b);//NaN
+                var b = 3;
+                console.log(b);//3
+            }
+            console.log(b);//3
+            inner();
+            console.log(b);//3
+        }
+        console.log(b);//1
+        outer();
+        console.log(b);//1
+
+    </script>
+</body>
+
+</html>

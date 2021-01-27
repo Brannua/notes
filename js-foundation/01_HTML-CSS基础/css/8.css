@@ -1,0 +1,21 @@
+/*div {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: 10px solid transparent;
+    margin: 10px;
+}*/
+
+.wrapper {
+    width: 100px;
+    height: 100px;
+    background-color: #f00;
+    padding: 60px;
+    border: 10px solid green;
+}
+
+.content {
+    width: 100px;
+    height: 100px;
+    background-color: #000;
+}

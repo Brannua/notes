@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>俄罗斯方块</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- 下一个方块 -->
+    <div class="next" id="local_next"></div>
+
+    <!-- 用时和得分区域 -->
+    <span class="info" id="a">已用时:<span id="local_time">0</span>s</span>
+    <span class="info" id="b">已得分:<span id="local_score">0</span>分</span>
+
+    <!-- 游戏结束语 -->
+    <div id="gameover"></div>
+
+    <!-- 游戏区 -->
+    <div class="game" id="local_game"></div>
+
+    <!-- 按钮区 -->
+    <button class="btn" id="btn_5">坠落</button>
+    <button class="btn" id="btn_1">⬆</button>
+    <button class="btn" id="btn_2">⬇</button>
+    <button class="btn" id="btn_3">⬅</button>
+    <button class="btn" id="btn_4">➡</button>
+
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/square.js"></script>
+    <script src="js/squareFactory.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

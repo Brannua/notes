@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>利用cookie记录可拖拽小方块上一次的位置</title>
+    <style>
+        #demo {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script>
+        var oDemo = document.getElementById("demo");
+        /* 
+            用于管理cookie的api
+         */
+        var manageCookie = {
+            setCookie: function (name, value, time) {
+                document.cookie = name + "=" + value + ";max-age=" + time;
+                return this; //实现链式调用
+            },
+            removeCookie: function (name) {
+                return this.setCookie(name, '', -1);
+            },
+            getCookie: function (name, callback) {
+                var allCookieArr = document.cookie.split('; ');
+                // console.log(allCookieArr);
+                /* 采用for循环而不用forEach是因为for循环一单匹配到name就不用继续循环了,而forEach需要循环完 */
+                for (var i = 0; i < allCookieArr.length; i++) {
+                    var itemCookieArr = allCookieArr[i].split('=');
+                    if (itemCookieArr[0] == name) {
+                        callback(itemCookieArr[1]);
+                        return this; //链式调用
+                    }
+                }
+                callback(undefined); //如果for循环结束没找到所要查找的cookie就给回调函数传undefined
+                return this; //链式调用
+            }
+        }
+        /* 
+            用于拖拽小方块的api
+         */
+        var drag = {
+            // 入口函数
+            init: function (dom) {
+                this.dom = dom;
+                this.bindEvent();
+                var that = this;
+                manageCookie.getCookie('newLeft', function (Left) {
+                    if (Left) {
+                        that.dom.style.left = Left + "px";
+                    }
+                });
+                manageCookie.getCookie('newTop', function (Top) {
+                    if (Top) {
+                        that.dom.style.top = Top + "px";
+                    }
+                });
+            },
+            bindEvent: function () {
+                this.dom.onmousedown = this.mouseDown.bind(this);
+            },
+            mouseDown: function (e) {
+                // console.log(this);//现在this指向dom( 看mouseDown函数的调用者 )
+                /* 
+                    若使用call(),apply()改变this指向会立即执行而不会等到mousedown触发以后再执行
+                    采用bind()！！！！！！！！！！！！
+                 */
+                document.onmouseup = this.mouseUp.bind(this);
+                document.onmousemove = this.mouseMove.bind(this);
+
+                this.disY = e.clientY - this.dom.offsetTop;
+                this.disX = e.clientX - this.dom.offsetLeft;
+            },
+            mouseMove: function (e) {
+                this.newLeft = e.clientX - this.disX;
+                this.newTop = e.clientY - this.disY;
+
+                this.dom.style.left = this.newLeft + "px";
+                this.dom.style.top = this.newTop + "px";
+            },
+            mouseUp: function () {
+                document.onmouseup = null;
+                document.onmousemove = null;
+
+                manageCookie
+                    .setCookie('newLeft', this.newLeft, 10000)
+                    .setCookie('newTop', this.newTop, 10000);
+            }
+        }
+        // 启动项目
+        drag.init(oDemo);
+    </script>
+</body>
+
+</html>

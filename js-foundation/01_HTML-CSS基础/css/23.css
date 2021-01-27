@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.img {
+    width: 200px;
+    height: 200px;
+    border: 1px solid;
+    background-image: url(fy.jpg);
+    /* background-size: 200px 200px; */
+    background-repeat: no-repeat;
+    /* background-repeat: repeat-y; */
+    /* background-repeat: repeat-x; */
+
+    /* background-position: 100px 100px; */
+    /* 两种居中实现 */
+    /* background-position: center center; */
+    /* background-position: 50% 50%; */
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>加速运动</title>
+</head>
+
+<body>
+    <div style="width: 100px;height: 100px;background-color:red;position:absolute;left:0px;top:0px;"></div>
+    <script>
+        var div = document.getElementsByTagName("div")[0];
+        var speed = 0.1;
+        /* 
+            封装兼容的方法，获取元素的样式表 
+        */
+        function getStyle(elem, prop) {
+            if (window.getComputedStyle) {
+                return window.getComputedStyle(elem, null);
+            } else {
+                return elem.currentStyle;
+            }
+        }
+        div.onclick = function () {
+            var timer = setInterval(() => {
+                // 加速运动
+                speed += 0.1;
+                // 注意如果用es5的话this的指向！！！！！！！
+                this.style.left = parseInt(getStyle(this, null).left) + speed + "px";
+                // 停止运动的条件
+                if (parseInt(div.style.left) > 500) {
+                    clearInterval(timer);
+                }
+            }, 10);
+        }
+    </script>
+</body>
+
+</html>

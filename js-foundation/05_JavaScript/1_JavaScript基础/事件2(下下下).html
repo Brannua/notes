@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>键盘事件</title>
+</head>
+
+<body>
+    <!-- 
+    keydown > keypress > keyup
+    mousedown mousemove mouseup
+    touchdown touchmove touchend ==> 移动端
+
+    
+-->
+    <script>
+        /* 
+            测试 keydown keyup 和 keypress
+         */
+        //  document.onkeyup = function () {
+        //     console.log('keyup');
+        // }
+        // document.onkeypress = function () {
+        //     console.log('keypress');
+        // }
+        // document.onkeydown = function () {
+        //     console.log('keydown');
+        // }
+        // --------------------------------------
+        /* 
+            测试keydown 和 keypress 的区别:
+                keydown可以响应任意键盘按键
+                keypress只可以响应字符类键盘按键
+                        并返回Ascll码(可以转换为相应字符)
+         */
+        document.onkeydown = function (e) {
+            // console.log(e);
+        }
+        document.onkeypress = function (e) {
+            // console.log(e);
+            console.log(String.fromCharCode(e.charCode));
+        }
+        
+    </script>
+</body>
+
+</html>

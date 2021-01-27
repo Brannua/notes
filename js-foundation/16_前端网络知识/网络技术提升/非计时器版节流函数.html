@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>节流</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: #ccc;
+            text-align: center;
+            line-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">0</div>
+    <script>
+        /**
+         * 节流函数
+         * @params {callback} 回调函数
+         * @params {wait} 间隔时间
+         * 
+         */
+        function throttle(callback, wait) {
+            // 两函数之间实现变量声明的一次性
+            var lastTime,
+                flag = true;
+            return function () {
+                // 标志位的一次性事件
+                if (flag) {
+                    lastTime = new Date().getTime();
+                    flag = false;
+                }
+                // 获取当前时间
+                var now = new Date().getTime();
+                // 每当满足节流事件触发条件
+                if (now - lastTime > wait) {
+                    // 触发节流事件
+                    callback.call(this, arguments);
+                    // 每次触发节流事件,就将当前时间保存为上一次时间
+                    lastTime = now;
+                }
+            }
+        }
+
+        // 测试节流函数
+        box.onmousemove = throttle(function (e) {
+            console.log(e);
+            this.innerHTML = ++this.innerHTML;
+        }, 1000);
+    </script>
+</body>
+
+</html>

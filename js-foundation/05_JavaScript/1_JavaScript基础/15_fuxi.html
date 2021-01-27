@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 今日复习！！！！！！！！！！！！！！！
+
+
+        // js执行(语法分析,预编译,解释执行)
+        // 由于引用值都有自己在堆内存中的独立空间,所以[] !== [],{} !== {}
+        // undefined和null不能和数字进行比较(系统规定!!!)
+
+    /*
+        
+        // 包装类
+        // 原始值和引用值
+            // 1.存储位置不同(stack/heap) 
+            // 2.只有引用值才有属性和方法
+        //eg
+        var str = 'abc';
+        // str.length = new String('abc').length;
+        console.log(str.length);
+        //eg
+        var num = 123;
+        num.abc = 'abc';//new Number(123).abc = 'abc';  ---->  delete
+        console.log(num.abc);//new Number(123).abc  ---->  undefined
+
+        */
+
+    /*
+
+            // 原型
+            // 原型必须是基于构造函数的
+            Person.prototype.lastName = 'liu';
+            function Person() {
+                // 一旦new构造函数,会隐式的执行三部曲
+                // var this = {
+                //     先看这里有没有下文所访问的属性
+                //     如果没有就会沿着__proto__属性指向的原型查找属性
+                //     如果还没有就会继续找原型的__proto__属性指向的原型查找属性(以此类推形成原型链)
+                //     __proto__ : Person.prototype;
+                // }
+            }
+            console.log(new Person().lastName);
+
+        */
+
+    /* 
+        
+        // 利用闭包实现私有化变量
+        var inhert = (function () {
+            var F = function () {};
+            return function (Target, Origin) {
+                F.prototype = Origin.prototype;
+                Target.prototype = new F();
+                Target.prototype.constructor = Target;
+                Target.prototype.uber = Origin.prototype;
+            }
+        }());
+        // 只要函数嵌套并且内部函数被保存到了外面,就会形成闭包,(未必一定是return)
+        // 内部函数会死死地抓着外部函数的执行期上下文不放(即使函数a执行完被销毁后,
+        // 执行obj.fun()打印结果也是123)
+        // eg
+            var obj = {}
+            function a() {
+                var a = 123;
+                function b() {
+                    console.log(a);
+                }
+                obj.fun = b;//外部obj里面的fun始终可以访问a里面的东西
+            }
+        
+        */
+
+    /* 
+
+        var demo = {
+            lastName : 'liu'
+        }
+        // 下面这种创建对象的方式必须指定对象的原型
+        var obj = Object.create(demo);
+        // 创建出的空对象obj是下面这个样子
+        obj = {
+            __proto__ : demo
+        }
+
+        */
+    
+    /* 
+
+        // 属性分为两种(不可配置性属性和可配置性属性)
+        // 用var给window增加的属性是不可配置性属性,是delete不掉的
+        // 给window上的属性直接赋值是可以delete的 ---> window.num = 12; delete window.num; ---> true;
+        var num = 123;
+        var obj = {}
+        obj.num = 234;
+
+        */
+
+/* 
+
+    // 1.预编译this --> window
+    // 2.谁调用的 --> this就指向谁
+    // 3.call()/apply() --> 改变函数体里面的this指向,传参列表不同(apply第二个参数只能传arguments数组)
+    // 4.全局 --> this指向window
+        // function test() {
+        //     var num = 123;
+        //     function a() {};
+        //     console.log(this);//window
+        // }
+        // test()  
+        //     --> AO {
+        //         arguments : {},//类数组
+        //         this : window,
+        //         num : undefined,
+        //         a : function () {}
+        //     }
+    // var name = 'window';
+    // var obj = {
+    //     name : '111',
+    //     say : function () {
+    //         console.log(this.name);
+    //     }
+    // }
+    // obj.say.call(window);
+    // var fun = obj.say;
+    // fun();
+    // fun.call(obj);
+        // call/apply 最重要的功能就是实现函数借用来降低代码的耦合度
+        // function Person(name, sex) {
+        //     this.name = name;
+        //     this.sex = sex;
+        // }
+        // function Student(name, sex, age) {
+        //     // var this = Object.create(Student.prototype);//标准的隐式创建this对象
+        //     Person.call(this, name, sex);
+        //     this.age = age;
+        // }
+        // var student = new Student('liu', 'male', 18);
+
+        */
+
+    /* 
+        
+        // 闭包实现私有化变量(好处是只给构造函数构造出的对象留出具体功能的接口,隐藏构造函数内部的私有化变量)
+        function Person() {
+            // var this = {
+                // makeMoney: function() {money++}
+                // pay: function() {money--}
+            // }
+            var money = 100;
+            this.makeMoney = function () {
+                money ++;
+            }
+            this.pay = function () {
+                money --;
+            }
+            // return this;//形成二对一的闭包,变量money存在于接口函数的作用域链上,通过接口函数没有访问权限,属于私有化变量
+        }
+        var person = new Person();
+
+        */
+
+
+
+    /* 
+    
+        // 深/浅克隆
+        //浅拷贝
+        var obj = {
+            name : 'liu',
+            wife : {
+                name : 'xiaowang',
+                son : {name : 'xiaoliu'}
+            }
+        };
+        var obj1 = {};
+        for(var prop in obj){
+            obj1[prop] = obj[prop];
+        }
+        //深拷贝(13.html)
+        //思路:(拷贝son的过程和拷贝wife的过程和拷贝obj2的过程是一样的,形成递归)
+            var obj2 = {
+                name : obj.name,
+                wife : {
+                    name : obj.wife.name,
+                    son : {
+                        name : obj.wife.son.name
+                    }
+                }
+            }
+    
+        */
+
+    // 题目一
+    /* 
+        
+        function Person(name, age, sex) {
+            var a = 0;
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            function sss() {
+                a ++;
+                console.log(a);
+            }
+            this.say = sss;
+        }
+        var oPerson = new Person();
+        oPerson.say();//1
+        oPerson.say();//2
+        var oPerson1 = new Person();
+        oPerson1.say();//1
+
+        */
+    
+    // 题目二
+    /* 
+        
+        (function (x) {
+            // 形参x相当于var x;删不掉的
+            delete x;
+            return x;
+        })(1);
+
+        */
+
+    // 题目三
+    /* 
+        
+        function test() {
+            console.log(typeof arguments);//object,因为arguments是类数组
+        }
+        test();
+        
+        */
+
+    // 题目四
+    /* 
+        
+        var h = function a() {//表达式的函数名没有用
+            return 23;
+        }
+        console.log(typeof a());//报错-->a is not defined
+        
+        */
+
+    // 题目五
+    /* 
+        
+        // 尝试优化以下代码,使得代码看起来更加优雅
+        function GetDay(day) {
+            switch(day){
+                case 1:
+                    console.log("Monday");
+                    break;
+                case 2:
+                    console.log("Tuesday");
+                    break;
+                case 3:
+                    console.log("Wednesday");
+                    break;
+                case 4:
+                    console.log("Thursday");
+                    break;
+                case 5:
+                    console.log("Friday");
+                    break;
+                case 6:
+                    console.log("Saturday");
+                    break;
+                case 7:
+                    console.log("Sunday");
+                    break;
+                default:
+                    console.log("Error!!!");
+            }
+        }
+        // 优化结果
+        function getDay(day) {
+            var arr = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+            var ret = arr[day - 1];
+            if(ret == undefined){
+                console.log("Error!!!");
+            } else {
+                console.log(ret);
+            }
+        }
+        
+        */
+    </script>
+</body>
+
+</html>

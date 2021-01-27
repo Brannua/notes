@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+
+*/
+span {
+    background-color: #f00;
+    width: 100px;
+    height: 100px;
+    /* float: left; */  /*变成bfc元素,*/
+    position: absolute; /*且变成的是inline-block元素*/
+    /* 为了不使产生浮动流的元素对之后的元素产生影响(因为inline-block后续元素会排在其后),利用::after清除浮动 */
+}

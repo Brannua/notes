@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: #0f0;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            border-radius: 50%;
+        }
+
+        span {
+            width: 1px;
+            height: 100px;
+            background-color: #ccc;
+            position: absolute;
+            left: 500px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <span></span>
+    <script>
+        /**
+         * @func {startMove} 弹性运动
+         * @params {obj} 运动的物体
+         * @params {hz} 运动的频率
+         * @params {target} 钉子所在位置
+         * @params {jdxs} 皮筋的劲度系数
+         * @params {u} 摩擦系数
+         */
+        function startMove(obj, hz, target, jdxs, u) {
+            var av, // 加速度
+                v0 = 0, // 初速度为0
+                ve; // 末速度
+            clearInterval(obj.timer);
+            obj.timer = setInterval(() => {
+                /* 无摩擦力计算加速度 */
+                av = (target.offsetLeft - obj.offsetLeft) / 8 * jdxs;
+                /* 无摩擦力计算末速度 */
+                ve = v0 + av;
+                /* 考虑摩擦力计算末速度 */
+                ve = ve * u;
+                ve = ve > 0 ? Math.floor(ve) : Math.ceil(ve);
+                if (obj.offsetLeft == target.offsetLeft && ve == 0) {
+                    clearInterval(obj.timer);
+                } else {
+                    obj.style.left = obj.offsetLeft + ve + 'px';
+                }
+            }, hz);
+        }
+
+        var oDiv = document.getElementsByTagName('div')[0],
+            oSpan = document.getElementsByTagName('span')[0];
+        oDiv.onclick = function () {
+            startMove(this, 30, oSpan, 16, 0.94);
+        }
+    </script>
+</body>
+
+</html>

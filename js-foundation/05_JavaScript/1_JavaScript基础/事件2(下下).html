@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件练习->随机移动的方块</title>
+</head>
+
+<body>
+    <div style="width:100px;height:100px;background-color:red;position:absolute;left:0;top:0;"></div>
+    <script>
+        var div = document.getElementsByTagName('div')[0];
+        div.onmouseover = function () {
+            var random = Math.floor(Math.random() * 4);
+            var style = this.style;
+            var length = 100;
+            var left = parseInt(style.left);
+            var top = parseInt(style.top);
+            switch (random) {
+                case 0:
+                    style.left = (left + length) < 0 ? left : left + length + "px";
+                    break;
+                case 1:
+                    style.left = (left - length) < 0 ? left : left - length + "px";
+                    break;
+                case 2:
+                    style.top = (top + length) < 0 ? top : top + length + "px";
+                    break;
+                case 3:
+                    style.top = (top - length) < 0 ? top : top - length + "px";
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>

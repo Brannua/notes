@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+            // this
+        // 1.函数预编译过程中this指向window
+        // 2.全局作用域里this指向window
+        // 3.callapply可以改变函数运行时this的指向
+        // 4.obj.function();   function()里面的this指向obj
+
+
+        // function test(c) {
+            // var this = Object.create(test.prototype);
+            // {
+            //     __proto__ : test.prototype
+            // }
+        //     var a = 123;
+        //     function b() {}
+        // }
+        // AO {
+        //     arguments : [1],
+        //     this : window,//没有new构造函数this就会指向window，一旦new，this改变指向
+        //     a : undefined,
+        //     b : function b() {},
+        //     c : 1
+        // }
+        // test(1);
+        // new test();
+
+
+        // var name = "222";
+        // var a = {
+        //     name : "111",
+        //     say : function () {
+        //         console.log(this.name);
+        //     }
+        // }
+        // var fun = a.say;
+        // fun();//222
+        // a.say();//111
+        // var b = {
+        //     name : '333',
+        //     say : function (fun) {
+        //         fun();//没有object调用fun，fun就走预编译过程
+        //     }
+        // }
+        // b.say(a.say);
+        // b.say = a.say;
+        // b.say();//333
+
+
+
+
+        // console.log(0.1 + 0.2);
+        // console.log(0.1 + 0.2 == 0.3);
+    </script>
+</body>
+
+</html>

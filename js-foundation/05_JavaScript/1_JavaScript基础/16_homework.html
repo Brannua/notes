@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 一个字符串由[a-z]组成,请找出该字符串第一个只出现一次的字母;
+        var arr = 'aabbcddasdfghd';
+        function retFirShow(arr) {
+            var temp;//用于保存住第一次出现一次的字母
+            for (var i = 0; i < arr.length; i++) {
+                temp = arr[i];//假设当前位是第一次出现一次的字母
+                var count = 0;
+                for (var j = 0; j < arr.length; j++) {
+                    if (arr[j] === temp) {
+                        count++;
+                    } else {
+                        continue;
+                    }
+                }
+                if (count === 1) {
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            return temp;
+        }
+        
+        // 字符串去重
+        var arrDemo = 'aabbcddasdfghd';
+        function arrQuChong(arr){
+            var obj = {},
+                arr = [];
+            for (var i = 0; i < arrDemo.length; i ++) {
+                obj[arrDemo[i]] = arrDemo[i];
+            }
+            // console.log(obj);
+            for(var prop in obj) {
+                arr.push(prop);
+            }
+            return arr;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 编程讲究高内聚弱耦合
+
+        // 函数
+        // 1. 函数最基本的用法和作用 -> 通过提取相同的代码段将其封装成函数来简化代码
+        // 2. 函数的声明(第一种方式) -> 函数是引用类型的变量，其栈内存中存放的是地址，function是关键字，函数变量名 + (可传参) + {函数体}
+        // function demo(可传参) {函数体}  demo.name//demo
+        // 函数名命名规范 -> 多个单词拼接命名时，第一个单词首字母小写，后面的单词首字母大写(小驼峰式命名法)
+        // 3. js 属于弱类型的解释性语言，有地址但无法打印出地址，eg -> function theFirstName() {}  console.log(theFirstName);打印出的是函数体
+        // 4. 函数的声明(第二种方式) ->函数表达式 -> var demo = function test() {}
+        // 5. 函数的声明(第三种方式) ->匿名函数表达式 -> var demo = function () {}
+        // tips: 函数表达式的函数声明方法是忽略函数名字的，so -> var demo = function test() {console.log("hello world");}在控制台直接写入test是not defined
+            // var demo = function test() {
+            //     console.log("hello world");
+            // }
+        // 6. 第二种和第三种函数命名的方式，打印函数的名字的时候 -> demo.name//test   demo.name//demo
+        
+
+        // 函数的第二个用法和好处 -> 抽象规则
+        // 形式参数 -> 形参
+        // 7. function demo(a, b){
+                // var a;
+                // var b;
+        // }
+            // 实际参数 -> 实参
+            // demo(13, "asd");
+        // eg -> 
+        // function sum(a, b){
+        //         var c = a + b;
+        //         console.log(c);
+        // }
+        // sum(1, 2);
+        // sum(25, 36);
+        
+        // js中形参和实参的个数可以不对等，不对等不会报错，只是传不进去参数而已,但是！！
+        // 无论实参是否传入形参，函数内部都会有arguments实参列表，以类数组的形式将实参存储起来
+        // 实参长度arguments.length  形参长度-> 函数名.length
+        // function sum (a, b, c, d) {
+        //     if (sum.length > arguments.length) {
+        //         console.log("形参多了");
+        //     } else {
+        //         console.log("实参多了");
+        //     }
+        // }
+
+        // 参数什么类型都可以
+
+        // practise
+        // 实现一个功能，调用函数sum(),无论传多少参数，都输出参数的和(不定参求累和)
+        // function sum() {
+        //     var res = 0;
+        //     for (var i = 0; i < arguments.length; i ++) {
+        //         res += arguments[i];
+        //     }
+        //     console.log(res);
+        // }
+        // sum(1, 2, 3, 4, 5);
+
+        // arguments和传入的实参不是同一块存储空间，但由于映射关系的存在，arguments的每一个元素会和对应的传入的实参的每一个元素同步更新
+        // arguments和传入的实参就是不求同生但求同死的好兄弟
+        // 但是！！实参列表出生的时候长度为几就固定住长度为几了，映射关系也已经定死，后续操作改变没有映射关系的形参的值不会对实参列表有任何影响
+
+
+        // 函数的结束条件return;
+        // 函数的返回值return res;函数的返回值如果要使用需要使用变量来接收
+
+    </script>
+</body>
+
+</html>

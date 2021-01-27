@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>百度搜索框联想词功能</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        .wrapper {
+            width: 400px;
+            margin: 240px auto;
+        }
+
+        input {
+            width: 400px;
+            height: 34px;
+        }
+
+        ul {
+            display: none;
+            width: 400px;
+            border: 1px solid #ccc;
+        }
+
+        li {
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        li:hover {
+            background-color: #ddd;
+            cursor: pointer;
+        }
+
+        a {
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <p style="text-align: center;font-size:40px;margin-bottom:20px;font-family: monospace">培杰搜索</p>
+        <input type="text">
+        <ul></ul>
+    </div>
+    <script>
+        var oInput = document.getElementsByTagName('input')[0],
+            oUl = document.getElementsByTagName('ul')[0];
+        oInput.oninput = function () {
+            var value = this.value;
+            var oScript = document.createElement('script');
+            oScript.src = 'https://www.baidu.com/sugrec?prod=pc&wd=' + value + '&cb=doJson'
+            document.body.appendChild(oScript);
+            document.body.removeChild(oScript);
+        }
+
+        function doJson(data) {
+            var g = data.g,
+                str = '';
+            if (g !== undefined) {
+                g.forEach(function (value) {
+                    var title = value.q;
+                    str += '<li><a href="https://www.baidu.com/s?wd=' + title + '">' + title + '</a></li>';
+                });
+                oUl.innerHTML = str;
+                oUl.style.display = 'block';
+            } else {
+                oUl.style.display = 'none';
+            }
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper"></div>
+    <script>
+        var wrapper = document.getElementsByClassName("wrapper")[0];
+        var arr = [];
+        for (var i = 0; i < 10; i ++) {
+            var div = document.createElement('div');
+            arr.push(div);
+        }
+        var len = arr.length;
+        for (var i = 0; i < len; i ++) {
+            wrapper.appendChild(arr[i]);
+        }
+        // wrapper.removeChild(arr[0]);
+        arr[0].remove();
+        arr[0] = null;
+
+        for (var i = 0; i < 10; i ++) {
+            console.log(arr[i]);
+        }
+    </script>
+</body>
+</html>

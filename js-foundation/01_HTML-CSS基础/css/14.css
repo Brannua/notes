@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    width: 100px;
+    height: 100px;
+    background-color: #000;
+    margin-left: 100px;
+    margin-top: 100px;
+}
+
+.wrapper .content {
+    width: 50px;
+    height: 50px;
+    background-color: #0f0;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+/* 
+    BUG--> margin塌陷！！！
+
+    第19行margin-top: 50px;并没有起作用，
+    只有当19行的margin-top设置为比其父元素的margin-top
+    还要大的时候，子元素会带着父元素一起往下走
+
+    (即父子元素垂直方向的margin是结合在一起的,二者取最大值)
+
+    解决方法
+        方法1(此法残暴不专业): 给父元素增加属性border-top:1px solid black;
+        方法2: 使用bfc(block format context)改变盒子的一丁点渲染规则解决了margin塌陷
+    触发bfc的四种方法(给父元素设置)
+        display: inline-block;
+        position: absolute;
+        float: left/right;
+        overflow: hidden;
+*/

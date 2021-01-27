@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>箭头函数</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 基本使用方法
+         */
+        /* 
+            var f1 = function (num) {
+                return num;
+            }
+            console.log(f1(1));
+            var f2 = num => num;
+            console.log(f2(2));
+            var f3 = () => 'no params';
+            console.log(f3());
+            var f4 = (num1, num2) => num1 + num2;
+            console.log(f4(1, 2));
+            var f5 = () => ({name: 'xiaoliu'});
+            console.log(f5());
+         */
+        // ----------------------------------------------
+        /**
+         * 箭头函数中没有arguments,通过扩展运算符获取参数列表
+         * 箭头函数中没有this这个对象,this指向父级
+         */
+        var name1 = 'window name1';
+        let name2 = 'window name2';
+        let obj = {
+            name: 'xm',
+            say: () => {
+                console.log(this.name3);//undefined
+                console.log(this.name1);
+                console.log(this.name2);//undefined
+                /* 
+                    this.name2 === undefined
+                    因为我们在全局范围内使用var声明一个变量时, 这个变量会自动成为全局对象的属性( 在浏览器和Node.js环境下,这个全局对象分别是window和global )
+                    但是let是独立存在的变量,不会成为全局对象的属性
+                 */
+            }
+        }
+        obj.say();
+        // ----------------------------------------------
+        /**
+         * 箭头函数的嵌套( 以下两种写法等价 )
+         */
+        // function fn1(str) {
+        //     return function () {
+        //         console.log(str.split(''));
+        //     }
+        // }
+        // fn1('123')();
+        // var fn2 = str => () => console.log(str.split(''));
+        // fn2('123')();
+    </script>
+</body>
+
+</html>

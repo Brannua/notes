@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--
+         正则表达式的匹配原则
+            ==> 贪婪匹配原则
+     -->
+    <script>
+        /**
+         * n+ ==> {1, Infinity}
+         */
+        var reg = /\w+/g;
+        var str = 'abc';
+        var res = str.match(reg);
+        console.log(res);
+        /**
+         * n? ==> {0, 1}
+         */
+        var reg = /\w?/g;
+        var str = 'abc';
+        var res = str.match(reg);
+        console.log(res);
+        /* 
+         * n* ==> {0, Infinity}
+         */
+        var reg = /\w*/g;
+        var str = 'abc';
+        var res = str.match(reg);
+        console.log(res);
+        var reg = /\d*/g;
+        var str = "abc";
+        var res = str.match(reg);
+        console.log(res);
+        /**
+         * n{X} X个为一组地进行匹配
+         */
+        var reg = /\w{2}/g;
+        var str = "abcd";
+        var res = str.match(reg);
+        console.log(res);
+        // -----------------------------
+        /**
+         * 开头符 ^
+         * 结尾符 $
+         */
+        var reg = /^abc/g;
+        var str = "abcde";
+        var res = str.match(reg);
+        console.log(res);
+        var reg = /abc$/g;
+        var str = "qweabc";
+        var res = str.match(reg);
+        console.log(res);
+        var reg = /^abc$/g;
+        var str = "abcabc";
+        var res = str.match(reg);
+        console.log(res);
+    </script>
+</body>
+
+</html>
